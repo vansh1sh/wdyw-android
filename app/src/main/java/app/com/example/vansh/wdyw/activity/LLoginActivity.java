@@ -14,6 +14,8 @@ import android.widget.Toast;
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.BLoginRequest;
 import app.com.example.vansh.wdyw.model.BLoginResponse;
+import app.com.example.vansh.wdyw.model.LLoginRequest;
+import app.com.example.vansh.wdyw.model.LLoginResponse;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
@@ -89,20 +91,18 @@ public class LLoginActivity extends AppCompatActivity {
         progressDialog.show();
 
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-
-
-        BLoginRequest loginRequest = new BLoginRequest();
+        LLoginRequest loginRequest = new LLoginRequest();
         loginRequest.setPassword(_passwordText.getText().toString());
 
         Integer myNum = Integer.parseInt(phone.getText().toString());
 
         loginRequest.setPhone(myNum);
 
-        Call<BLoginResponse> call = apiInterface.B_LOGIN_REQUEST_CALL(loginRequest);
+        Call<LLoginResponse> call = apiInterface.L_LOGIN_REQUEST_CALL(loginRequest);
 
-        call.enqueue(new Callback<BLoginResponse>() {
+        call.enqueue(new Callback<LLoginResponse>() {
             @Override
-            public void onResponse(Call<BLoginResponse> call, Response<BLoginResponse> response) {
+            public void onResponse(Call<LLoginResponse> call, Response<LLoginResponse> response) {
                 progressDialog.hide();
                 if (response.body().getStatus().equals(Boolean.TRUE)){
                     Toast.makeText(getBaseContext(), "Login Success:Yahoo", Toast.LENGTH_LONG).show();
@@ -121,7 +121,7 @@ public class LLoginActivity extends AppCompatActivity {
 
 
             @Override
-            public void onFailure(Call<BLoginResponse> call, Throwable t) {
+            public void onFailure(Call<LLoginResponse> call, Throwable t) {
                 progressDialog.hide();
             }
         });

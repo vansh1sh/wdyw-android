@@ -133,19 +133,24 @@ public class LSignupActivity extends AppCompatActivity {
                     if (selectedItemText.equals("Financial Institution")){
 
                         ch=selectedItemText;
-                        openDialogfin();
+                        us.setType(ch);
 
+                        openDialogfin();
 
 
 
                     }
                     if (selectedItemText.equals("Agent")){
                         ch=selectedItemText;
+                        us.setType(ch);
+
                         openDialogagent();
 
                     }
                     if (selectedItemText.equals("Local")){
                         ch=selectedItemText;
+                        us.setType(ch);
+
                         openDialoglocal();
 
                     }
@@ -769,18 +774,7 @@ public class LSignupActivity extends AppCompatActivity {
                 us.setEmail(email.getText().toString());
                 us.setPassword(pass.getText().toString());
 
-                if (ch.equals("Financial Institution")){
-                us.setType(ch);
-                }
-                if (ch.equals("Agent")) {
-                    us.setType(ch);
 
-
-                }
-                if (ch.equals("Local")) {
-                    us.setType(ch);
-
-                }
 
                 Quote qu=new Quote();
                 qu.setMax(90000);
