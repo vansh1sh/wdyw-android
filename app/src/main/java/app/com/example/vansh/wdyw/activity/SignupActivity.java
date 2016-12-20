@@ -1,7 +1,9 @@
 package app.com.example.vansh.wdyw.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,19 +12,34 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
+
 import app.com.example.vansh.wdyw.R;
+import app.com.example.vansh.wdyw.model.BSignupRequest;
+import app.com.example.vansh.wdyw.rest.ApiClient;
+import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.DialogUtil;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
 
     @Bind(R.id.input_name)
     EditText _nameText;
-    @Bind(R.id.input_email)
-    EditText _emailText;
+    @Bind(R.id.input_phone)
+    EditText _phone;
     @Bind(R.id.input_password)
     EditText _passwordText;
+    @Bind(R.id.input_profession)
+    EditText _profession;
+    @Bind(R.id.input_address)
+    EditText _address;
+    @Bind(R.id.input_city)
+    EditText _city;
     @Bind(R.id.btn_signup)
     Button _signupButton;
     @Bind(R.id.link_login)
@@ -66,22 +83,57 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
+        final BSignupRequest BS = new BSignupRequest();
+        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+
+
+                BS.setName(_nameText.getText().toString());
+                BS.setPassword(_passwordText.getText().toString());
+                BS.setAddress(_address.getText().toString());
+                BS.setCity(_city.getText().toString());
+                BS.setProfession(_profession.getText().toString());
+
+
+                Integer myNum = Integer.parseInt(_phone.getText().toString());
+                BS.setPhone(myNum);
+
+
+
+                Call<BSignupRequest> call = apiInterface.BSignUp(BS);
+
+                final ProgressDialog dialog2 = new ProgressDialog(SignupActivity.this);
+                dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog2.setMessage("Adding the item to your inventory");
+                dialog2.setIndeterminate(true);
+                dialog2.setCanceledOnTouchOutside(false);
+                dialog2.show();
+
+
+                call.enqueue(new Callback<BSignupRequest>() {
+                    @Override
+                    public void onResponse(Call<BSignupRequest> call, Response<BSignupRequest> response) {
+                        dialog2.hide();
+                        // if (response.body().getCode().equals(Consts.SUCCESS)){
+                        //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     }
-                }, 3000);
+
+
+                    @Override
+                    public void onFailure(Call<BSignupRequest> call, Throwable t) {
+                        dialog2.hide();
+                        DialogUtil.createDialog("Oops! Please check your internet connection!", SignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                            }
+                        });
+                    }
+                });
+
     }
 
 
@@ -101,7 +153,6 @@ public class SignupActivity extends AppCompatActivity {
         boolean valid = true;
 
         String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
@@ -111,12 +162,6 @@ public class SignupActivity extends AppCompatActivity {
             _nameText.setError(null);
         }
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            _emailText.setError(null);
-        }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");

@@ -1,8 +1,8 @@
 package app.com.example.vansh.wdyw.rest;
-import com.vansh.resellerprofit.utility.UtilityMethods;
 
 import java.io.IOException;
 
+import app.com.example.vansh.wdyw.utility.UtilityMethods;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

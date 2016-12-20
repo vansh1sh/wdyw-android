@@ -3,7 +3,6 @@ package app.com.example.vansh.wdyw.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,16 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.BLoginRequest;
 import app.com.example.vansh.wdyw.model.BLoginResponse;
-import app.com.example.vansh.wdyw.model.BSignupRequest;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
-import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LLoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
@@ -51,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(LoginActivity.this,MainActivity.class);
+                Intent it=new Intent(LLoginActivity.this,MainActivity.class);
                 startActivity(it);
             }
         });
@@ -71,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LSignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
@@ -87,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+        final ProgressDialog progressDialog = new ProgressDialog(LLoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
@@ -111,10 +106,10 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.hide();
                 if (response.body().getStatus().equals(Boolean.TRUE)){
                     Toast.makeText(getBaseContext(), "Login Success:Yahoo", Toast.LENGTH_LONG).show();
-                    Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),LoginActivity.this);
-                    Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,LoginActivity.this));
+                    Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),LLoginActivity.this);
+                    Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,LLoginActivity.this));
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LLoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
                 else
@@ -150,7 +145,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();        // Disable going back to the MainActivity
+        finish();
+        // Disable going back to the MainActivity
     }
 
     public void onLoginSuccess() {

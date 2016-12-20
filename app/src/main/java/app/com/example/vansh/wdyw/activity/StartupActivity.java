@@ -61,6 +61,7 @@ public class StartupActivity extends AppCompatActivity{
                 R.layout.welcome_slide3,
                 R.layout.welcome_slide4};
 
+
         // adding bottom dots
         addBottomDots(0);
 
@@ -118,7 +119,7 @@ public class StartupActivity extends AppCompatActivity{
     }
 
     private void launchHomeScreen() {
-        startActivity(new Intent(StartupActivity.this, LoginActivity.class));
+        startActivity(new Intent(StartupActivity.this, FirstPage.class));
         finish();
     }
 

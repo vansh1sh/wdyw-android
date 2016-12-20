@@ -2,12 +2,11 @@ package app.com.example.vansh.wdyw.rest;
 
 import android.content.Context;
 
-import com.vansh.resellerprofit.utility.Consts;
-import com.vansh.resellerprofit.utility.Preferences;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import app.com.example.vansh.wdyw.utility.Consts;
+import app.com.example.vansh.wdyw.utility.Preferences;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://resellerprofit.herokuapp.com";
+    public static final String BASE_URL = "https://wdywdata.herokuapp.com";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient(final Context context) {

@@ -1,14 +1,12 @@
 package app.com.example.vansh.wdyw.rest;
 
-import com.vansh.resellerprofit.model.LoginResponse;
-import com.vansh.resellerprofit.model.SignUpRequest;
-import com.vansh.resellerprofit.model.SoldRequest;
-import com.vansh.resellerprofit.model.SoldViewResponse;
-import com.vansh.resellerprofit.model.StockRequest;
-import com.vansh.resellerprofit.model.StockResponse;
 
 import java.util.Map;
 
+import app.com.example.vansh.wdyw.model.BLoginRequest;
+import app.com.example.vansh.wdyw.model.BLoginResponse;
+import app.com.example.vansh.wdyw.model.BSignupRequest;
+import app.com.example.vansh.wdyw.model.LSignupRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -17,24 +15,13 @@ import retrofit2.http.QueryMap;
 
 
 public interface ApiInterface {
-    @POST("/signup")
-    Call<SignUpRequest> SignUp(@Body SignUpRequest signUpRequest);
+    @POST("/v1/customer")
+    Call<BSignupRequest> BSignUp(@Body BSignupRequest bsignUpRequest);
+    @POST("/v1/customer/login")
+    Call<BLoginResponse> B_LOGIN_REQUEST_CALL(@Body BLoginRequest bLoginRequest);
+    @POST("/v1/lender")
+    Call<LSignupRequest> L_SIGNUP_REQUEST_CALL(@Body LSignupRequest lSignupRequest);
 
-    @GET("/login")
-    Call<LoginResponse> getResponse(@QueryMap Map<String, String> params);
-
-    @POST("/stock")
-    Call<StockRequest> Stock(@Body StockRequest stockRequest);
-
-    @GET("/stock")
-    Call<StockResponse> stockResponse(@QueryMap Map<String, String> params);
-
-     @POST("/sold")
-    Call<SoldRequest> Sold(@Body SoldRequest soldRequest);
-
-
-    @GET("/sold")
-    Call<SoldViewResponse> soldViewResonse(@QueryMap Map<String, String> params);
 
 
 
