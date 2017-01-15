@@ -19,20 +19,27 @@ import android.widget.Toast;
 
 import app.com.example.vansh.wdyw.R;
 
-public class MainActivity extends AppCompatActivity {
+public class BorrowerMainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    String city="Vellore";
+    int pageid=1;
+    int loanAmt=3000;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
+
 
         /**
          *Setup the DrawerLayout and NavigationView
@@ -60,15 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
 
                  if (menuItem.getItemId() == R.id.nav_item_sent) {
-                     Intent i = new Intent(MainActivity.this,Profile.class);
+                     Intent i = new Intent(BorrowerMainActivity.this,BorrowerProfile.class);
                      startActivity(i);
-
+                 }
+                 if (menuItem.getItemId() == R.id.nav_lender) {
+                     Intent i = new Intent(BorrowerMainActivity.this,BorrowerLenderActivity.class);
+                     startActivity(i);
                  }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
-                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
-                }
+                    Intent i = new Intent(BorrowerMainActivity.this,BorrowerLoanPostActivity.class);
+                    startActivity(i);}
                  if (menuItem.getItemId() == R.id.nav_item_draft) {
                      FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
                      fragmentTransaction.replace(R.id.containerView,new SentFragment()).commit();
@@ -111,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent i = new Intent(MainActivity.this,Profile.class);
+                Intent i = new Intent(BorrowerMainActivity.this,BorrowerProfile.class);
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "LOL I'm cool-huehuehue", Toast.LENGTH_SHORT).show();
                 break;

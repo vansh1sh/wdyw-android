@@ -29,7 +29,7 @@ public class ApiClient {
                     .addInterceptor(new Interceptor() {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
-                            Request request=chain.request().newBuilder().addHeader("access-token", Preferences.getPrefs(Consts.TOKEN_SP_KEY,context)).build();
+                            Request request=chain.request().newBuilder().addHeader("Authorization", Preferences.getPrefs(Consts.TOKEN_SP_KEY,context)).build();
                             return chain.proceed(request);
                         }
                     })

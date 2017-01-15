@@ -2,7 +2,6 @@ package app.com.example.vansh.wdyw.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class FirstPage extends AppCompatActivity{
+public class BorrowerFirstPage extends AppCompatActivity{
 
     @Bind(R.id.bor)
     Button bor;
@@ -28,7 +27,7 @@ public class FirstPage extends AppCompatActivity{
         bor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(FirstPage.this, LoginActivity.class);
+                Intent it = new Intent(BorrowerFirstPage.this, BorrowerLoginActivity.class);
                 startActivity(it);
             }
         });
@@ -36,7 +35,7 @@ public class FirstPage extends AppCompatActivity{
         len.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(FirstPage.this, LLoginActivity.class);
+                Intent it = new Intent(BorrowerFirstPage.this, LLoginActivity.class);
                 startActivity(it);
             }
 
@@ -49,7 +48,7 @@ public class FirstPage extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-      finish();    // Disable going back to the MainActivity
+      finish();    // Disable going back to the BorrowerMainActivity
     }
 }
 

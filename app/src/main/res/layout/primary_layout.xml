@@ -16,6 +16,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
+
         <ImageView android:src="@drawable/r"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
@@ -23,7 +24,7 @@
             android:layout_gravity="center_horizontal" />
 
 
-        <!--  Name Label -->
+        <!--  LoanAmt Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,10 +35,10 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:textColorHint="#ffff"
-            android:hint="Mobile Number" />
+            android:hint="Loan Amount" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Email Label -->
+        <!-- City Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,11 +50,10 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:textColorHint="#ffff"
-
-                android:hint="State" />
+                android:hint="City" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Password Label -->
+        <!-- padeid Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textColorHint="#ffff"
 
-                android:hint="Amount"/>
+                android:hint="id"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
@@ -74,10 +74,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:onClick="onClick"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Recharge"/>
+            android:text="Submit"/>
 
         <TextView android:id="@+id/link_login"
             android:layout_width="fill_parent"

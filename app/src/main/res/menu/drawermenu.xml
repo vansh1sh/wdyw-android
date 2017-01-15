@@ -11,6 +11,10 @@
           android:id="@+id/nav_item_sent"
           android:icon="@drawable/sent"/>
 
+    <item android:title="Lender"
+          android:id="@+id/nav_lender"
+          android:icon="@drawable/sent"/>
+
     <item android:title="Bump/NFC"
           android:id="@+id/nav_item_draft"
           android:icon="@drawable/sent"/>

@@ -14,21 +14,23 @@
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/WDYW"
-            android:theme="@style/My">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FirstPage" android:label="Welcome"></activity>
+        <activity android:name=".activity.BorrowerLoanPostActivity" android:label="Request Loan"></activity>
+        <activity android:name=".activity.BorrowerFirstPage" android:label="Welcome"></activity>
         <activity android:name=".activity.LSignupActivity" android:label="Lender's Signup"></activity>
-        <activity android:name=".activity.MainActivity" android:label="Main Activity"></activity>
+        <activity android:name=".activity.BorrowerMainActivity" android:label="Main Activity"></activity>
         <activity android:name=".activity.StartupActivity" android:label="Startup Activity"></activity>
-        <activity android:name=".activity.Profile" android:label="Profile"></activity>
-        <activity android:name=".activity.LoginActivity" android:label="Login"></activity>
+        <activity android:name=".activity.BorrowerProfile" android:label="Profile"></activity>
+        <activity android:name=".activity.BorrowerLoginActivity" android:label="Login"></activity>
         <activity android:name=".activity.LLoginActivity" android:label="Lender's Login"></activity>
         <activity android:name=".activity.SignupActivity" android:label="SIGN UP"></activity>
+        <activity android:name=".activity.BorrowerLenderActivity" android:label="Lenders Available"></activity>
 
 
     </application>

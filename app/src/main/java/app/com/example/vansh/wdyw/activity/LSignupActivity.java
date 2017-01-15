@@ -25,7 +25,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
-import app.com.example.vansh.wdyw.model.BSignupRequest;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
 import app.com.example.vansh.wdyw.model.Occupation;
 import app.com.example.vansh.wdyw.model.Quote;
@@ -61,6 +60,9 @@ public class LSignupActivity extends AppCompatActivity {
     Button button;
     @Bind(R.id.link_login)
     TextView _loginLink;
+    String check="No";
+
+
 
 
     @Override
@@ -68,6 +70,8 @@ public class LSignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lender_activity_signup);
         ButterKnife.bind(this);
+        us=new User();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,44 +126,45 @@ public class LSignupActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
 
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                    String selectedItemText = (String) parent.getItemAtPosition(position);
                 // If user change the default selection
                 // First item is disable and it is used for hint
-                if(position > 0){
+                    if (position > 0) {
+                        if (selectedItemText.equals("Financial Institution")) {
+                            ch = selectedItemText;
+                            us.setType(ch);
 
-                    if (selectedItemText.equals("Financial Institution")){
-
-                        ch=selectedItemText;
-                        us.setType(ch);
-
-                        openDialogfin();
+                            openDialogfin();
 
 
+                        }
+                        if (selectedItemText.equals("Agent")) {
+                            ch = selectedItemText;
+                            us.setType(ch);
 
+                            openDialogagent();
+
+                        }
+                        if (selectedItemText.equals("Local")) {
+                            ch = selectedItemText;
+                            us.setType(ch);
+
+                            openDialoglocal();
+
+                        }
+                        // Notify the selected item text
+                        Toast.makeText
+                                (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                                .show();
                     }
-                    if (selectedItemText.equals("Agent")){
-                        ch=selectedItemText;
-                        us.setType(ch);
-
-                        openDialogagent();
-
-                    }
-                    if (selectedItemText.equals("Local")){
-                        ch=selectedItemText;
-                        us.setType(ch);
-
-                        openDialoglocal();
-
-                    }
-                    // Notify the selected item text
-                    Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();
                 }
-            }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -235,7 +240,7 @@ public class LSignupActivity extends AppCompatActivity {
                         // if (response.body().getCode().equals(Consts.SUCCESS)){
                         //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(LSignupActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(LSignupActivity.this, BorrowerLoginActivity.class);
                         startActivity(intent);
                     }
 
@@ -747,6 +752,8 @@ public class LSignupActivity extends AppCompatActivity {
         final EditText sex=(EditText) dialog.findViewById(R.id.input_sex);
         final EditText email=(EditText) dialog.findViewById(R.id.input_email);
         final EditText pass=(EditText) dialog.findViewById(R.id.input_password);
+        final EditText min=(EditText) dialog.findViewById(R.id.input_min);
+        final EditText max=(EditText) dialog.findViewById(R.id.max);
 
 
         dialog.setTitle("Product Details");
@@ -763,7 +770,6 @@ public class LSignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               us=new User();
                 us.setName(name.getText().toString());
                 Integer myNum = Integer.parseInt(phone.getText().toString());
                 us.setPhone(myNum);
@@ -777,8 +783,10 @@ public class LSignupActivity extends AppCompatActivity {
 
 
                 Quote qu=new Quote();
-                qu.setMax(90000);
-                qu.setMin(30000);
+                Integer max1 = Integer.parseInt(max.getText().toString());
+                Integer min1 = Integer.parseInt(min.getText().toString());
+                qu.setMax(max1);
+                qu.setMin(min1);
 
                 us.setQuote(qu);
 

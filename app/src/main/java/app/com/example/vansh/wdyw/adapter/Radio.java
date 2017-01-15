@@ -1,4 +1,4 @@
-package app.com.example.vansh.wdyw.activity;
+package app.com.example.vansh.wdyw.adapter;
 
 /**
  * Created by mertsimsek on 14/09/15.

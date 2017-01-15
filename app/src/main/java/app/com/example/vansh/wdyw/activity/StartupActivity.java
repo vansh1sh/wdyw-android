@@ -119,7 +119,7 @@ public class StartupActivity extends AppCompatActivity{
     }
 
     private void launchHomeScreen() {
-        startActivity(new Intent(StartupActivity.this, FirstPage.class));
+        startActivity(new Intent(StartupActivity.this, BorrowerFirstPage.class));
         finish();
     }
 

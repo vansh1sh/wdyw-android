@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +15,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.internal.bind.util.ISO8601Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -210,7 +207,7 @@ public class SignupActivity extends AppCompatActivity {
                         // if (response.body().getCode().equals(Consts.SUCCESS)){
                         //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(SignupActivity.this, BorrowerLoginActivity.class);
                         startActivity(intent);
                     }
 

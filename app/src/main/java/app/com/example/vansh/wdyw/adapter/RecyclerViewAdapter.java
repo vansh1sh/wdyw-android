@@ -1,4 +1,4 @@
-package app.com.example.vansh.wdyw.activity;
+package app.com.example.vansh.wdyw.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

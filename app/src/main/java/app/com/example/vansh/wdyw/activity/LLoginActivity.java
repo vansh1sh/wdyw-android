@@ -12,8 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.com.example.vansh.wdyw.R;
-import app.com.example.vansh.wdyw.model.BLoginRequest;
-import app.com.example.vansh.wdyw.model.BLoginResponse;
 import app.com.example.vansh.wdyw.model.LLoginRequest;
 import app.com.example.vansh.wdyw.model.LLoginResponse;
 import app.com.example.vansh.wdyw.rest.ApiClient;
@@ -27,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LLoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "BorrowerLoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
     @Bind(R.id.input_phone)
@@ -48,7 +46,7 @@ public class LLoginActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(LLoginActivity.this,MainActivity.class);
+                Intent it=new Intent(LLoginActivity.this,BorrowerMainActivity.class);
                 startActivity(it);
             }
         });
@@ -109,7 +107,7 @@ public class LLoginActivity extends AppCompatActivity {
                     Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),LLoginActivity.this);
                     Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,LLoginActivity.this));
 
-                    Intent intent = new Intent(LLoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LLoginActivity.this, BorrowerMainActivity.class);
                     startActivity(intent);
                 }
                 else
@@ -146,7 +144,7 @@ public class LLoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        // Disable going back to the MainActivity
+        // Disable going back to the BorrowerMainActivity
     }
 
     public void onLoginSuccess() {
