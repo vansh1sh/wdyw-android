@@ -8,6 +8,7 @@ import java.util.Map;
 import app.com.example.vansh.wdyw.model.BLoginRequest;
 import app.com.example.vansh.wdyw.model.BLoginResponse;
 import app.com.example.vansh.wdyw.model.BSignupRequest;
+import app.com.example.vansh.wdyw.model.BloanResponse;
 import app.com.example.vansh.wdyw.model.LLoginRequest;
 import app.com.example.vansh.wdyw.model.LLoginResponse;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
@@ -34,6 +35,13 @@ public interface ApiInterface {
 
     @POST("/v1/loan")
     Call<LoanPostRequest> LoanPost(@Body LoanPostRequest loanPostRequest);
+
+    @GET("/v1/loan")
+    Call<BloanResponse> loandetails(
+            @Query("city") String city,
+            @Query("pageid") String pageid,
+            @Query("loanAmt") String loanAmt);
+
 
     @GET("/v1/lender")
     Call<LenderData> lenderDetails(

@@ -45,6 +45,7 @@ public class LSignupActivity extends AppCompatActivity {
     String stf2="gg";
     String sta="gds";
     String stl="dsf";
+    String gender;
     String stf1="sdf";
     String acc1;
     String des1;
@@ -749,7 +750,6 @@ public class LSignupActivity extends AppCompatActivity {
         final EditText address=(EditText) dialog.findViewById(R.id.input_address);
         final EditText city=(EditText) dialog.findViewById(R.id.input_city);
         final EditText state=(EditText) dialog.findViewById(R.id.input_state);
-        final EditText sex=(EditText) dialog.findViewById(R.id.input_sex);
         final EditText email=(EditText) dialog.findViewById(R.id.input_email);
         final EditText pass=(EditText) dialog.findViewById(R.id.input_password);
         final EditText min=(EditText) dialog.findViewById(R.id.input_min);
@@ -764,11 +764,80 @@ public class LSignupActivity extends AppCompatActivity {
         dialog.getWindow().setLayout(lp.width, lp.height);
         dialog.show();
 
+        final Spinner spinner2 = (Spinner) dialog.findViewById(R.id.spinner2);
+
+        // Initializing a String Array
+        String[] plantss = new String[]{
+                "Select Gender...",
+                "Male",
+                "Female",
+                "Transgender"
+        };
+        final List<String> plantsLists = new ArrayList<>(Arrays.asList(plantss));
+
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapters = new ArrayAdapter<String>(
+                this,R.layout.spinner_item,plantsLists){
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0)
+                {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        spinnerArrayAdapters.setDropDownViewResource(R.layout.spinner_item);
+        spinner2.setAdapter(spinnerArrayAdapters);
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // If user change the default selection
+                // First item is disable and it is used for hint
+                if(position > 0){
+                gender=selectedItemText;
+
+                    // Notify the selected item text
+                    Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
 
                 us.setName(name.getText().toString());
                 Integer myNum = Integer.parseInt(phone.getText().toString());
@@ -776,7 +845,7 @@ public class LSignupActivity extends AppCompatActivity {
                 us.setAddress(address.getText().toString());
                 us.setCity(city.getText().toString());
                 us.setState(state.getText().toString());
-                us.setSex(sex.getText().toString());
+                us.setSex(gender);
                 us.setEmail(email.getText().toString());
                 us.setPassword(pass.getText().toString());
 

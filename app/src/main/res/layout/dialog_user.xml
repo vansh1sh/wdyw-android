@@ -87,17 +87,16 @@
                 android:hint="State" />
         </android.support.design.widget.TextInputLayout>
 
-        <!--  Sex Label -->
-        <android.support.design.widget.TextInputLayout
+
+
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_sex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Sex" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/spinner2">
+
+        </Spinner>
+
+
 
         <!--  min Label -->
         <android.support.design.widget.TextInputLayout

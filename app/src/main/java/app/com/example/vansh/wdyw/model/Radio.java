@@ -1,4 +1,4 @@
-package app.com.example.vansh.wdyw.adapter;
+package app.com.example.vansh.wdyw.model;
 
 /**
  * Created by mertsimsek on 14/09/15.
