@@ -18,6 +18,28 @@ public class LoanPostRequest {
     @SerializedName("expectedinterest")
     @Expose
     private Integer expectedinterest;
+    @SerializedName("reason")
+    @Expose
+    private String reason;
+    @SerializedName("duration")
+    @Expose
+    private String duration;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+   public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
 
     public String getCity() {
         return city;

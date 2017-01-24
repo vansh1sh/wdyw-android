@@ -66,7 +66,7 @@ public class BorrowerLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BorrowerSignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
@@ -94,7 +94,7 @@ public class BorrowerLoginActivity extends AppCompatActivity {
         BLoginRequest loginRequest = new BLoginRequest();
         loginRequest.setPassword(_passwordText.getText().toString());
 
-        Integer myNum = Integer.parseInt(phone.getText().toString());
+        Long myNum = Long.parseLong(phone.getText().toString());
 
         loginRequest.setPhone(myNum);
 

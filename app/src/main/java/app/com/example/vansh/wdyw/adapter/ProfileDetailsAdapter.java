@@ -1,40 +1,28 @@
 package app.com.example.vansh.wdyw.adapter;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
-import app.com.example.vansh.wdyw.activity.BorrowerLoanPostActivity;
-import app.com.example.vansh.wdyw.activity.BorrowerMainActivity;
 import app.com.example.vansh.wdyw.model.BorrowerLoanData;
-import app.com.example.vansh.wdyw.model.Customer;
-import app.com.example.vansh.wdyw.model.LenderDetails;
 import app.com.example.vansh.wdyw.model.LloanIdRequest;
-import app.com.example.vansh.wdyw.model.LoanPostRequest;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
-import app.com.example.vansh.wdyw.utility.DialogUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.MovieViewHolder> {
+public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAdapter.MovieViewHolder> {
 
     private List<BorrowerLoanData> stock;
     private int rowLayout;
@@ -66,7 +54,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         }
     }
 
-    public LoanDetailsAdapter(List<BorrowerLoanData> stock, int rowLayout, Context context) {
+    public ProfileDetailsAdapter(List<BorrowerLoanData> stock, int rowLayout, Context context) {
         this.stock = stock;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -74,8 +62,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     }
 
     @Override
-    public LoanDetailsAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                 int viewType) {
+    public ProfileDetailsAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                    int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         return new MovieViewHolder(view);
     }
@@ -83,12 +71,11 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
 
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
-        holder.productid.setText(stock.get(position).getCustomer().getName());
+        holder.productid.setText(stock.get(position).getLoanType());
         holder.amount.setText("Amt."+stock.get(position).getLoanAmt().toString());
       //  holder.costprice.setText(stock.get(position).getCustomer().getName().toString());
         holder.costprice.setText(stock.get(position).getCity());
-        //holder.expected.setText(stock.get(position).getExpectedInterest().toString()+"% exp.");
-        holder.expected.setText(stock.get(position).getReason().toString());
+        holder.expected.setText(stock.get(position).getExpectedInterest().toString()+"% exp.");
 
         holder.lend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +95,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
                                 final LloanIdRequest lloanIdRequest = new LloanIdRequest();
                                 final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
 
-                                lloanIdRequest.setLender(stock.get(position).getCustomer().getId().toString());
+                                lloanIdRequest.setLender(stock.get(position).getId().toString());
 
 
                                 Call<LloanIdRequest> call = apiInterface.id(lloanIdRequest);

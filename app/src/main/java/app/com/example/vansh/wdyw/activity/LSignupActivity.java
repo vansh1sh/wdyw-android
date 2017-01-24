@@ -40,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LSignupActivity extends AppCompatActivity {
-    private static final String TAG = "SignupActivity";
+    private static final String TAG = "LenderSignupActivity";
     String stf="ds";
     String stf2="gg";
     String sta="gds";
@@ -241,7 +241,7 @@ public class LSignupActivity extends AppCompatActivity {
                         // if (response.body().getCode().equals(Consts.SUCCESS)){
                         //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(LSignupActivity.this, BorrowerLoginActivity.class);
+                        Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
                         startActivity(intent);
                     }
 
@@ -612,11 +612,11 @@ public class LSignupActivity extends AppCompatActivity {
                 "Select Occupation...",
                 "Goverment",
                 "Army",
-                "Finanace",
+                "Finance",
                 "Lawyer",
                 "Doctor",
                 "Engineer",
-                "Buissness",
+                "Business",
                 "Other"
         };
         final List<String> plantsList = new ArrayList<>(Arrays.asList(plants));
@@ -840,7 +840,7 @@ public class LSignupActivity extends AppCompatActivity {
 
 
                 us.setName(name.getText().toString());
-                Integer myNum = Integer.parseInt(phone.getText().toString());
+                Long myNum = Long.parseLong(phone.getText().toString());
                 us.setPhone(myNum);
                 us.setAddress(address.getText().toString());
                 us.setCity(city.getText().toString());
@@ -852,8 +852,8 @@ public class LSignupActivity extends AppCompatActivity {
 
 
                 Quote qu=new Quote();
-                Integer max1 = Integer.parseInt(max.getText().toString());
-                Integer min1 = Integer.parseInt(min.getText().toString());
+                Long max1 = Long.parseLong(max.getText().toString());
+                Long min1 = Long.parseLong(min.getText().toString());
                 qu.setMax(max1);
                 qu.setMin(min1);
 

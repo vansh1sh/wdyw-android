@@ -56,7 +56,7 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getCity());
-        holder.stock.setText(stock.get(position).getType());
+        holder.stock.setText(stock.get(position).getName());
         holder.rating.setText(stock.get(position).getPhone().toString());
 
 

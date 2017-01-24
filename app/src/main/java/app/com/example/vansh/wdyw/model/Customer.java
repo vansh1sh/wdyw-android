@@ -3,10 +3,12 @@ package app.com.example.vansh.wdyw.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class Customer {
 
-public class BSignupRequest {
 
+    @SerializedName("_id")
+    @Expose
+    private String id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -25,6 +27,17 @@ public class BSignupRequest {
     @SerializedName("city")
     @Expose
     private String city;
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -72,6 +85,14 @@ public class BSignupRequest {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
     }
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class BloanResponse {
+public class LenderProfileGet {
 
 
 
@@ -14,7 +14,7 @@ public class BloanResponse {
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private List<BorrowerLoanData> data = null;
+    private Data data;
 
     public Boolean getStatus() {
         return status;
@@ -24,11 +24,11 @@ public class BloanResponse {
         this.status = status;
     }
 
-    public List<BorrowerLoanData> getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(List<BorrowerLoanData> data) {
+    public void setData(Data data) {
         this.data = data;
     }
 

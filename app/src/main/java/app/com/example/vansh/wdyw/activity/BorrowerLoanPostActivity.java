@@ -45,6 +45,10 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
     EditText interest;
     @Bind(R.id.loanamount)
     EditText lamount;
+    @Bind(R.id.reason)
+    EditText reason;
+    @Bind(R.id.duration)
+    EditText duration;
 
 
     @Override
@@ -62,8 +66,8 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
                 "Personal",
                 "vehicle",
                 "Education",
-                "Mortage",
-                "Buissness",
+                "Mortgage",
+                "Business",
                 "House"
         };
         final List<String> plantsList = new ArrayList<>(Arrays.asList(plants));
@@ -144,6 +148,8 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
 
 
                     loanPostRequest.setCity(city.getText().toString());
+                    loanPostRequest.setReason(reason.getText().toString());
+                    loanPostRequest.setDuration(duration.getText().toString());
                     Integer myNum1 = Integer.parseInt(interest.getText().toString());
                     loanPostRequest.setExpectedinterest(myNum1);
 

@@ -31,8 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignupActivity extends AppCompatActivity {
-    private static final String TAG = "SignupActivity";
+public class BorrowerSignupActivity extends AppCompatActivity {
+    private static final String TAG = "BorrowerSignupActivity";
 
 
     String ch;
@@ -64,7 +64,7 @@ public class SignupActivity extends AppCompatActivity {
                 "Select Profession...",
                 "Salaried",
                 "Self Employed",
-                "Self Employed Buissness"
+                "Self Employed Business"
         };
         final List<String> plantsList = new ArrayList<>(Arrays.asList(plants));
 
@@ -166,7 +166,7 @@ public class SignupActivity extends AppCompatActivity {
 
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
+        final ProgressDialog progressDialog = new ProgressDialog(BorrowerSignupActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
@@ -185,14 +185,14 @@ public class SignupActivity extends AppCompatActivity {
                 BS.setProfession(ch);
 
 
-                Integer myNum = Integer.parseInt(_phone.getText().toString());
+                Long myNum = Long.parseLong(_phone.getText().toString());
                 BS.setPhone(myNum);
 
 
 
                 Call<BSignupRequest> call = apiInterface.BSignUp(BS);
 
-                final ProgressDialog dialog2 = new ProgressDialog(SignupActivity.this);
+                final ProgressDialog dialog2 = new ProgressDialog(BorrowerSignupActivity.this);
                 dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 dialog2.setMessage("Adding the item to your inventory");
                 dialog2.setIndeterminate(true);
@@ -207,7 +207,7 @@ public class SignupActivity extends AppCompatActivity {
                         // if (response.body().getCode().equals(Consts.SUCCESS)){
                         //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(SignupActivity.this, BorrowerLoginActivity.class);
+                        Intent intent = new Intent(BorrowerSignupActivity.this, BorrowerLoginActivity.class);
                         startActivity(intent);
                     }
 
@@ -215,7 +215,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<BSignupRequest> call, Throwable t) {
                         dialog2.hide();
-                        DialogUtil.createDialog("Oops! Please check your internet connection!", SignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                             @Override
                             public void onClick() {
                             }

@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://wdywdata.herokuapp.com";
+    public static final String BASE_URL = "http://35.162.198.65";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient(final Context context) {

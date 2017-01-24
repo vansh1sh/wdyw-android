@@ -29,9 +29,10 @@
         <activity android:name=".activity.BorrowerProfile" android:label="Profile"></activity>
         <activity android:name=".activity.BorrowerLoginActivity" android:label="Login"></activity>
         <activity android:name=".activity.LLoginActivity" android:label="Lender's Login"></activity>
-        <activity android:name=".activity.SignupActivity" android:label="SIGN UP"></activity>
+        <activity android:name=".activity.BorrowerSignupActivity" android:label="SIGN UP"></activity>
         <activity android:name=".activity.BorrowerLenderActivity" android:label="Lenders Available"></activity>
         <activity android:name=".activity.LenderMainActivity" android:label="Main"></activity>
+        <activity android:name=".activity.LenderProfile" android:label="Profile"></activity>
 
 
     </application>

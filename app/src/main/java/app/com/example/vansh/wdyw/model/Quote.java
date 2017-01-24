@@ -9,24 +9,24 @@ public class Quote {
 
     @SerializedName("min")
     @Expose
-    private Integer min;
+    private Long min;
     @SerializedName("max")
     @Expose
-    private Integer max;
+    private Long max;
 
-    public Integer getMin() {
+    public Long getMin() {
         return min;
     }
 
-    public void setMin(Integer min) {
+    public void setMin(Long min) {
         this.min = min;
     }
 
-    public Integer getMax() {
+    public Long getMax() {
         return max;
     }
 
-    public void setMax(Integer max) {
+    public void setMax(Long max) {
         this.max = max;
     }
 

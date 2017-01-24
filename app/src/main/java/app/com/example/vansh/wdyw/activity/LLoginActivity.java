@@ -92,7 +92,7 @@ public class LLoginActivity extends AppCompatActivity {
         LLoginRequest loginRequest = new LLoginRequest();
         loginRequest.setPassword(_passwordText.getText().toString());
 
-        Integer myNum = Integer.parseInt(phone.getText().toString());
+        Long myNum = Long.parseLong(phone.getText().toString());
 
         loginRequest.setPhone(myNum);
 
@@ -107,7 +107,7 @@ public class LLoginActivity extends AppCompatActivity {
                     Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),LLoginActivity.this);
                     Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,LLoginActivity.this));
 
-                    Intent intent = new Intent(LLoginActivity.this, BorrowerMainActivity.class);
+                    Intent intent = new Intent(LLoginActivity.this, LenderMainActivity.class);
                     startActivity(intent);
                 }
                 else

@@ -8,16 +8,16 @@ public class LLoginRequest {
 
     @SerializedName("phone")
     @Expose
-    private Integer phone;
+    private Long phone;
     @SerializedName("password")
     @Expose
     private String password;
 
-    public Integer getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
