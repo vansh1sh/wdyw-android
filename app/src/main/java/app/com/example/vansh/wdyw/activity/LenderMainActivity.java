@@ -137,8 +137,7 @@ public class LenderMainActivity extends AppCompatActivity {
                  }
 
                  if (menuItem.getItemId() == R.id.nav_lender) {
-                     Intent i = new Intent(LenderMainActivity.this,BorrowerLenderActivity.class);
-                     startActivity(i);
+
                  }
                 if (menuItem.getItemId() == R.id.nav_item_loan) {
                     //Intent i = new Intent(LenderMainActivity.this,BorrowerLoanPostActivity.class);
