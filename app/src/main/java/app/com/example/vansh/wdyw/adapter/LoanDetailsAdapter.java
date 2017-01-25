@@ -47,6 +47,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         TextView costprice;
         TextView expected;
         TextView amount;
+        TextView type;
+        TextView interest;
         Button lend;
         Button details;
 
@@ -56,8 +58,10 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         public MovieViewHolder(View v) {
             super(v);
             stockLayout = (LinearLayout) v.findViewById(R.id.stock_layout);
-            productid = (TextView) v.findViewById(R.id.loantype);
+            productid = (TextView) v.findViewById(R.id.name);
             costprice = (TextView) v.findViewById(R.id.city);
+            type = (TextView) v.findViewById(R.id.loantype);
+            interest = (TextView) v.findViewById(R.id.interestrate);
             expected = (TextView) v.findViewById(R.id.expected);
             amount = (TextView) v.findViewById(R.id.rating);
             lend = (Button) v.findViewById(R.id.lend);
@@ -84,12 +88,15 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getCustomer().getName());
-        holder.amount.setText("Amt."+stock.get(position).getLoanAmt().toString());
+
+        holder.type.setText(stock.get(position).getLoanType().toString());
+        holder.amount.setText("₹"+stock.get(position).getLoanAmt().toString());
       //  holder.costprice.setText(stock.get(position).getCustomer().getName().toString());
         holder.costprice.setText(stock.get(position).getCity());
-        //holder.expected.setText(stock.get(position).getExpectedInterest().toString()+"% exp.");
+        holder.interest.setText(stock.get(position).getExpectedInterest()+"% exp.");
         holder.expected.setText(stock.get(position).getReason().toString());
 
+        //holder.duration.setText(stock.get(position).get.toString());
         holder.lend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

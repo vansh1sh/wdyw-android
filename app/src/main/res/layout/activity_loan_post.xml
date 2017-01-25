@@ -111,7 +111,6 @@
         <EditText
             android:id="@+id/reason"
             android:layout_width="0dp"
-            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
             android:hint="Reason For Requesting Loan"
             android:layout_weight="0.70"/>
