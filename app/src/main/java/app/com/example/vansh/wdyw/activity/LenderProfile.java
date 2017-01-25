@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -26,6 +27,7 @@ import app.com.example.vansh.wdyw.model.LenderProfileGet;
 import app.com.example.vansh.wdyw.model.Radio;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.DataFetch;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,6 +47,9 @@ public class LenderProfile extends AppCompatActivity {
     @Bind(R.id.profile)
     TextView profile;
 
+    @Bind(R.id.img2)
+    ImageView load;
+
     private RecyclerViewAdapter adapter;
 
     @Override
@@ -61,12 +66,16 @@ public class LenderProfile extends AppCompatActivity {
         }
 
 
+
         final VideoView videoView =
                 (VideoView) findViewById(R.id.myvideoview);
         String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.vid;
         videoView.setVideoPath(uriPath);
 
         videoView.start();
+
+
+
 
 
 
@@ -91,6 +100,10 @@ public class LenderProfile extends AppCompatActivity {
                 Data data=new Data();
                 data=response.body().getData();
                 profile.setText(data.getLender().getName().toString());
+
+               DataFetch.fetchImage(data.getLender().getProPic().toString(), LenderProfile.this, load);
+
+
                 dialog.hide();
 
 
