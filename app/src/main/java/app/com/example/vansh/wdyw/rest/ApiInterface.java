@@ -18,6 +18,7 @@ import app.com.example.vansh.wdyw.model.LenderProfileGet;
 import app.com.example.vansh.wdyw.model.LenderProfileResponse;
 import app.com.example.vansh.wdyw.model.LloanIdRequest;
 import app.com.example.vansh.wdyw.model.LoanPostRequest;
+import app.com.example.vansh.wdyw.model.ProfilePic;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -44,6 +45,9 @@ public interface ApiInterface {
 
     @POST("/v1/loan")
     Call<LoanPostRequest> LoanPost(@Body LoanPostRequest loanPostRequest);
+
+    @POST("/v1/customer/propic")
+    Call<ProfilePic> pic(@Body ProfilePic profilePic);
 
     @GET("/v1/lender/me")
     Call<LenderProfileGet> profile();
