@@ -62,6 +62,7 @@ public class BorrowerProfile extends AppCompatActivity {
     @Bind(R.id.img)
     ImageView imageView;
 
+
     private RecyclerViewAdapter adapter;
 
     @Override
@@ -72,6 +73,7 @@ public class BorrowerProfile extends AppCompatActivity {
 
         initializeViewsAdapter();
         loadData();
+
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -158,7 +160,7 @@ public class BorrowerProfile extends AppCompatActivity {
                         byte[] b = stream.toByteArray();
 
                         String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-                        data=encodedImage.toString();
+                        data=encodedImage;
                         Log.i("sdfsf",data);
 
 
@@ -167,11 +169,11 @@ public class BorrowerProfile extends AppCompatActivity {
                         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
 
 
-                            //profilePic.setData(data);
                             profilePic.setFileType(filepath.substring(filepath.lastIndexOf(".") + 1));
+                            //profilePic.setData(data);
 
 
-                            Call<ProfilePic> call = apiInterface.pic(profilePic);
+                        Call<ProfilePic> call = apiInterface.pic(profilePic);
 
                             final ProgressDialog dialog = new ProgressDialog(BorrowerProfile.this);
                             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

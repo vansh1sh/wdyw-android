@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class LenderDetails {
 
+
     @SerializedName("_id")
     @Expose
     private String id;
@@ -36,6 +37,9 @@ public class LenderDetails {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("pro_pic")
+    @Expose
+    private String proPic;
     @SerializedName("credit")
     @Expose
     private Integer credit;
@@ -121,6 +125,14 @@ public class LenderDetails {
 
     public void setV(Integer v) {
         this.v = v;
+    }
+
+    public String getProPic() {
+        return proPic;
+    }
+
+    public void setProPic(String proPic) {
+        this.proPic = proPic;
     }
 
     public Integer getCredit() {
