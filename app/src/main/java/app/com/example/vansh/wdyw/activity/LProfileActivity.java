@@ -48,8 +48,30 @@ public class LProfileActivity extends AppCompatActivity
 
    @Bind(R.id.title_profile)
     TextView profile2;
-    @Bind(R.id.subhead)
+
+    @Bind(R.id.email)
     TextView subhead;
+
+    @Bind(R.id.phoneno)
+    TextView phoneno;
+
+    @Bind(R.id.address)
+    TextView address;
+
+    @Bind(R.id.city)
+    TextView city;
+
+    @Bind(R.id.state)
+    TextView state;
+
+    @Bind(R.id.type)
+    TextView type;
+
+    @Bind(R.id.sex)
+    TextView sex;
+
+    @Bind(R.id.credit)
+    TextView credit;
 
     @Bind(R.id.load)
     ImageView load;
@@ -94,6 +116,14 @@ public class LProfileActivity extends AppCompatActivity
                 profile.setText(data.getLender().getName().toString());
                 profile2.setText(data.getLender().getName().toString());
                 subhead.setText(data.getLender().getEmail().toString());
+                phoneno.setText(data.getLender().getPhone().toString());
+                address.setText(data.getLender().getAddress().toString());
+                city.setText(data.getLender().getCity().toString());
+                state.setText(data.getLender().getState().toString());
+                credit.setText(data.getLender().getCredit().toString());
+                type.setText(data.getLender().getType().toString());
+                sex.setText(data.getLender().getSex().toString());
+
 
                 DataFetch.fetchImage(data.getLender().getProPic().toString(), LProfileActivity.this, load);
 
