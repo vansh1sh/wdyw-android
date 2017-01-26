@@ -49,9 +49,9 @@ public class LLoginActivity extends AppCompatActivity {
                 Intent it=new Intent(LLoginActivity.this,LenderMainActivity.class);
                 startActivity(it);
             }
-        });
+        });*/
 
-        ButterKnife.bind(this);*/
+        ButterKnife.bind(this);
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
 

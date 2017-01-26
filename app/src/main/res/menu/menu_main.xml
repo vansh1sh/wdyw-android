@@ -8,14 +8,14 @@
         android:title="Profile"
         app:showAsAction="never" />
 
-<!--
+
     <item
         android:id="@+id/action_search"
         android:title="yo"
         android:orderInCategory="100"
-        android:icon="@drawable/sent"
+        android:icon="@drawable/whitewallet"
         app:showAsAction="ifRoom" />
--->
+
 
 
 </menu>

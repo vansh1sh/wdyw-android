@@ -140,8 +140,8 @@ public class LenderMainActivity extends AppCompatActivity {
 
                  }
                 if (menuItem.getItemId() == R.id.nav_item_loan) {
-                    //Intent i = new Intent(LenderMainActivity.this,BorrowerLoanPostActivity.class);
-                    //startActivity(i);
+                    Intent i = new Intent(LenderMainActivity.this,CheckCredit.class);
+                    startActivity(i);
                      }
                  if (menuItem.getItemId() == R.id.how) {
                      /*FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
