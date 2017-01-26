@@ -3,41 +3,59 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
+    android:backgroundTint="@color/colorPrimary"
     android:background="#FFFFFF">
 
     <LinearLayout
         android:focusable="true"
+        android:background="@color/colorPrimary"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        >
 
 
         <ImageView android:src="@drawable/ab"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal" />
 
 
-        <Button
-            android:layout_marginTop="10dp"
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:src="@drawable/borrower"
+            android:paddingLeft="45dp"/>
+        <Button
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:text="I'm a Borrower"
             android:id="@+id/bor"
             android:onClick="click2"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/white"
             android:theme="@style/MyButton"/>
-        <Button
-            android:layout_marginTop="50dp"
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:src="@drawable/lender"
+            android:paddingRight="45dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:id="@+id/len"
             android:text="I'm a Lender"
             android:onClick="click"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/white"
             android:theme="@style/MyButton"/>
 
 
