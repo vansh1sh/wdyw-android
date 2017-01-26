@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
+import app.com.example.vansh.wdyw.model.Data;
+import app.com.example.vansh.wdyw.model.LenderProfileGet;
 import app.com.example.vansh.wdyw.model.LoanPostRequest;
 import app.com.example.vansh.wdyw.model.ProfilePic;
 import app.com.example.vansh.wdyw.model.Radio;
@@ -37,6 +39,7 @@ import app.com.example.vansh.wdyw.adapter.RecyclerViewAdapter;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
+import app.com.example.vansh.wdyw.utility.DataFetch;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
@@ -54,8 +57,6 @@ public class BorrowerProfile extends AppCompatActivity {
     @Bind(R.id.collapsingToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    @Bind(R.id.recyclerView)
-    RecyclerView recyclerView;
 
     @Bind(R.id.but)
     Button b2;
@@ -71,9 +72,6 @@ public class BorrowerProfile extends AppCompatActivity {
         setContentView(R.layout.activity_main_profile);
         ButterKnife.bind(this);
 
-        initializeViewsAdapter();
-        loadData();
-
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -86,6 +84,51 @@ public class BorrowerProfile extends AppCompatActivity {
         videoView.setVideoPath(uriPath);
 
         videoView.start();
+
+
+       /* final ApiInterface apiService =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+
+        final ProgressDialog dialog = new ProgressDialog(BorrowerProfile.this,R.style.AppTheme_Dark_Dialog);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("Loading Profile...");
+        dialog.setIndeterminate(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+
+        Call<LenderProfileGet> call = apiService.profile();
+
+        call.enqueue(new Callback<LenderProfileGet>() {
+            @Override
+            public void onResponse(Call<LenderProfileGet> call, final Response<LenderProfileGet> response) {
+                Data data=new Data();
+                data=response.body().getData();
+                //profile.setText(data.getLender().getName().toString());
+
+                DataFetch.fetchImage(data.getLender().getProPic().toString(), BorrowerProfile.this, imageView);
+
+
+                dialog.hide();
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<LenderProfileGet> call, Throwable t) {
+                dialog.hide();
+                DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerProfile.this, new DialogUtil.OnPositiveButtonClick() {
+                    @Override
+                    public void onClick() {
+                    }
+                });
+                // Log error here since request failed
+                Log.e("Error", t.toString());
+            }
+        });
+*/
 
 
         b2.setOnClickListener(new View.OnClickListener() {
@@ -108,40 +151,6 @@ public class BorrowerProfile extends AppCompatActivity {
 
     }
 
-    /**
-     * Initializes views and adapter
-     */
-    private void initializeViewsAdapter(){
-
-        setSupportActionBar(toolbar);
-        collapsingToolbarLayout.setTitle("My WdyW");
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-
-        adapter = new RecyclerViewAdapter(getApplicationContext());
-        recyclerView.setAdapter(adapter);
-    }
-
-    /**
-     * load mock data to adapter
-     */
-    private void loadData(){
-        Radio radio = new Radio("AADHAR CARD", R.drawable.ver, "OK");
-        Radio radio2 = new Radio("EMAIL", R.drawable.ver, "OK");
-        Radio radio3 = new Radio("ADDRESS", R.drawable.ver, "OK");
-
-
-        List<Radio> radioList = new ArrayList<>();
-
-
-        radioList.add(radio);
-        radioList.add(radio2);
-        radioList.add(radio3);
-
-        adapter.setRadioList(radioList);
-    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);

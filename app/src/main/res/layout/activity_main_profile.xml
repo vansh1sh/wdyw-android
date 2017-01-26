@@ -43,10 +43,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     <Button
         android:layout_width="wrap_content"
@@ -54,12 +55,6 @@
         android:text="button"
         android:layout_gravity="bottom"
         android:id="@+id/but"/>
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:id="@+id/img"/>
-
 
 
 

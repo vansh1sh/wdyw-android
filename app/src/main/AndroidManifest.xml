@@ -54,9 +54,12 @@
             android:name=".activity.LenderMainActivity"
             android:label="Main" />
         <activity
-            android:name=".activity.LenderProfile"
+            android:name=".activity.LProfileActivity"
             android:label="Profile" />
         <activity android:name=".activity.CheckCredit"></activity>
+
+
+
     </application>
 
 </manifest>

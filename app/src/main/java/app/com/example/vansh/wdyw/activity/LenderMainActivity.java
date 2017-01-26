@@ -132,7 +132,7 @@ public class LenderMainActivity extends AppCompatActivity {
                      startActivity(i);
                  }
                  if (menuItem.getItemId() == R.id.nav_item_profile) {
-                     Intent i = new Intent(LenderMainActivity.this,LenderProfile.class);
+                     Intent i = new Intent(LenderMainActivity.this,LProfileActivity.class);
                      startActivity(i);
                  }
 
@@ -185,9 +185,9 @@ public class LenderMainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent i = new Intent(LenderMainActivity.this,BorrowerProfile.class);
+                Intent i = new Intent(LenderMainActivity.this,LProfileActivity.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), "LOL I'm cool-huehuehue", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "LOL!!", Toast.LENGTH_SHORT).show();
                 break;
 
 
