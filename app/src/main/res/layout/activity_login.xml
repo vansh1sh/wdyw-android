@@ -65,11 +65,11 @@
             android:text="No account yet? Create one"
             android:gravity="center"
             android:textSize="16dip"/>
-        <Button
+        <!--<Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Skip >>"
             android:background="@color/colorPrimaryDark"
-            android:id="@+id/b3"/>
+            android:id="@+id/b3"/>-->
     </LinearLayout>
 </ScrollView>

@@ -66,7 +66,7 @@ public class LenderMainActivity extends AppCompatActivity {
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(LenderMainActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(LenderMainActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);

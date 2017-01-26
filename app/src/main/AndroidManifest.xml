@@ -2,14 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.com.example.vansh.wdyw">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ppp"
         android:label="@string/WDYW"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.SplashActivity"
@@ -21,20 +20,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.BorrowerLoanPostActivity" android:label="Request Loan"></activity>
-        <activity android:name=".activity.BorrowerFirstPage" android:label="Welcome"></activity>
-        <activity android:name=".activity.LSignupActivity" android:label="Lender's Signup"></activity>
-        <activity android:name=".activity.BorrowerMainActivity" android:label="Main Activity"></activity>
-        <activity android:name=".activity.StartupActivity" android:label="Startup Activity"></activity>
-        <activity android:name=".activity.BorrowerProfile" android:label="Profile"></activity>
-        <activity android:name=".activity.BorrowerLoginActivity" android:label="Login"></activity>
-        <activity android:name=".activity.LLoginActivity" android:label="Lender's Login"></activity>
-        <activity android:name=".activity.BorrowerSignupActivity" android:label="SIGN UP"></activity>
-        <activity android:name=".activity.BorrowerLenderActivity" android:label="Lenders Available"></activity>
-        <activity android:name=".activity.LenderMainActivity" android:label="Main"></activity>
-        <activity android:name=".activity.LenderProfile" android:label="Profile"></activity>
-
-
+        <activity
+            android:name=".activity.BorrowerLoanPostActivity"
+            android:label="Request Loan" />
+        <activity
+            android:name=".activity.BorrowerFirstPage"
+            android:label="Welcome" />
+        <activity
+            android:name=".activity.LSignupActivity"
+            android:label="Lender&apos;s Signup" />
+        <activity
+            android:name=".activity.BorrowerMainActivity"
+            android:label="Main Activity" />
+        <activity
+            android:name=".activity.StartupActivity"
+            android:label="Startup Activity" />
+        <activity
+            android:name=".activity.BorrowerProfile"
+            android:label="Profile" />
+        <activity
+            android:name=".activity.BorrowerLoginActivity"
+            android:label="Login" />
+        <activity
+            android:name=".activity.LLoginActivity"
+            android:label="Lender&apos;s Login" />
+        <activity
+            android:name=".activity.BorrowerSignupActivity"
+            android:label="SIGN UP" />
+        <activity
+            android:name=".activity.BorrowerLenderActivity"
+            android:label="Lenders Available" />
+        <activity
+            android:name=".activity.LenderMainActivity"
+            android:label="Main" />
+        <activity
+            android:name=".activity.LenderProfile"
+            android:label="Profile" />
+        <activity android:name=".activity.CheckCredit"></activity>
     </application>
 
 </manifest>

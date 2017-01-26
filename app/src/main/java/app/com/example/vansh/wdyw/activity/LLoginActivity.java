@@ -42,8 +42,8 @@ public class LLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button b3=(Button)findViewById(R.id.b3);
-        b3.setOnClickListener(new View.OnClickListener() {
+       // Button b3=(Button)findViewById(R.id.b3);
+      /*  b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it=new Intent(LLoginActivity.this,LenderMainActivity.class);
@@ -51,7 +51,7 @@ public class LLoginActivity extends AppCompatActivity {
             }
         });
 
-        ButterKnife.bind(this);
+        ButterKnife.bind(this);*/
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -103,7 +103,7 @@ public class LLoginActivity extends AppCompatActivity {
             public void onResponse(Call<LLoginResponse> call, Response<LLoginResponse> response) {
                 progressDialog.hide();
                 if (response.body().getStatus().equals(Boolean.TRUE)){
-                    Toast.makeText(getBaseContext(), "Login Success:Yahoo", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Welcome to WdyW", Toast.LENGTH_LONG).show();
                     Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),LLoginActivity.this);
                     Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,LLoginActivity.this));
 
