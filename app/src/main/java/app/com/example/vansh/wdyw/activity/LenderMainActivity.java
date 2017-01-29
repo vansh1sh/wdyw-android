@@ -139,14 +139,23 @@ public class LenderMainActivity extends AppCompatActivity {
                  if (menuItem.getItemId() == R.id.nav_lender) {
 
                  }
-                if (menuItem.getItemId() == R.id.nav_item_loan) {
-                    Intent i = new Intent(LenderMainActivity.this,CheckCredit.class);
+                if (menuItem.getItemId() == R.id.how) {
+                    Intent i = new Intent(LenderMainActivity.this,SettingsActivity.class);
                     startActivity(i);
                      }
-                 if (menuItem.getItemId() == R.id.how) {
-                     /*FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                     fragmentTransaction.replace(R.id.containerView,new SentFragment()).commit();
-*/
+                 if (menuItem.getItemId() == R.id.terms) {
+                    Intent i = new Intent(LenderMainActivity.this,TermsActivity.class);
+                    startActivity(i);
+                     }
+                 if (menuItem.getItemId() == R.id.setting) {
+                    Intent i = new Intent(LenderMainActivity.this,SettingsActivity.class);
+                    startActivity(i);
+
+                 }
+                 if (menuItem.getItemId() == R.id.contactus) {
+                    Intent i = new Intent(LenderMainActivity.this,ContactUs.class);
+                    startActivity(i);
+
                  }
                  return false;
             }

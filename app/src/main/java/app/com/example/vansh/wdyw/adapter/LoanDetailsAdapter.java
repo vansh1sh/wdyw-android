@@ -101,7 +101,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
-                alertbox.setMessage("Are You Sure You wanna contact this borrower?");
+                alertbox.setMessage("Are You Sure You Want To Contact This Borrower?");
                 alertbox.setTitle("Confirmation");
                 alertbox.setIcon(R.drawable.logo1);
 
@@ -111,12 +111,9 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
                             public void onClick(DialogInterface arg0,
                                                 int arg1) {
 
-
                                 final LloanIdRequest lloanIdRequest = new LloanIdRequest();
                                 final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
-
                                 lloanIdRequest.setLender(stock.get(position).getCustomer().getId().toString());
-
 
                                 Call<LloanIdRequest> call = apiInterface.id(lloanIdRequest);
 
@@ -130,10 +127,11 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
                                             public void onClick(View v) {
 
 
+
+
+
                                             }
                                         });
-
-
                                     }
 
                                     @Override

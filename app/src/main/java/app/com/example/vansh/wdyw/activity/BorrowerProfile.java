@@ -85,7 +85,9 @@ public class BorrowerProfile extends AppCompatActivity {
 
         videoView.start();
 
-       /* final ApiInterface apiService =
+
+/*
+       final ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
@@ -97,7 +99,7 @@ public class BorrowerProfile extends AppCompatActivity {
         dialog.show();
 
 
-        Call<LenderProfileGet> call = apiService.profile();
+        Call<LenderProfileGet> call = apiService.profile2();
 
         call.enqueue(new Callback<LenderProfileGet>() {
             @Override
@@ -127,8 +129,8 @@ public class BorrowerProfile extends AppCompatActivity {
                 Log.e("Error", t.toString());
             }
         });
-*/
 
+*/
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override

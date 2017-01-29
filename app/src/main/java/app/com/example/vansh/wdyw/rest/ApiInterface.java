@@ -52,6 +52,9 @@ public interface ApiInterface {
     @GET("/v1/lender/me")
     Call<LenderProfileGet> profile();
 
+    @GET("/v1/customer")
+    Call<LenderProfileGet> profile2();
+
 
 
 
