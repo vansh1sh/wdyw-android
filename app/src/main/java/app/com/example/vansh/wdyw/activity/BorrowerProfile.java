@@ -85,7 +85,6 @@ public class BorrowerProfile extends AppCompatActivity {
 
         videoView.start();
 
-
        /* final ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 

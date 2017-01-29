@@ -56,10 +56,10 @@
         <activity
             android:name=".activity.LProfileActivity"
             android:label="Profile" />
-        <activity android:name=".activity.CheckCredit"></activity>
-
-
-
+        <activity android:name=".activity.CheckCredit" />
+        <activity android:name=".activity.ContactUs" />
+        <activity android:name=".activity.TermsActivity" />
+        <activity android:name=".activity.SettingsActivity"></activity>
     </application>
 
 </manifest>

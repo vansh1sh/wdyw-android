@@ -126,14 +126,12 @@
                 android:textColor="@color/black"
                 android:text=" Lend "/>
             <Button
-
                 android:background="@drawable/button_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
                 android:id="@+id/details"
                 android:textSize="15dp"
-
+                android:layout_marginTop="1dp"
                 android:textColor="@color/black"
                 android:text="DETAILS"/>
         </LinearLayout>

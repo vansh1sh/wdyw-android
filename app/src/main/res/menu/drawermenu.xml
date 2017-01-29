@@ -29,6 +29,7 @@
                 android:icon="@drawable/spam"/>
             <item
                 android:title="Terms"
+                android:id="@+id/terms"
                 android:icon="@drawable/sent"/>
         </menu>
     </item>
@@ -36,9 +37,11 @@
     <group android:id="@+id/group_settings_id">
 
         <item android:title="Settings"
-              android:icon="@drawable/settings"/>
+              android:icon="@drawable/settings"
+            android:id="@+id/setting"/>
         <item android:title="Contact Us"
-             android:icon="@drawable/help"/>
+             android:icon="@drawable/help"
+            android:id="@+id/contactus"/>
     </group>
 
 
