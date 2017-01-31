@@ -76,6 +76,9 @@ public class LProfileActivity extends AppCompatActivity
     @Bind(R.id.load)
     ImageView load;
 
+    @Bind(R.id.quote)
+    TextView quote;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +126,7 @@ public class LProfileActivity extends AppCompatActivity
                 credit.setText(data.getLender().getCredit().toString());
                 type.setText(data.getLender().getType().toString());
                 sex.setText(data.getLender().getSex().toString());
+                quote.setText(data.getLender().getQuote().toString());
 
 
                 DataFetch.fetchImage(data.getLender().getProPic().toString(), LProfileActivity.this, load);
