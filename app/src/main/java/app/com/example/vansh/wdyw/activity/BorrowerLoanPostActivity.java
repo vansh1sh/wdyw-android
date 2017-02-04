@@ -150,8 +150,7 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
                     loanPostRequest.setCity(city.getText().toString());
                     loanPostRequest.setReason(reason.getText().toString());
                     loanPostRequest.setDuration(duration.getText().toString());
-                    Integer myNum1 = Integer.parseInt(interest.getText().toString());
-                    loanPostRequest.setExpectedinterest(myNum1);
+                    loanPostRequest.setExpectedInterest(interest.getText().toString());
 
                     loanPostRequest.setLoanType(selectedItemText);
 

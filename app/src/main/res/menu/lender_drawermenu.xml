@@ -11,7 +11,7 @@
           android:id="@+id/nav_item_profile"
           android:icon="@drawable/ic_action_profile"/>
 
-    <item android:title="Find Borrowers"
+    <item android:title="Loans Lent"
           android:id="@+id/nav_lender"
           android:icon="@drawable/ic_action_lend"/>
 

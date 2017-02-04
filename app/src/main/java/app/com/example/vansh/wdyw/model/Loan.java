@@ -3,30 +3,35 @@ package app.com.example.vansh.wdyw.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BorrowerLoanData {
+import java.util.List;
 
+
+public class Loan {
 
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("loanType")
-    @Expose
-    private String loanType;
-    @SerializedName("loanAmt")
-    @Expose
-    private Integer loanAmt;
-    @SerializedName("expectedInterest")
-    @Expose
-    private String expectedInterest;
     @SerializedName("city")
     @Expose
     private String city;
+    @SerializedName("duration")
+    @Expose
+    private String duration;
+    @SerializedName("expectedInterest")
+    @Expose
+    private String expectedInterest;
+    @SerializedName("loanAmt")
+    @Expose
+    private Integer loanAmt;
+    @SerializedName("loanType")
+    @Expose
+    private String loanType;
     @SerializedName("reason")
     @Expose
     private String reason;
     @SerializedName("customer")
     @Expose
-    private Customer2 customer;
+    private String customer;
     @SerializedName("__v")
     @Expose
     private Integer v;
@@ -39,20 +44,20 @@ public class BorrowerLoanData {
         this.id = id;
     }
 
-    public String getLoanType() {
-        return loanType;
+    public String getCity() {
+        return city;
     }
 
-    public void setLoanType(String loanType) {
-        this.loanType = loanType;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Integer getLoanAmt() {
-        return loanAmt;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setLoanAmt(Integer loanAmt) {
-        this.loanAmt = loanAmt;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public String getExpectedInterest() {
@@ -63,12 +68,20 @@ public class BorrowerLoanData {
         this.expectedInterest = expectedInterest;
     }
 
-    public String getCity() {
-        return city;
+    public Integer getLoanAmt() {
+        return loanAmt;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLoanAmt(Integer loanAmt) {
+        this.loanAmt = loanAmt;
+    }
+
+    public String getLoanType() {
+        return loanType;
+    }
+
+    public void setLoanType(String loanType) {
+        this.loanType = loanType;
     }
 
     public String getReason() {
@@ -79,11 +92,11 @@ public class BorrowerLoanData {
         this.reason = reason;
     }
 
-    public Customer2 getCustomer() {
+    public String getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer2 customer) {
+    public void setCustomer(String customer) {
         this.customer = customer;
     }
 
@@ -94,4 +107,5 @@ public class BorrowerLoanData {
     public void setV(Integer v) {
         this.v = v;
     }
+
 }

@@ -15,6 +15,7 @@ import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.BorrowerLoanData;
+import app.com.example.vansh.wdyw.model.LlentDatum;
 import app.com.example.vansh.wdyw.model.LloanIdRequest;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
@@ -22,9 +23,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAdapter.MovieViewHolder> {
+public class LLentDetailsAdapter extends RecyclerView.Adapter<LLentDetailsAdapter.MovieViewHolder> {
 
-    private List<BorrowerLoanData> stock;
+    private List<LlentDatum> stock;
     private int rowLayout;
     private Context context;
 
@@ -35,6 +36,8 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
         TextView costprice;
         TextView expected;
         TextView amount;
+        TextView type;
+        TextView interest;
         Button lend;
         Button details;
 
@@ -44,8 +47,10 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
         public MovieViewHolder(View v) {
             super(v);
             stockLayout = (LinearLayout) v.findViewById(R.id.stock_layout);
-            productid = (TextView) v.findViewById(R.id.loantype);
+            productid = (TextView) v.findViewById(R.id.name);
             costprice = (TextView) v.findViewById(R.id.city);
+            type = (TextView) v.findViewById(R.id.loantype);
+            interest = (TextView) v.findViewById(R.id.interestrate);
             expected = (TextView) v.findViewById(R.id.expected);
             amount = (TextView) v.findViewById(R.id.rating);
             lend = (Button) v.findViewById(R.id.lend);
@@ -54,7 +59,7 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
         }
     }
 
-    public ProfileDetailsAdapter(List<BorrowerLoanData> stock, int rowLayout, Context context) {
+    public LLentDetailsAdapter(List<LlentDatum> stock, int rowLayout, Context context) {
         this.stock = stock;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -62,8 +67,8 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
     }
 
     @Override
-    public ProfileDetailsAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                    int viewType) {
+    public LLentDetailsAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                  int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         return new MovieViewHolder(view);
     }
@@ -71,17 +76,21 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
 
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
-        holder.productid.setText(stock.get(position).getLoanType());
-        holder.amount.setText("Amt."+stock.get(position).getLoanAmt().toString());
-      //  holder.costprice.setText(stock.get(position).getCustomer().getName().toString());
-        holder.costprice.setText(stock.get(position).getCity());
-        holder.expected.setText(stock.get(position).getExpectedInterest().toString()+"% exp.");
+        holder.productid.setText(stock.get(position).getCustomer().getName());
 
+        holder.type.setText(stock.get(position).getLoan().getLoanType().toString());
+        holder.amount.setText("₹"+stock.get(position).getLoan().getLoanAmt().toString());
+      //  holder.costprice.setText(stock.get(position).getCustomer().getName().toString());
+        holder.costprice.setText(stock.get(position).getLoan().getCity());
+        holder.interest.setText(stock.get(position).getLoan().getExpectedInterest()+"% exp.");
+        holder.expected.setText(stock.get(position).getLoan().getReason().toString());
+
+        //holder.duration.setText(stock.get(position).get.toString());
         holder.lend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
-                alertbox.setMessage("Are You Sure You wanna contact this borrower?");
+                alertbox.setMessage("Are You Sure You Want To Contact This Borrower?");
                 alertbox.setTitle("Confirmation");
                 alertbox.setIcon(R.drawable.logo1);
 
@@ -91,12 +100,10 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
                             public void onClick(DialogInterface arg0,
                                                 int arg1) {
 
-
                                 final LloanIdRequest lloanIdRequest = new LloanIdRequest();
                                 final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
-
-                                lloanIdRequest.setCustomer(stock.get(position).getId().toString());
-
+                                lloanIdRequest.setCustomer(stock.get(position).getCustomer().getId().toString());
+                                lloanIdRequest.setLoan(stock.get(position).getId().toString());
 
                                 Call<LloanIdRequest> call = apiInterface.id(lloanIdRequest);
 
@@ -110,10 +117,11 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
                                             public void onClick(View v) {
 
 
+
+
+
                                             }
                                         });
-
-
                                     }
 
                                     @Override

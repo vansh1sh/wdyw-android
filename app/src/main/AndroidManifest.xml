@@ -60,6 +60,7 @@
         <activity android:name=".activity.ContactUs" />
         <activity android:name=".activity.TermsActivity" />
         <activity android:name=".activity.SettingsActivity"></activity>
+        <activity android:name=".activity.LenderLendActivity"></activity>
     </application>
 
 </manifest>

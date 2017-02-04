@@ -15,9 +15,9 @@ public class LoanPostRequest {
     @SerializedName("loanAmt")
     @Expose
     private Integer loanAmt;
-    @SerializedName("expectedinterest")
+    @SerializedName("expectedInterest")
     @Expose
-    private Integer expectedinterest;
+    private String expectedInterest;
     @SerializedName("reason")
     @Expose
     private String reason;
@@ -65,12 +65,12 @@ public class LoanPostRequest {
         this.loanAmt = loanAmt;
     }
 
-    public Integer getExpectedinterest() {
-        return expectedinterest;
+    public String getExpectedinterest() {
+        return expectedInterest;
     }
 
-    public void setExpectedinterest(Integer expectedinterest) {
-        this.expectedinterest = expectedinterest;
+    public void setExpectedInterest(String expectedinterest) {
+        this.expectedInterest = expectedinterest;
     }
 
 }

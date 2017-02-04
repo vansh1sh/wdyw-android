@@ -138,6 +138,8 @@ public class LenderMainActivity extends AppCompatActivity {
 
                  if (menuItem.getItemId() == R.id.nav_lender) {
 
+                     Intent i = new Intent(LenderMainActivity.this,LenderLendActivity.class);
+                     startActivity(i);
                  }
                 if (menuItem.getItemId() == R.id.how) {
                     Intent i = new Intent(LenderMainActivity.this,SettingsActivity.class);

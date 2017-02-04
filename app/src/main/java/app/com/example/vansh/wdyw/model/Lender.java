@@ -3,7 +3,7 @@ package app.com.example.vansh.wdyw.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Customer {
+public class Lender {
 
 
     @SerializedName("_id")
@@ -15,6 +15,9 @@ public class Customer {
     @SerializedName("city")
     @Expose
     private String city;
+    @SerializedName("email")
+    @Expose
+    private String email;
     @SerializedName("name")
     @Expose
     private String name;
@@ -24,15 +27,27 @@ public class Customer {
     @SerializedName("phone")
     @Expose
     private Long phone;
-    @SerializedName("profession")
+    @SerializedName("sex")
     @Expose
-    private String profession;
+    private String sex;
+    @SerializedName("state")
+    @Expose
+    private String state;
+    @SerializedName("type")
+    @Expose
+    private String type;
     @SerializedName("__v")
     @Expose
     private Integer v;
     @SerializedName("pro_pic")
     @Expose
     private String proPic;
+    @SerializedName("credit")
+    @Expose
+    private Integer credit;
+    @SerializedName("quote")
+    @Expose
+    private Quote quote;
 
     public String getId() {
         return id;
@@ -56,6 +71,14 @@ public class Customer {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -82,12 +105,28 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getProfession() {
-        return profession;
+    public String getSex() {
+        return sex;
     }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Integer getV() {
@@ -104,6 +143,22 @@ public class Customer {
 
     public void setProPic(String proPic) {
         this.proPic = proPic;
+    }
+
+    public Integer getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Integer credit) {
+        this.credit = credit;
+    }
+
+    public Quote getQuote() {
+        return quote;
+    }
+
+    public void setQuote(Quote quote) {
+        this.quote = quote;
     }
 
 }

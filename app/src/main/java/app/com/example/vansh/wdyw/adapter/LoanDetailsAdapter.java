@@ -113,7 +113,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
 
                                 final LloanIdRequest lloanIdRequest = new LloanIdRequest();
                                 final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
-                                lloanIdRequest.setLender(stock.get(position).getCustomer().getId().toString());
+                                lloanIdRequest.setCustomer(stock.get(position).getCustomer().getId().toString());
+                                lloanIdRequest.setLoan(stock.get(position).getId().toString());
 
                                 Call<LloanIdRequest> call = apiInterface.id(lloanIdRequest);
 

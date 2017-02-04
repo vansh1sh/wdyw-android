@@ -9,6 +9,7 @@ import app.com.example.vansh.wdyw.model.BLoginRequest;
 import app.com.example.vansh.wdyw.model.BLoginResponse;
 import app.com.example.vansh.wdyw.model.BSignupRequest;
 import app.com.example.vansh.wdyw.model.BloanResponse;
+import app.com.example.vansh.wdyw.model.LLentResponse;
 import app.com.example.vansh.wdyw.model.LLoginRequest;
 import app.com.example.vansh.wdyw.model.LLoginResponse;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
@@ -54,6 +55,9 @@ public interface ApiInterface {
 
     @GET("/v1/customer")
     Call<LenderProfileGet> profile2();
+
+    @GET("/v1/offer/me")
+    Call<LLentResponse> LenderLend();
 
 
 
