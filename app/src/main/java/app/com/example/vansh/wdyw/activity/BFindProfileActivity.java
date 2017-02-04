@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
@@ -17,11 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -32,17 +29,15 @@ import app.com.example.vansh.wdyw.model.LenderProfileGet;
 import app.com.example.vansh.wdyw.model.ProfilePic;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
-import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DataFetch;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
-import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LProfileActivity extends AppCompatActivity
+public class BFindProfileActivity extends AppCompatActivity
     implements AppBarLayout.OnOffsetChangedListener {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
@@ -115,15 +110,16 @@ public class LProfileActivity extends AppCompatActivity
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(BFindProfileActivity.this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
-
-        Call<LenderProfileGet> call = apiService.profile();
+        Intent intent = getIntent();
+        String id=intent.getStringExtra("id");
+        Call<LenderProfileGet> call = apiService.lprofile(id);
 
         call.enqueue(new Callback<LenderProfileGet>() {
             @Override
@@ -143,7 +139,7 @@ public class LProfileActivity extends AppCompatActivity
                 quote.setText(data.getLender().getQuote().toString());
 
 
-                DataFetch.fetchImage(data.getLender().getProPic().toString(), LProfileActivity.this, load);
+                DataFetch.fetchImage(data.getLender().getProPic().toString(), BFindProfileActivity.this, load);
 
 
                 dialog.hide();
@@ -155,7 +151,7 @@ public class LProfileActivity extends AppCompatActivity
             @Override
             public void onFailure(Call<LenderProfileGet> call, Throwable t) {
                 dialog.hide();
-                DialogUtil.createDialog("Oops! Please check your internet connection!", LProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                DialogUtil.createDialog("Oops! Please check your internet connection!", BFindProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
                     }
@@ -166,23 +162,6 @@ public class LProfileActivity extends AppCompatActivity
         });
 
 
-
-        load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);*/
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
-
-
-
-            }
-        });
 
     }
 
@@ -252,93 +231,4 @@ public class LProfileActivity extends AppCompatActivity
         v.startAnimation(alphaAnimation);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch(requestCode) {
-            case 1:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    load.setImageURI(selectedImage);
-                    String filepath=getRealPathFromURI(this,selectedImage);
-
-
-                    try {
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
-                        byte[] b = stream.toByteArray();
-
-                        String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-
-
-
-                        final ProfilePic profilePic = new ProfilePic();
-                        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-                        profilePic.setFileType(filepath.substring(filepath.lastIndexOf(".") + 1));
-                       // profilePic.setData(Preferences.getPrefs(Consts.P_SP_KEY.toString(),this));
-                        profilePic.setImage(encodedImage);
-
-
-                        Call<ProfilePic> call = apiInterface.pic(profilePic);
-
-                        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        dialog.setMessage("Uploading Photo...");
-                        dialog.setIndeterminate(true);
-                        dialog.setCanceledOnTouchOutside(false);
-                        dialog.show();
-
-                        call.enqueue(new Callback<ProfilePic>() {
-                            @Override
-                            public void onResponse(Call<ProfilePic> call, Response<ProfilePic> response) {
-
-                                dialog.hide();
-                                DialogUtil.createDialog("Upload Successful", LProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                                    @Override
-                                    public void onClick() {
-                                        finish();
-
-                                    }
-                                });
-
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<ProfilePic> call, Throwable t) {
-                                dialog.hide();
-                                DialogUtil.createDialog("Oops! Please check your internet connection!", LProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                                    @Override
-                                    public void onClick() {
-                                    }
-                                });
-                            }
-                        });
-
-
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-                break;
-        }
-    }
-
-    public String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
 }

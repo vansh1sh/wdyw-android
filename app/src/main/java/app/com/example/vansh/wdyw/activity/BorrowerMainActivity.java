@@ -75,7 +75,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
                      startActivity(i);
                  }
                  if (menuItem.getItemId() == R.id.nav_item_profile) {
-                     Intent i = new Intent(BorrowerMainActivity.this,BorrowerProfile.class);
+                     Intent i = new Intent(BorrowerMainActivity.this,BProfileActivity.class);
                      startActivity(i);
                  }
 
@@ -139,9 +139,9 @@ public class BorrowerMainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent i = new Intent(BorrowerMainActivity.this,BorrowerProfile.class);
+                Intent i = new Intent(BorrowerMainActivity.this,BProfileActivity.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), "LOL I'm cool-huehuehue", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
 

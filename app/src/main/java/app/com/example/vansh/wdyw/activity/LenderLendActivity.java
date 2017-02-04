@@ -104,7 +104,7 @@ public class LenderLendActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent i = new Intent(LenderLendActivity.this,BorrowerProfile.class);
+                Intent i = new Intent(LenderLendActivity.this,LProfileActivity.class);
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "LOL I'm cool-huehuehue", Toast.LENGTH_SHORT).show();
                 break;

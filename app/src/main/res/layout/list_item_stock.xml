@@ -99,6 +99,7 @@
 
             </LinearLayout>
             <Button
+                android:id="@+id/makeoffer"
                 android:background="@drawable/button_shape"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"

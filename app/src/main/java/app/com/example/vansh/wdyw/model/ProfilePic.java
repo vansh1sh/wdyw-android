@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProfilePic {
 
-    @SerializedName("data")
+    @SerializedName("image")
     @Expose
-    private String data;
+    private String image;
     @SerializedName("file_type")
     @Expose
     private String fileType;
 
-    public String getData() {
-        return data;
+    public String getImage() {
+        return image;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getFileType() {

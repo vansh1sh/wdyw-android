@@ -9,6 +9,7 @@ import app.com.example.vansh.wdyw.model.BLoginRequest;
 import app.com.example.vansh.wdyw.model.BLoginResponse;
 import app.com.example.vansh.wdyw.model.BSignupRequest;
 import app.com.example.vansh.wdyw.model.BloanResponse;
+import app.com.example.vansh.wdyw.model.BorrowerProfileGet;
 import app.com.example.vansh.wdyw.model.LLentResponse;
 import app.com.example.vansh.wdyw.model.LLoginRequest;
 import app.com.example.vansh.wdyw.model.LLoginResponse;
@@ -47,14 +48,20 @@ public interface ApiInterface {
     @POST("/v1/loan")
     Call<LoanPostRequest> LoanPost(@Body LoanPostRequest loanPostRequest);
 
-    @POST("/v1/customer/propic")
+    @POST("/v1/lender/propic")
     Call<ProfilePic> pic(@Body ProfilePic profilePic);
+
+    @POST("/v1/customer/propic")
+    Call<ProfilePic> bpic(@Body ProfilePic profilePic);
 
     @GET("/v1/lender/me")
     Call<LenderProfileGet> profile();
 
+     @GET("/v1/lender/detail/")
+    Call<LenderProfileGet> lprofile(@Query("id") String id);
+
     @GET("/v1/customer")
-    Call<LenderProfileGet> profile2();
+    Call<BorrowerProfileGet> profile2();
 
     @GET("/v1/offer/me")
     Call<LLentResponse> LenderLend();

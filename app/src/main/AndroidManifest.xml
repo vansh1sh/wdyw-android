@@ -61,6 +61,8 @@
         <activity android:name=".activity.TermsActivity" />
         <activity android:name=".activity.SettingsActivity"></activity>
         <activity android:name=".activity.LenderLendActivity"></activity>
+        <activity android:name=".activity.BFindProfileActivity"></activity>
+        <activity android:name=".activity.BProfileActivity"></activity>
     </application>
 
 </manifest>

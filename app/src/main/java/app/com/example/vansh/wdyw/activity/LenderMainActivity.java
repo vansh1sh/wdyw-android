@@ -27,7 +27,6 @@ import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.adapter.LoanDetailsAdapter;
 import app.com.example.vansh.wdyw.model.BloanResponse;
 import app.com.example.vansh.wdyw.model.BorrowerLoanData;
-import app.com.example.vansh.wdyw.model.Customer;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
@@ -142,7 +141,7 @@ public class LenderMainActivity extends AppCompatActivity {
                      startActivity(i);
                  }
                 if (menuItem.getItemId() == R.id.how) {
-                    Intent i = new Intent(LenderMainActivity.this,SettingsActivity.class);
+                    Intent i = new Intent(LenderMainActivity.this,BFindProfileActivity.class);
                     startActivity(i);
                      }
                  if (menuItem.getItemId() == R.id.terms) {
