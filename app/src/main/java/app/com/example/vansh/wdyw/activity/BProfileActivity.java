@@ -14,11 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -81,14 +83,10 @@ public class BProfileActivity extends AppCompatActivity
     @Bind(R.id.sex)
     TextView sex;
 
-    @Bind(R.id.credit)
-    TextView credit;
 
     @Bind(R.id.load)
     ImageView load;
 
-    @Bind(R.id.quote)
-    TextView quote;
 
 
     @Override
@@ -184,8 +182,31 @@ public class BProfileActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.profile_menu_main, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        super.onOptionsItemSelected(item);
+
+        switch(item.getItemId()){
+            case R.id.home:
+                Intent i = new Intent(BProfileActivity.this,LenderMainActivity.class);
+                startActivity(i);
+                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_search:
+                Intent j = new Intent(BProfileActivity.this,CheckCredit.class);
+                startActivity(j);
+                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+
+
+
+        }
+        return true;
+
     }
 
     @Override

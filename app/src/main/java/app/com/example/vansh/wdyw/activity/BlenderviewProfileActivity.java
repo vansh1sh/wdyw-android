@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
@@ -18,33 +17,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import app.com.example.vansh.wdyw.R;
-import app.com.example.vansh.wdyw.model.Data;
-import app.com.example.vansh.wdyw.model.LenderProfileGet;
+import app.com.example.vansh.wdyw.model.BData;
+import app.com.example.vansh.wdyw.model.BorrowerProfileGet;
 import app.com.example.vansh.wdyw.model.ProfilePic;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
-import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DataFetch;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
-import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LProfileActivity extends AppCompatActivity
+public class BlenderviewProfileActivity extends AppCompatActivity
     implements AppBarLayout.OnOffsetChangedListener {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
@@ -57,7 +52,7 @@ public class LProfileActivity extends AppCompatActivity
     private LinearLayout mTitleContainer;
     private TextView mTitle;
     private AppBarLayout mAppBarLayout;
-    public Toolbar mToolbar;
+    private Toolbar mToolbar;
 
     @Bind(R.id.prof)
     TextView profile;
@@ -80,75 +75,62 @@ public class LProfileActivity extends AppCompatActivity
     @Bind(R.id.state)
     TextView state;
 
-    @Bind(R.id.type)
-    TextView type;
-
     @Bind(R.id.sex)
     TextView sex;
 
-    @Bind(R.id.credit)
-    TextView credit;
 
     @Bind(R.id.load)
     ImageView load;
 
-    @Bind(R.id.quote)
-    TextView quote;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lprofile_activity_main);
+        setContentView(R.layout.bprofile_activity_main);
 
         bindActivity();
         ButterKnife.bind(this);
 
+        Intent intent = getIntent();
+        String abc=intent.getStringExtra("id");
+
 
         mAppBarLayout.addOnOffsetChangedListener(this);
 
-        mToolbar.inflateMenu(R.menu.profile_menu_main);
-        setSupportActionBar(mToolbar);
+        mToolbar.inflateMenu(R.menu.menu_main);
 
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
-
-
 
         final ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(BlenderviewProfileActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Loading...");
+        dialog.setMessage("Loading Profile...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
 
-        Call<LenderProfileGet> call = apiService.profile();
+        Call<BorrowerProfileGet> call = apiService.lenderviewprofile(abc);
 
-        call.enqueue(new Callback<LenderProfileGet>() {
+        call.enqueue(new Callback<BorrowerProfileGet>() {
             @Override
-            public void onResponse(Call<LenderProfileGet> call, final Response<LenderProfileGet> response) {
-                Data data=new Data();
+            public void onResponse(Call<BorrowerProfileGet> call, final Response<BorrowerProfileGet> response) {
+                BData data=new BData();
                 data=response.body().getData();
-                profile.setText(data.getLender().getName().toString());
-                profile2.setText(data.getLender().getName().toString());
-                subhead.setText(data.getLender().getEmail().toString());
-                phoneno.setText(data.getLender().getPhone().toString());
-                address.setText(data.getLender().getAddress().toString());
-                city.setText(data.getLender().getCity().toString());
-                state.setText(data.getLender().getState().toString());
-                credit.setText(data.getLender().getCredit().toString());
-                type.setText(data.getLender().getType().toString());
-                sex.setText(data.getLender().getSex().toString());
-                quote.setText(data.getLender().getQuote().toString());
+                profile.setText(data.getName().toString());
+                profile2.setText(data.getName().toString());
+                subhead.setText("Borrower");
+                phoneno.setText(data.getPhone().toString());
+                address.setText(data.getAddress().toString());
+                //sex.setText(data.gettoString());
+                city.setText(data.getCity().toString());
+                //state.setText(data.getAddress().getState().toString());
 
-
-                DataFetch.fetchImage(data.getLender().getProPic().toString(), LProfileActivity.this, load);
-
-
+                DataFetch.fetchImage(data.getProPic().toString(), BlenderviewProfileActivity.this, load);
                 dialog.hide();
 
 
@@ -156,9 +138,9 @@ public class LProfileActivity extends AppCompatActivity
 
 
             @Override
-            public void onFailure(Call<LenderProfileGet> call, Throwable t) {
+            public void onFailure(Call<BorrowerProfileGet> call, Throwable t) {
                 dialog.hide();
-                DialogUtil.createDialog("Oops! Please check your internet connection!", LProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                DialogUtil.createDialog("Oops! Please check your internet connection!", BlenderviewProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
                     }
@@ -167,7 +149,6 @@ public class LProfileActivity extends AppCompatActivity
                 Log.e("Error", t.toString());
             }
         });
-
 
 
         load.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +160,7 @@ public class LProfileActivity extends AppCompatActivity
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);*/
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
 
 
@@ -190,7 +171,7 @@ public class LProfileActivity extends AppCompatActivity
     }
 
 
-    public void bindActivity() {
+    private void bindActivity() {
         mToolbar        = (Toolbar) findViewById(R.id.main_toolbar);
         mTitle          = (TextView) findViewById(R.id.title_profile);
         mTitleContainer = (LinearLayout) findViewById(R.id.main_linearlayout_title);
@@ -200,7 +181,7 @@ public class LProfileActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile_menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -209,12 +190,12 @@ public class LProfileActivity extends AppCompatActivity
 
         switch(item.getItemId()){
             case R.id.home:
-                Intent i = new Intent(LProfileActivity.this,LenderMainActivity.class);
+                Intent i = new Intent(BlenderviewProfileActivity.this,LenderMainActivity.class);
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
-                Intent j = new Intent(LProfileActivity.this,CheckCredit.class);
+                Intent j = new Intent(BlenderviewProfileActivity.this,CheckCredit.class);
                 startActivity(j);
                 Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
@@ -222,7 +203,7 @@ public class LProfileActivity extends AppCompatActivity
 
 
         }
-        return super.onOptionsItemSelected(item);
+        return true;
 
     }
 
@@ -296,8 +277,6 @@ public class LProfileActivity extends AppCompatActivity
 
                         String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
-
-
                         final ProfilePic profilePic = new ProfilePic();
                         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
                         profilePic.setFileType(filepath.substring(filepath.lastIndexOf(".") + 1));
@@ -305,9 +284,9 @@ public class LProfileActivity extends AppCompatActivity
                         profilePic.setImage(encodedImage);
 
 
-                        Call<ProfilePic> call = apiInterface.pic(profilePic);
+                        Call<ProfilePic> call = apiInterface.bpic(profilePic);
 
-                        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
+                        final ProgressDialog dialog = new ProgressDialog(BlenderviewProfileActivity.this);
                         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                         dialog.setMessage("Uploading Photo...");
                         dialog.setIndeterminate(true);
@@ -319,7 +298,7 @@ public class LProfileActivity extends AppCompatActivity
                             public void onResponse(Call<ProfilePic> call, Response<ProfilePic> response) {
 
                                 dialog.hide();
-                                DialogUtil.createDialog("Upload Successful", LProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                                DialogUtil.createDialog("Upload Successful.", BlenderviewProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
                                     @Override
                                     public void onClick() {
                                         finish();
@@ -333,7 +312,7 @@ public class LProfileActivity extends AppCompatActivity
                             @Override
                             public void onFailure(Call<ProfilePic> call, Throwable t) {
                                 dialog.hide();
-                                DialogUtil.createDialog("Oops! Please check your internet connection!", LProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                                DialogUtil.createDialog("Oops! Please check your internet connection!", BlenderviewProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
                                     @Override
                                     public void onClick() {
                                     }

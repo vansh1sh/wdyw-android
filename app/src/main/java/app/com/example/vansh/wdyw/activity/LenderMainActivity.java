@@ -27,6 +27,7 @@ import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.adapter.LoanDetailsAdapter;
 import app.com.example.vansh.wdyw.model.BloanResponse;
 import app.com.example.vansh.wdyw.model.BorrowerLoanData;
+import app.com.example.vansh.wdyw.model.Lender;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
@@ -135,15 +136,18 @@ public class LenderMainActivity extends AppCompatActivity {
                      startActivity(i);
                  }
 
-                 if (menuItem.getItemId() == R.id.nav_lender) {
-
+                if (menuItem.getItemId() == R.id.how) {
+                    Intent i = new Intent(LenderMainActivity.this,HowItWorks.class);
+                    startActivity(i);
+                     }
+                 if (menuItem.getItemId() == R.id.loans) {
                      Intent i = new Intent(LenderMainActivity.this,LenderLendActivity.class);
                      startActivity(i);
                  }
-                if (menuItem.getItemId() == R.id.how) {
-                    Intent i = new Intent(LenderMainActivity.this,BFindProfileActivity.class);
-                    startActivity(i);
-                     }
+                 if (menuItem.getItemId() == R.id.checkcredits) {
+                     Intent i = new Intent(LenderMainActivity.this,CheckCredit.class);
+                     startActivity(i);
+                 }
                  if (menuItem.getItemId() == R.id.terms) {
                     Intent i = new Intent(LenderMainActivity.this,TermsActivity.class);
                     startActivity(i);
@@ -198,6 +202,11 @@ public class LenderMainActivity extends AppCompatActivity {
                 Intent i = new Intent(LenderMainActivity.this,LProfileActivity.class);
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "LOL!!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_search:
+                Intent j = new Intent(LenderMainActivity.this,CheckCredit.class);
+                startActivity(j);
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
 

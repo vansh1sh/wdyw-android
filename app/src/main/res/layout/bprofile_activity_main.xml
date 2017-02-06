@@ -27,8 +27,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/quila2"
+
+                android:src="@drawable/beegee"
                 android:tint="#11000000"
+
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.9"
                 />
@@ -120,7 +122,7 @@
         android:layout_height="@dimen/image_width"
         android:layout_gravity="center_horizontal"
         android:id="@+id/load"
-        android:src="@drawable/quila"
+        android:src="@drawable/userprofile"
         app:border_color="@android:color/white"
         app:border_width="2dp"
         app:finalHeight="@dimen/image_final_width"
@@ -302,136 +304,48 @@
 
                         </android.support.v7.widget.CardView>
 
-
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15sp" />
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_margin="8dp"
-                    app:cardElevation="8dp"
-                    app:contentPadding="16dp"
-                    android:backgroundTint="@color/colorPrimary">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Credit Information"
-                            android:textColor="@color/black"
-                            android:paddingLeft="3dp"
-                            android:textSize="20dp"
-                            />
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="3dp"
-
-                          >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-
-
-                    android:orientation="horizontal">
-                    <TextView
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="8dp"
-                        android:text="Credit Type:"
-                        android:paddingLeft="40dp"
-                        />
-                    <TextView
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="8dp"
-                        android:paddingLeft="12dp"
-                        android:text="type comes here"
-                        android:id="@+id/type"
-                        />
-                </LinearLayout>
-                        </android.support.v7.widget.CardView>
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="8dp"
-                        android:paddingLeft="40dp"
-                        android:textColor="@color/black"
-
-                        android:text="Credit Amount:"
-                        />
-                    <TextView
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="8dp"
-                        android:text="credit comes here"
-                        android:paddingLeft="12dp"
-                        android:id="@+id/credit"
-                        />
-                </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-
                         <android.support.v7.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    style="@style/ProfileIcon"
+                                    android:src="@drawable/contract" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:lineSpacingExtra="8dp"
-                                    android:paddingLeft="40dp"
-                                    android:textColor="@color/black"
-                                    android:text="Credit Quote:"
-                                    />
-                                <TextView
-                                    android:textColor="@color/black"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:lineSpacingExtra="8dp"
-                                    android:text="credit comes here"
-                                    android:paddingLeft="12dp"
-                                    android:id="@+id/quote"
-                                    />
+                                    android:orientation="horizontal"
+                                    android:paddingTop="15dp">
+
+
+                                    <TextView
+                                        android:textColor="@color/black"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="8dp"
+                                        android:paddingLeft="5dp"
+                                        android:text="state comes here"
+
+                                        android:id="@+id/type"
+                                        />
+                                </LinearLayout>
                             </LinearLayout>
+
+
                         </android.support.v7.widget.CardView>
+
+
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+
+
 
 
             </LinearLayout>

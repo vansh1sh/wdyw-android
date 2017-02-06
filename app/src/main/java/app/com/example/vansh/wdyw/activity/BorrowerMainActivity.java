@@ -47,6 +47,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
@@ -141,8 +142,14 @@ public class BorrowerMainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 Intent i = new Intent(BorrowerMainActivity.this,BProfileActivity.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.action_search:
+                Intent j = new Intent(BorrowerMainActivity.this,CheckCredit.class);
+                startActivity(j);
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+
 
 
         }

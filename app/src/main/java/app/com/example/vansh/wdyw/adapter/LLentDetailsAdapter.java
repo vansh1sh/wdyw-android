@@ -2,6 +2,7 @@ package app.com.example.vansh.wdyw.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
+import app.com.example.vansh.wdyw.activity.BFindProfileActivity;
+import app.com.example.vansh.wdyw.activity.BProfileActivity;
+import app.com.example.vansh.wdyw.activity.BlenderviewProfileActivity;
 import app.com.example.vansh.wdyw.model.BorrowerLoanData;
 import app.com.example.vansh.wdyw.model.LlentDatum;
 import app.com.example.vansh.wdyw.model.LloanIdRequest;
@@ -28,6 +32,8 @@ public class LLentDetailsAdapter extends RecyclerView.Adapter<LLentDetailsAdapte
     private List<LlentDatum> stock;
     private int rowLayout;
     private Context context;
+
+    String idd;
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -54,8 +60,8 @@ public class LLentDetailsAdapter extends RecyclerView.Adapter<LLentDetailsAdapte
             expected = (TextView) v.findViewById(R.id.expected);
             amount = (TextView) v.findViewById(R.id.rating);
             lend = (Button) v.findViewById(R.id.lend);
-            details = (Button) v.findViewById(R.id.details);
-            details.setVisibility(v.GONE);
+            //details = (Button) v.findViewById(R.id.details);
+            //details.setVisibility(v.GONE);
         }
     }
 
@@ -85,59 +91,22 @@ public class LLentDetailsAdapter extends RecyclerView.Adapter<LLentDetailsAdapte
         holder.interest.setText(stock.get(position).getLoan().getExpectedInterest()+"% exp.");
         holder.expected.setText(stock.get(position).getLoan().getReason().toString());
 
-        //holder.duration.setText(stock.get(position).get.toString());
-        holder.lend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
-                alertbox.setMessage("Are You Sure You Want To Contact This Borrower?");
-                alertbox.setTitle("Confirmation");
-                alertbox.setIcon(R.drawable.logo1);
 
-                alertbox.setNeutralButton("Continue",
-                        new DialogInterface.OnClickListener() {
 
-                            public void onClick(DialogInterface arg0,
-                                                int arg1) {
-
-                                final LloanIdRequest lloanIdRequest = new LloanIdRequest();
-                                final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
-                                lloanIdRequest.setCustomer(stock.get(position).getCustomer().getId().toString());
-                                lloanIdRequest.setLoan(stock.get(position).getId().toString());
-
-                                Call<LloanIdRequest> call = apiInterface.id(lloanIdRequest);
-
-                                call.enqueue(new Callback<LloanIdRequest>() {
-                                    @Override
-                                    public void onResponse(Call<LloanIdRequest> call, Response<LloanIdRequest> response) {
-                                    holder.lend.setVisibility(View.GONE);
-                                    holder.details.setVisibility(View.VISIBLE);
-                                        holder.details.setOnClickListener(new View.OnClickListener() {
+                            holder.lend.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-
-
-
-
+                                                idd=stock.get(position).getId();
+                                                Intent intent = new Intent(context, BlenderviewProfileActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                intent.putExtra("id",idd);
+                                                context.startActivity(intent);
 
                                             }
                                         });
                                     }
 
-                                    @Override
-                                    public void onFailure(Call<LloanIdRequest> call, Throwable t) {
 
-
-                                    }
-                                });
-                            }
-                        });
-                alertbox.show();
-
-                    }
-                });
-
-            }
 
 
             @Override

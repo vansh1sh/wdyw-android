@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="app.com.example.vansh.wdyw.activity.BorrowerMainActivity">
+
+
+    <item
+        android:id="@+id/action_search"
+        android:title="yo"
+        android:orderInCategory="100"
+        android:icon="@drawable/whitewallet"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/home"
+        android:orderInCategory="100"
+        android:title="Home"
+        android:icon="@drawable/hometoolbar"
+        app:showAsAction="ifRoom" />
+
+
+
+
+</menu>

@@ -12,11 +12,11 @@
           android:icon="@drawable/ic_action_profile"/>
 
     <item android:title="Loans Lent"
-          android:id="@+id/nav_lender"
+          android:id="@+id/loans"
           android:icon="@drawable/ic_action_lend"/>
 
     <item android:title="Check Credits"
-          android:id="@+id/nav_item_loan"
+          android:id="@+id/checkcredits"
           android:icon="@drawable/sent"/>
 
 

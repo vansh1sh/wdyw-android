@@ -68,7 +68,7 @@ public class LenderLendActivity extends AppCompatActivity {
             public void onResponse(Call<LLentResponse> call, final Response<LLentResponse> response) {
 
                 List<LlentDatum> sold = response.body().getData();
-                recyclerView.setAdapter(new LLentDetailsAdapter(sold, R.layout.list_item_loan, getApplicationContext()));
+                recyclerView.setAdapter(new LLentDetailsAdapter(sold, R.layout.list_item_loanlent, getApplicationContext()));
                 dialog.hide();
 
 

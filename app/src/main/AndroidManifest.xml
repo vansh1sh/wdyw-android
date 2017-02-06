@@ -55,14 +55,16 @@
             android:label="Main" />
         <activity
             android:name=".activity.LProfileActivity"
-            android:label="Profile" />
+            android:label="" />
         <activity android:name=".activity.CheckCredit" />
         <activity android:name=".activity.ContactUs" />
         <activity android:name=".activity.TermsActivity" />
-        <activity android:name=".activity.SettingsActivity"></activity>
-        <activity android:name=".activity.LenderLendActivity"></activity>
-        <activity android:name=".activity.BFindProfileActivity"></activity>
-        <activity android:name=".activity.BProfileActivity"></activity>
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.LenderLendActivity" />
+        <activity android:name=".activity.BFindProfileActivity" />
+        <activity android:name=".activity.BProfileActivity" />
+        <activity android:name=".activity.BlenderviewProfileActivity" />
+        <activity android:name=".activity.HowItWorks"></activity>
     </application>
 
 </manifest>
