@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
     private List<BorrowerLoanData> stock;
     private int rowLayout;
     private Context context;
+    
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -76,6 +79,7 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
       //  holder.costprice.setText(stock.get(position).getCustomer().getName().toString());
         holder.costprice.setText(stock.get(position).getCity());
         holder.expected.setText(stock.get(position).getExpectedInterest().toString()+"% exp.");
+
 
         holder.lend.setOnClickListener(new View.OnClickListener() {
             @Override

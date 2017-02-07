@@ -33,6 +33,7 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,6 +61,7 @@ public class LenderMainActivity extends AppCompatActivity {
         }
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -187,6 +189,7 @@ public class LenderMainActivity extends AppCompatActivity {
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
