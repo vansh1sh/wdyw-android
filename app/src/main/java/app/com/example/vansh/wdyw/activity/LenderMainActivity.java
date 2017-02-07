@@ -30,7 +30,9 @@ import app.com.example.vansh.wdyw.model.BorrowerLoanData;
 import app.com.example.vansh.wdyw.model.Lender;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import app.com.example.vansh.wdyw.utility.Preferences;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,6 +53,7 @@ public class LenderMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lender_activity_main);
 
+        Preferences.setPrefs(Consts.AUTO_LOGIN,"lender",this);
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -199,9 +202,11 @@ public class LenderMainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent i = new Intent(LenderMainActivity.this,LProfileActivity.class);
+                Preferences.setPrefs(Consts.AUTO_LOGIN,"user",this);
+
+                Intent i = new Intent(LenderMainActivity.this,FirstPage.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), "LOL!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Signed Out", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
                 Intent j = new Intent(LenderMainActivity.this,CheckCredit.class);

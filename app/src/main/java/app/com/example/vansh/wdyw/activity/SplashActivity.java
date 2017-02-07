@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 else{
 
-                    Intent i = new Intent(SplashActivity.this, BorrowerFirstPage.class);
+                    Intent i = new Intent(SplashActivity.this, FirstPage.class);
                     startActivity(i);
                     finish();}
             }

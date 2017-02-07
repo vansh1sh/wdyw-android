@@ -24,7 +24,7 @@
             android:name=".activity.BorrowerLoanPostActivity"
             android:label="Request Loan" />
         <activity
-            android:name=".activity.BorrowerFirstPage"
+            android:name=".activity.FirstPage"
             android:label="Welcome" />
         <activity
             android:name=".activity.LSignupActivity"
@@ -35,9 +35,6 @@
         <activity
             android:name=".activity.StartupActivity"
             android:label="Startup Activity" />
-        <activity
-            android:name=".activity.BorrowerProfile"
-            android:label="Profile" />
         <activity
             android:name=".activity.BorrowerLoginActivity"
             android:label="Login" />

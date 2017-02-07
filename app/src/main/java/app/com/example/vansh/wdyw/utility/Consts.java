@@ -7,6 +7,7 @@ public class Consts {
     public static final String REGNO_LIST_KEY = "regnos";
     public static final String REGNO_LIST_BUNDLE = "bundle";
     public static final String SEARCH_MODE = "search_mode";
+    public static final String AUTO_LOGIN = "user";
 
     //SHARED PREFS VARIABLES
 

@@ -109,6 +109,8 @@ public class LLoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(LLoginActivity.this, LenderMainActivity.class);
                     startActivity(intent);
+                    Toast.makeText(getBaseContext(), "Welcome To WdyW", Toast.LENGTH_SHORT).show();
+
                 }
                 else
 
