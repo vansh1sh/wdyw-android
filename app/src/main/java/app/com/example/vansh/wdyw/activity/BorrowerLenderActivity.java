@@ -15,9 +15,13 @@ import android.widget.Toast;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
+import app.com.example.vansh.wdyw.adapter.BLenderDetailsAdapter;
+import app.com.example.vansh.wdyw.adapter.LLentDetailsAdapter;
 import app.com.example.vansh.wdyw.adapter.LenderDetailsAdapter;
+import app.com.example.vansh.wdyw.model.LLentResponse;
 import app.com.example.vansh.wdyw.model.LenderData;
 import app.com.example.vansh.wdyw.model.LenderDetails;
+import app.com.example.vansh.wdyw.model.LlentDatum;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
@@ -38,17 +42,16 @@ public class BorrowerLenderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lender);
 
+
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
 
 
         final ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(BorrowerLenderActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(BorrowerLenderActivity.this, R.style.AppTheme_Dark_Dialog);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
@@ -56,14 +59,14 @@ public class BorrowerLenderActivity extends AppCompatActivity {
         dialog.show();
 
 
-        Call<LenderData> call = apiService.lenderDetails(city,pageid,loanAmt);
+        Call<LLentResponse> call = apiService.LenderLend();
 
-        call.enqueue(new Callback<LenderData>() {
+        call.enqueue(new Callback<LLentResponse>() {
             @Override
-            public void onResponse(Call<LenderData> call, final Response<LenderData> response) {
+            public void onResponse(Call<LLentResponse> call, final Response<LLentResponse> response) {
 
-                List<LenderDetails> sold = response.body().getData();
-                recyclerView.setAdapter(new LenderDetailsAdapter(sold, R.layout.list_item_stock, getApplicationContext()));
+                List<LlentDatum> sold = response.body().getData();
+                recyclerView.setAdapter(new BLenderDetailsAdapter(sold, R.layout.list_item_loanlent, getApplicationContext()));
                 dialog.hide();
 
 
@@ -71,14 +74,14 @@ public class BorrowerLenderActivity extends AppCompatActivity {
 
 
             @Override
-            public void onFailure(Call<LenderData> call, Throwable t) {
+            public void onFailure(Call<LLentResponse> call, Throwable t) {
                 dialog.hide();
                 DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerLenderActivity.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
                     }
                 });
-                    // Log error here since request failed
+                // Log error here since request failed
                 Log.e("Error", t.toString());
             }
         });

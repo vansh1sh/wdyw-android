@@ -11,6 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -42,6 +44,10 @@ public class BorrowerMainActivity extends AppCompatActivity {
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    String city="vellore";
+    String  pageid="1";
+    String loanAmt="3000";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +133,54 @@ public class BorrowerMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_logo);
 
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
+        final ApiInterface apiService =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+
+        final ProgressDialog dialog = new ProgressDialog(BorrowerMainActivity.this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("Loading...");
+        dialog.setIndeterminate(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+
+        Call<LenderData> call = apiService.lenderDetails(city,pageid,loanAmt);
+
+        call.enqueue(new Callback<LenderData>() {
+            @Override
+            public void onResponse(Call<LenderData> call, final Response<LenderData> response) {
+
+                List<LenderDetails> sold = response.body().getData();
+                recyclerView.setAdapter(new LenderDetailsAdapter(sold, R.layout.list_item_stock, getApplicationContext()));
+                dialog.hide();
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<LenderData> call, Throwable t) {
+                dialog.hide();
+                DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerMainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                    @Override
+                    public void onClick() {
+                    }
+                });
+                // Log error here since request failed
+                Log.e("Error", t.toString());
+            }
+        });
+
+
+
+
 
 
     }
@@ -153,7 +207,6 @@ public class BorrowerMainActivity extends AppCompatActivity {
             case R.id.action_search:
                 Intent j = new Intent(BorrowerMainActivity.this,CheckCredit.class);
                 startActivity(j);
-                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
 

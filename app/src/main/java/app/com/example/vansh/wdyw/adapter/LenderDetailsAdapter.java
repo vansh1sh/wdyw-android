@@ -16,6 +16,12 @@ import java.util.List;
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.activity.BFindProfileActivity;
 import app.com.example.vansh.wdyw.model.LenderDetails;
+import app.com.example.vansh.wdyw.model.LloanIdRequest;
+import app.com.example.vansh.wdyw.rest.ApiClient;
+import app.com.example.vansh.wdyw.rest.ApiInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdapter.MovieViewHolder> {
 
@@ -31,7 +37,7 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
         TextView stock;
         TextView costprice;
         TextView rating;
-        Button makeoffer;
+        Button makeoffer, details;
 
 
         public MovieViewHolder(View v) {
@@ -42,6 +48,8 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
             costprice = (TextView) v.findViewById(R.id.costprice);
             rating = (TextView) v.findViewById(R.id.rating);
             makeoffer = (Button) v.findViewById(R.id.makeoffer);
+            details = (Button) v.findViewById(R.id.details);
+            details.setVisibility(v.GONE);
         }
     }
 
@@ -67,12 +75,32 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
         holder.makeoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                idd=stock.get(position).getId();
+                final LloanIdRequest lloanIdRequest = new LloanIdRequest();
+                final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
+                lloanIdRequest.setLender(stock.get(position).getId().toString());
 
-                Intent intent = new Intent(context, BFindProfileActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("id",idd);
-                context.startActivity(intent);
+                Call<LloanIdRequest> call = apiInterface.id(lloanIdRequest);
+
+                call.enqueue(new Callback<LloanIdRequest>() {
+                    @Override
+                    public void onResponse(Call<LloanIdRequest> call, Response<LloanIdRequest> response) {
+                        holder.makeoffer.setVisibility(View.GONE);
+                        holder.details.setVisibility(View.VISIBLE);
+                        holder.details.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<LloanIdRequest> call, Throwable t) {
+
+
+                    }
+                });
             }
         });
 

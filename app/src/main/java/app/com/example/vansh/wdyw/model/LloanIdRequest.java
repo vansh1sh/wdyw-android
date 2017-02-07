@@ -11,6 +11,9 @@ public class LloanIdRequest {
     @SerializedName("customer")
     @Expose
     private String customer;
+    @SerializedName("lender")
+    @Expose
+    private String lender;
 
     public String getLoan() {
         return loan;
@@ -28,4 +31,14 @@ public class LloanIdRequest {
         this.customer = customer;
     }
 
+
+    public String getLender() {
+        return lender;
+    }
+
+    public void setLender(String lender) {
+        this.lender = lender;
+    }
+
 }
+

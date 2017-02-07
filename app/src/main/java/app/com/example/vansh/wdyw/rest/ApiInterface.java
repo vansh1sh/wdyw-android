@@ -25,8 +25,10 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 import static android.R.attr.id;
 
@@ -62,12 +64,14 @@ public interface ApiInterface {
 
     @GET("/v1/customer")
     Call<BorrowerProfileGet> profile2();
-    @GET("/v1/customer/")
-    Call<BorrowerProfileGet> lenderviewprofile(@Query("id") String id);
+    @GET("/v1/customer/detail/{id}")
+    Call<BorrowerProfileGet> lenderviewprofile(@Path("id") String id);
 
     @GET("/v1/offer/me")
     Call<LLentResponse> LenderLend();
 
+    @GET("/v1/offer/me")
+    Call<LenderData> LenderLend2();
 
 
 
