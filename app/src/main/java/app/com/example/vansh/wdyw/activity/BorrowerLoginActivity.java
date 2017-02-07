@@ -111,6 +111,8 @@ public class BorrowerLoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(BorrowerLoginActivity.this, BorrowerMainActivity.class);
                     startActivity(intent);
+                    Toast.makeText(getBaseContext(), "Welcome To WdyW", Toast.LENGTH_SHORT).show();
+
                 }
                 else
 

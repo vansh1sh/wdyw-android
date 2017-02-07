@@ -30,7 +30,9 @@ import app.com.example.vansh.wdyw.model.LenderData;
 import app.com.example.vansh.wdyw.model.LenderDetails;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import app.com.example.vansh.wdyw.utility.Preferences;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +47,9 @@ public class BorrowerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
+
 
 
 
@@ -140,9 +145,10 @@ public class BorrowerMainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent i = new Intent(BorrowerMainActivity.this,BProfileActivity.class);
+                Preferences.setPrefs(Consts.AUTO_LOGIN,"user",this);
+                Intent i = new Intent(BorrowerMainActivity.this,FirstPage.class);
                 startActivity(i);
-                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Signed Out", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
                 Intent j = new Intent(BorrowerMainActivity.this,CheckCredit.class);
