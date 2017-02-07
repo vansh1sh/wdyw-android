@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -39,6 +41,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     private List<BorrowerLoanData> stock;
     private int rowLayout;
     private Context context;
+    int lastPosition=-1;
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -85,6 +88,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     }
 
 
+
+
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getCustomer().getName());
@@ -95,6 +100,12 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         holder.costprice.setText(stock.get(position).getCity());
         holder.interest.setText(stock.get(position).getExpectedInterest()+"% exp.");
         holder.expected.setText(stock.get(position).getReason().toString());
+
+        Animation animation = AnimationUtils.loadAnimation(context,
+                (position > lastPosition) ? R.anim.up_from_bottom
+                        : R.anim.down_from_top);
+        holder.itemView.startAnimation(animation);
+        lastPosition = position;
 
         //holder.duration.setText(stock.get(position).get.toString());
         holder.lend.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +145,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
                                             }
                                         });
                                     }
+
 
                                     @Override
                                     public void onFailure(Call<LloanIdRequest> call, Throwable t) {

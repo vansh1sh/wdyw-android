@@ -63,6 +63,7 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
     public LenderDetailsAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
                                                                    int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
+
         return new MovieViewHolder(view);
     }
 

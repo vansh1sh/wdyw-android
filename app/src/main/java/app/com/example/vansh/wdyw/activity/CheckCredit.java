@@ -14,17 +14,17 @@ public class CheckCredit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_credit);
 
-        final VideoView videoView =
+       /* final VideoView videoView =
                 (VideoView) findViewById(R.id.myvideoview1);
         String uriPath = "android.resource://"+getPackageName()+"/"+R.raw.checkcredits;
-        videoView.setVideoPath(uriPath);
+        videoView.setVideoPath(uriPath);*/
         /*videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);
             }
         });*/
-        videoView.start();
+        //videoView.start();
 
     }
 }

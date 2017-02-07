@@ -73,6 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Bind(R.id.imageview_radio_logo)
         ImageView imageViewRadioLogo;
 
+
         public RadioViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

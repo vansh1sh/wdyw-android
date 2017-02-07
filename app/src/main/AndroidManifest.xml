@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.SplashActivity"
-            android:label="@string/WDYW"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +59,8 @@
         <activity android:name=".activity.SettingsActivity" />
         <activity android:name=".activity.LenderLendActivity" />
         <activity android:name=".activity.BFindProfileActivity" />
-        <activity android:name=".activity.BProfileActivity" />
+        <activity android:name=".activity.BProfileActivity"
+            android:label=""/>
         <activity android:name=".activity.BlenderviewProfileActivity" />
         <activity android:name=".activity.HowItWorks"></activity>
     </application>
