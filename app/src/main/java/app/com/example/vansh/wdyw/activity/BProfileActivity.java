@@ -100,7 +100,8 @@ public class BProfileActivity extends AppCompatActivity
 
         mAppBarLayout.addOnOffsetChangedListener(this);
 
-        mToolbar.inflateMenu(R.menu.menu_main);
+        mToolbar.inflateMenu(R.menu.profile_menu_main);
+        setSupportActionBar(mToolbar);
 
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
 
@@ -183,7 +184,7 @@ public class BProfileActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile_menu_main, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -192,7 +193,7 @@ public class BProfileActivity extends AppCompatActivity
 
         switch(item.getItemId()){
             case R.id.home:
-                Intent i = new Intent(BProfileActivity.this,LenderMainActivity.class);
+                Intent i = new Intent(BProfileActivity.this,BorrowerMainActivity.class);
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
@@ -205,7 +206,7 @@ public class BProfileActivity extends AppCompatActivity
 
 
         }
-        return true;
+        return super.onOptionsItemSelected(item);
 
     }
 
