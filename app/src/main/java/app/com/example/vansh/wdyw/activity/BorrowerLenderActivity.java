@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
 import java.util.List;
@@ -25,6 +26,10 @@ import app.com.example.vansh.wdyw.model.LlentDatum;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +57,6 @@ public class BorrowerLenderActivity extends AppCompatActivity {
 
 
         final ProgressDialog dialog = new ProgressDialog(BorrowerLenderActivity.this, R.style.AppTheme_Dark_Dialog);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -66,9 +70,13 @@ public class BorrowerLenderActivity extends AppCompatActivity {
             public void onResponse(Call<LLentResponse> call, final Response<LLentResponse> response) {
 
                 List<LlentDatum> sold = response.body().getData();
-                recyclerView.setAdapter(new BLenderDetailsAdapter(sold, R.layout.list_item_loanlent, getApplicationContext()));
+                BLenderDetailsAdapter adapter=new BLenderDetailsAdapter(sold, R.layout.list_item_loanlent, getApplicationContext());
                 dialog.hide();
-
+                SlideInRightAnimationAdapter alphaAdapter = new SlideInRightAnimationAdapter(adapter);
+                alphaAdapter.setDuration(400);
+                //alphaAdapter.setInterpolator(new OvershootInterpolator());
+                alphaAdapter.setFirstOnly(false);
+                recyclerView.setAdapter(alphaAdapter);
 
             }
 

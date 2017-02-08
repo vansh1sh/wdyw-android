@@ -157,8 +157,7 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
 
                     Call<LoanPostRequest> call = apiInterface.LoanPost(loanPostRequest);
 
-                    final ProgressDialog dialog = new ProgressDialog(BorrowerLoanPostActivity.this);
-                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    final ProgressDialog dialog = new ProgressDialog(BorrowerLoanPostActivity.this,R.style.AppTheme_Dark_Dialog);
                     dialog.setMessage("Posting Loan...");
                     dialog.setIndeterminate(true);
                     dialog.setCanceledOnTouchOutside(false);
@@ -172,12 +171,10 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
                             DialogUtil.createDialog("Loan Request Posted Successfully", BorrowerLoanPostActivity.this, new DialogUtil.OnPositiveButtonClick() {
                                 @Override
                                 public void onClick() {
-                                    finish();
                                     Intent it = new Intent(BorrowerLoanPostActivity.this, BorrowerMainActivity.class);
                                     startActivity(it);
                                 }
                             });
-
 
                         }
 

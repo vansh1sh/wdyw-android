@@ -110,7 +110,6 @@ public class BProfileActivity extends AppCompatActivity
 
 
         final ProgressDialog dialog = new ProgressDialog(BProfileActivity.this,R.style.AppTheme_Dark_Dialog);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading Profile...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -124,6 +123,8 @@ public class BProfileActivity extends AppCompatActivity
             public void onResponse(Call<BorrowerProfileGet> call, final Response<BorrowerProfileGet> response) {
                 BData data=new BData();
                 data=response.body().getData();
+                DataFetch.fetchImage(data.getProPic().toString(), BProfileActivity.this, load);
+
                 profile.setText(data.getName().toString());
                 profile2.setText(data.getName().toString());
                 subhead.setText("Borrower");
@@ -133,7 +134,6 @@ public class BProfileActivity extends AppCompatActivity
                 //state.setText(data.getAddress().getState().toString());
                 type.setText(data.getProfession().toString());
 
-                DataFetch.fetchImage(data.getProPic().toString(), BProfileActivity.this, load);
                 dialog.hide();
 
 
@@ -289,8 +289,7 @@ public class BProfileActivity extends AppCompatActivity
 
                         Call<ProfilePic> call = apiInterface.bpic(profilePic);
 
-                        final ProgressDialog dialog = new ProgressDialog(BProfileActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        final ProgressDialog dialog = new ProgressDialog(BProfileActivity.this,R.style.AppTheme_Dark_Dialog);
                         dialog.setMessage("Uploading Photo...");
                         dialog.setIndeterminate(true);
                         dialog.setCanceledOnTouchOutside(false);

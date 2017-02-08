@@ -110,8 +110,7 @@ public class BFindProfileActivity extends AppCompatActivity
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(BFindProfileActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        final ProgressDialog dialog = new ProgressDialog(BFindProfileActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -126,6 +125,7 @@ public class BFindProfileActivity extends AppCompatActivity
             public void onResponse(Call<LenderProfileGet> call, final Response<LenderProfileGet> response) {
                 Data data=new Data();
                 data=response.body().getData();
+                DataFetch.fetchImage(data.getLender().getProPic().toString(), BFindProfileActivity.this, load);
                 profile.setText(data.getLender().getName().toString());
                 profile2.setText(data.getLender().getName().toString());
                 subhead.setText(data.getLender().getEmail().toString());
@@ -133,13 +133,12 @@ public class BFindProfileActivity extends AppCompatActivity
                 address.setText(data.getLender().getAddress().toString());
                 city.setText(data.getLender().getCity().toString());
                 state.setText(data.getLender().getState().toString());
-                credit.setText(data.getLender().getCredit().toString());
+                credit.setText(data.getLender().getQuote().getMin().toString());
                 type.setText(data.getLender().getType().toString());
                 sex.setText(data.getLender().getSex().toString());
-                quote.setText(data.getLender().getQuote().toString());
+                quote.setText(data.getLender().getQuote().getMax().toString());
 
 
-                DataFetch.fetchImage(data.getLender().getProPic().toString(), BFindProfileActivity.this, load);
 
 
                 dialog.hide();

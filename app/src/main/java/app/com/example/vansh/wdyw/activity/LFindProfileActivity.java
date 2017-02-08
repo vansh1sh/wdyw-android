@@ -1,17 +1,11 @@
 package app.com.example.vansh.wdyw.activity;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,13 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.BData;
 import app.com.example.vansh.wdyw.model.BorrowerProfileGet;
-import app.com.example.vansh.wdyw.model.ProfilePic;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DataFetch;
@@ -39,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BlenderviewProfileActivity extends AppCompatActivity
+public class LFindProfileActivity extends AppCompatActivity
     implements AppBarLayout.OnOffsetChangedListener {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
@@ -106,8 +96,7 @@ public class BlenderviewProfileActivity extends AppCompatActivity
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(BlenderviewProfileActivity.this,R.style.AppTheme_Dark_Dialog);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        final ProgressDialog dialog = new ProgressDialog(LFindProfileActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setMessage("Loading Profile...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -119,8 +108,9 @@ public class BlenderviewProfileActivity extends AppCompatActivity
         call.enqueue(new Callback<BorrowerProfileGet>() {
             @Override
             public void onResponse(Call<BorrowerProfileGet> call, final Response<BorrowerProfileGet> response) {
-                BData data=new BData();
-                data=response.body().getData();
+                BData data=response.body().getData();
+                DataFetch.fetchImage(data.getProPic().toString(), LFindProfileActivity.this, load);
+
                 profile.setText(data.getName().toString());
                 profile2.setText(data.getName().toString());
                 subhead.setText("Borrower");
@@ -130,7 +120,6 @@ public class BlenderviewProfileActivity extends AppCompatActivity
                 city.setText(data.getCity().toString());
                 //state.setText(data.getAddress().getState().toString());
 
-                DataFetch.fetchImage(data.getProPic().toString(), BlenderviewProfileActivity.this, load);
                 dialog.hide();
 
 
@@ -140,31 +129,13 @@ public class BlenderviewProfileActivity extends AppCompatActivity
             @Override
             public void onFailure(Call<BorrowerProfileGet> call, Throwable t) {
                 dialog.hide();
-                DialogUtil.createDialog("Oops! Please check your internet connection!", BlenderviewProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                DialogUtil.createDialog("Oops! Please check your internet connection!", LFindProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
                     }
                 });
                 // Log error here since request failed
                 Log.e("Error", t.toString());
-            }
-        });
-
-
-        load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);*/
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
-
-
-
             }
         });
 
@@ -190,12 +161,12 @@ public class BlenderviewProfileActivity extends AppCompatActivity
 
         switch(item.getItemId()){
             case R.id.home:
-                Intent i = new Intent(BlenderviewProfileActivity.this,LenderMainActivity.class);
+                Intent i = new Intent(LFindProfileActivity.this,LenderMainActivity.class);
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
-                Intent j = new Intent(BlenderviewProfileActivity.this,CheckCredit.class);
+                Intent j = new Intent(LFindProfileActivity.this,CheckCredit.class);
                 startActivity(j);
                 Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
@@ -259,91 +230,4 @@ public class BlenderviewProfileActivity extends AppCompatActivity
         v.startAnimation(alphaAnimation);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch(requestCode) {
-            case 1:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    load.setImageURI(selectedImage);
-                    String filepath=getRealPathFromURI(this,selectedImage);
-
-
-                    try {
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
-                        byte[] b = stream.toByteArray();
-
-                        String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-
-                        final ProfilePic profilePic = new ProfilePic();
-                        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-                        profilePic.setFileType(filepath.substring(filepath.lastIndexOf(".") + 1));
-                       // profilePic.setData(Preferences.getPrefs(Consts.P_SP_KEY.toString(),this));
-                        profilePic.setImage(encodedImage);
-
-
-                        Call<ProfilePic> call = apiInterface.bpic(profilePic);
-
-                        final ProgressDialog dialog = new ProgressDialog(BlenderviewProfileActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        dialog.setMessage("Uploading Photo...");
-                        dialog.setIndeterminate(true);
-                        dialog.setCanceledOnTouchOutside(false);
-                        dialog.show();
-
-                        call.enqueue(new Callback<ProfilePic>() {
-                            @Override
-                            public void onResponse(Call<ProfilePic> call, Response<ProfilePic> response) {
-
-                                dialog.hide();
-                                DialogUtil.createDialog("Upload Successful.", BlenderviewProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                                    @Override
-                                    public void onClick() {
-                                        finish();
-
-                                    }
-                                });
-
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<ProfilePic> call, Throwable t) {
-                                dialog.hide();
-                                DialogUtil.createDialog("Oops! Please check your internet connection!", BlenderviewProfileActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                                    @Override
-                                    public void onClick() {
-                                    }
-                                });
-                            }
-                        });
-
-
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-                break;
-        }
-    }
-
-    public String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
 }

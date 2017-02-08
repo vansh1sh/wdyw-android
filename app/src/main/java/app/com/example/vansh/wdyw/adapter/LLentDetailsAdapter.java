@@ -1,9 +1,7 @@
 package app.com.example.vansh.wdyw.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +13,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
-import app.com.example.vansh.wdyw.activity.BFindProfileActivity;
-import app.com.example.vansh.wdyw.activity.BProfileActivity;
-import app.com.example.vansh.wdyw.activity.BlenderviewProfileActivity;
-import app.com.example.vansh.wdyw.model.BorrowerLoanData;
+import app.com.example.vansh.wdyw.activity.LFindProfileActivity;
 import app.com.example.vansh.wdyw.model.LlentDatum;
-import app.com.example.vansh.wdyw.model.LloanIdRequest;
-import app.com.example.vansh.wdyw.rest.ApiClient;
-import app.com.example.vansh.wdyw.rest.ApiInterface;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LLentDetailsAdapter extends RecyclerView.Adapter<LLentDetailsAdapter.MovieViewHolder> {
 
@@ -96,8 +85,8 @@ public class LLentDetailsAdapter extends RecyclerView.Adapter<LLentDetailsAdapte
                             holder.lend.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                idd=stock.get(position).getId();
-                                                Intent intent = new Intent(context, BlenderviewProfileActivity.class);
+                                                idd=stock.get(position).getCustomer().getId();
+                                                Intent intent = new Intent(context, LFindProfileActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 intent.putExtra("id",idd);
                                                 context.startActivity(intent);

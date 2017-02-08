@@ -118,8 +118,7 @@ public class LProfileActivity extends AppCompatActivity
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -133,6 +132,8 @@ public class LProfileActivity extends AppCompatActivity
             public void onResponse(Call<LenderProfileGet> call, final Response<LenderProfileGet> response) {
                 Data data=new Data();
                 data=response.body().getData();
+                DataFetch.fetchImage(data.getLender().getProPic().toString(), LProfileActivity.this, load);
+
                 profile.setText(data.getLender().getName().toString());
                 profile2.setText(data.getLender().getName().toString());
                 subhead.setText(data.getLender().getEmail().toString());
@@ -146,7 +147,6 @@ public class LProfileActivity extends AppCompatActivity
                 quote.setText(data.getLender().getQuote().toString());
 
 
-                DataFetch.fetchImage(data.getLender().getProPic().toString(), LProfileActivity.this, load);
 
 
                 dialog.hide();
@@ -307,8 +307,7 @@ public class LProfileActivity extends AppCompatActivity
 
                         Call<ProfilePic> call = apiInterface.pic(profilePic);
 
-                        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this,R.style.AppTheme_Dark_Dialog);
                         dialog.setMessage("Uploading Photo...");
                         dialog.setIndeterminate(true);
                         dialog.setCanceledOnTouchOutside(false);
