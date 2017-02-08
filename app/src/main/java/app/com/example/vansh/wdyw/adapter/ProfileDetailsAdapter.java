@@ -29,7 +29,7 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAd
     private List<BorrowerLoanData> stock;
     private int rowLayout;
     private Context context;
-    
+
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {

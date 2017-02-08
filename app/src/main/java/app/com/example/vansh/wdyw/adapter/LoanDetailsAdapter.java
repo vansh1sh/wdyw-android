@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     private List<BorrowerLoanData> stock;
     private int rowLayout;
     private Context context;
+
     int lastPosition=-1;
 
 
@@ -54,6 +56,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         TextView interest;
         Button lend;
         Button details;
+        CardView cardView;
 
 
 
@@ -69,7 +72,9 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
             amount = (TextView) v.findViewById(R.id.rating);
             lend = (Button) v.findViewById(R.id.lend);
             details = (Button) v.findViewById(R.id.details);
+            cardView = (CardView) v.findViewById(R.id.card_view_loan);
             details.setVisibility(v.GONE);
+
         }
     }
 
@@ -104,7 +109,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         Animation animation = AnimationUtils.loadAnimation(context,
                 (position > lastPosition) ? R.anim.up_from_bottom
                         : R.anim.down_from_top);
-        holder.itemView.startAnimation(animation);
+       // holder.itemView.animate().translationYBy(-  holder.itemView.getHeight()/100).start();
+        holder.cardView.startAnimation(animation);
         lastPosition = position;
 
         //holder.duration.setText(stock.get(position).get.toString());
