@@ -125,6 +125,7 @@ public class BFindProfileActivity extends AppCompatActivity
             public void onResponse(Call<LenderProfileGet> call, final Response<LenderProfileGet> response) {
                 Data data=new Data();
                 data=response.body().getData();
+                DataFetch.fetchImage(data.getLender().getProPic().toString(), BFindProfileActivity.this, load);
                 profile.setText(data.getLender().getName().toString());
                 profile2.setText(data.getLender().getName().toString());
                 subhead.setText(data.getLender().getEmail().toString());
@@ -138,7 +139,6 @@ public class BFindProfileActivity extends AppCompatActivity
                 quote.setText(data.getLender().getQuote().getMax().toString());
 
 
-                DataFetch.fetchImage(data.getLender().getProPic().toString(), BFindProfileActivity.this, load);
 
 
                 dialog.hide();

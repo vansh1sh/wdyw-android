@@ -123,6 +123,8 @@ public class BProfileActivity extends AppCompatActivity
             public void onResponse(Call<BorrowerProfileGet> call, final Response<BorrowerProfileGet> response) {
                 BData data=new BData();
                 data=response.body().getData();
+                DataFetch.fetchImage(data.getProPic().toString(), BProfileActivity.this, load);
+
                 profile.setText(data.getName().toString());
                 profile2.setText(data.getName().toString());
                 subhead.setText("Borrower");
@@ -132,7 +134,6 @@ public class BProfileActivity extends AppCompatActivity
                 //state.setText(data.getAddress().getState().toString());
                 type.setText(data.getProfession().toString());
 
-                DataFetch.fetchImage(data.getProPic().toString(), BProfileActivity.this, load);
                 dialog.hide();
 
 

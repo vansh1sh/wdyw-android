@@ -109,6 +109,8 @@ public class LFindProfileActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<BorrowerProfileGet> call, final Response<BorrowerProfileGet> response) {
                 BData data=response.body().getData();
+                DataFetch.fetchImage(data.getProPic().toString(), LFindProfileActivity.this, load);
+
                 profile.setText(data.getName().toString());
                 profile2.setText(data.getName().toString());
                 subhead.setText("Borrower");
@@ -117,7 +119,6 @@ public class LFindProfileActivity extends AppCompatActivity
                 //sex.setText(data.gettoString());
                 city.setText(data.getCity().toString());
                 //state.setText(data.getAddress().getState().toString());
-                DataFetch.fetchImage(data.getProPic().toString(), LFindProfileActivity.this, load);
 
                 dialog.hide();
 
