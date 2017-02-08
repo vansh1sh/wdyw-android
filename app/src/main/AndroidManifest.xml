@@ -61,7 +61,7 @@
         <activity android:name=".activity.BFindProfileActivity" />
         <activity android:name=".activity.BProfileActivity"
             android:label=""/>
-        <activity android:name=".activity.BlenderviewProfileActivity" />
+        <activity android:name=".activity.LFindProfileActivity" />
         <activity android:name=".activity.HowItWorks"></activity>
     </application>
 

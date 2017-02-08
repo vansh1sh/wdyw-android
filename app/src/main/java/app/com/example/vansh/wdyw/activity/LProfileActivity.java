@@ -118,8 +118,7 @@ public class LProfileActivity extends AppCompatActivity
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -307,8 +306,7 @@ public class LProfileActivity extends AppCompatActivity
 
                         Call<ProfilePic> call = apiInterface.pic(profilePic);
 
-                        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        final ProgressDialog dialog = new ProgressDialog(LProfileActivity.this,R.style.AppTheme_Dark_Dialog);
                         dialog.setMessage("Uploading Photo...");
                         dialog.setIndeterminate(true);
                         dialog.setCanceledOnTouchOutside(false);

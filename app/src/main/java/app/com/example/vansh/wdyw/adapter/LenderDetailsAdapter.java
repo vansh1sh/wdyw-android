@@ -1,7 +1,9 @@
 package app.com.example.vansh.wdyw.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +78,16 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
         holder.makeoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
+                alertbox.setMessage("Do You Want To Contact this Lender?");
+                alertbox.setTitle("Confirmation");
+                alertbox.setIcon(R.drawable.logo1);
+
+                alertbox.setNeutralButton("Continue",
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0,
+                                                int arg1) {
                 final LloanIdRequest lloanIdRequest = new LloanIdRequest();
                 final ApiInterface apiInterface = ApiClient.getClient(context).create(ApiInterface.class);
                 lloanIdRequest.setLender(stock.get(position).getId().toString());
@@ -99,9 +111,12 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
                     @Override
                     public void onFailure(Call<LloanIdRequest> call, Throwable t) {
 
-
                     }
                 });
+                            }
+                        });
+                alertbox.show();
+
             }
         });
 

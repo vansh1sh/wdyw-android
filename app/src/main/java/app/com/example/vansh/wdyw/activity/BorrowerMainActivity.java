@@ -1,6 +1,7 @@
 package app.com.example.vansh.wdyw.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,8 +20,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Adapter;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
@@ -35,9 +40,17 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.R.attr.data;
 
 public class BorrowerMainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
@@ -47,7 +60,6 @@ public class BorrowerMainActivity extends AppCompatActivity {
     String city="vellore";
     String  pageid="1";
     String loanAmt="3000";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,23 +155,27 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
-        final ProgressDialog dialog = new ProgressDialog(BorrowerMainActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        final ProgressDialog dialog = new ProgressDialog(BorrowerMainActivity.this,R.style.AppTheme_Dark_Dialog);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
 
-        Call<LenderData> call = apiService.lenderDetails(city,pageid,loanAmt);
+       Call<LenderData> call = apiService.lenderDetails(city,pageid,loanAmt);
 
         call.enqueue(new Callback<LenderData>() {
             @Override
             public void onResponse(Call<LenderData> call, final Response<LenderData> response) {
 
                 List<LenderDetails> sold = response.body().getData();
-                recyclerView.setAdapter(new LenderDetailsAdapter(sold, R.layout.list_item_stock, getApplicationContext()));
+                LenderDetailsAdapter adapter=new LenderDetailsAdapter(sold, R.layout.list_item_stock, getApplicationContext());
                 dialog.hide();
+                SlideInRightAnimationAdapter sd= new SlideInRightAnimationAdapter(adapter);
+                sd.setFirstOnly(true);
+                sd.setDuration(500);
+                sd.setInterpolator(new OvershootInterpolator(.5f));
+                recyclerView.setAdapter(adapter);
 
 
             }
@@ -177,7 +193,6 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 Log.e("Error", t.toString());
             }
         });
-
 
 
 

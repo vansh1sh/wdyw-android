@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
-import app.com.example.vansh.wdyw.activity.BlenderviewProfileActivity;
+import app.com.example.vansh.wdyw.activity.BFindProfileActivity;
 import app.com.example.vansh.wdyw.model.LlentDatum;
 
 public class BLenderDetailsAdapter extends RecyclerView.Adapter<BLenderDetailsAdapter.MovieViewHolder> {
@@ -84,8 +84,9 @@ public class BLenderDetailsAdapter extends RecyclerView.Adapter<BLenderDetailsAd
                             holder.lend.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                idd=stock.get(position).getId();
-                                                Intent intent = new Intent(context, BlenderviewProfileActivity.class);
+
+                                                idd=stock.get(position).getLender().getId();
+                                                Intent intent = new Intent(context, BFindProfileActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 intent.putExtra("id",idd);
                                                 context.startActivity(intent);

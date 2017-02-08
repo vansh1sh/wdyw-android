@@ -54,7 +54,6 @@ public class LenderLendActivity extends AppCompatActivity {
 
 
         final ProgressDialog dialog = new ProgressDialog(LenderLendActivity.this, R.style.AppTheme_Dark_Dialog);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);

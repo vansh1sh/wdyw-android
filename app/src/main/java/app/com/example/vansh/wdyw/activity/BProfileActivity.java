@@ -110,7 +110,6 @@ public class BProfileActivity extends AppCompatActivity
 
 
         final ProgressDialog dialog = new ProgressDialog(BProfileActivity.this,R.style.AppTheme_Dark_Dialog);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Loading Profile...");
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -289,8 +288,7 @@ public class BProfileActivity extends AppCompatActivity
 
                         Call<ProfilePic> call = apiInterface.bpic(profilePic);
 
-                        final ProgressDialog dialog = new ProgressDialog(BProfileActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        final ProgressDialog dialog = new ProgressDialog(BProfileActivity.this,R.style.AppTheme_Dark_Dialog);
                         dialog.setMessage("Uploading Photo...");
                         dialog.setIndeterminate(true);
                         dialog.setCanceledOnTouchOutside(false);
