@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_loan"
@@ -13,6 +14,7 @@
     app:cardPreventCornerOverlap="false"
     app:contentPadding="0dp"
     android:background="@color/color_white">
+
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -21,4 +21,10 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+
+    <string name="borrowermaincard">Kudos! All the interested lenders around you are listed here.</string>
+    <string name="lendermaincard">Kudos! All the interested borrowers around you are listed here.</string>
+    <string name="lenderlentcard">Hey, you can see all the borrowers you have shortlisted right here.</string>
+    <string name="findlenderscard">Hey, you can see all the lenders you have shortlisted right here.</string>
+    <string name="checkcreditscard">See your past transactions and balance here.</string>
 </resources>
