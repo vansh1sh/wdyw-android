@@ -135,7 +135,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
          * Setup Drawer Toggle of the Toolbar
          */
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbarborrower);
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, mToolbar,R.string.app_name,
                 R.string.app_name);
