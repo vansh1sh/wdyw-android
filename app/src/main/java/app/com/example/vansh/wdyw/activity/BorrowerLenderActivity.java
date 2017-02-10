@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,7 +48,10 @@ public class BorrowerLenderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lender);
 
-
+        Toolbar t=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(t);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -70,7 +74,7 @@ public class BorrowerLenderActivity extends AppCompatActivity {
             public void onResponse(Call<LLentResponse> call, final Response<LLentResponse> response) {
 
                 List<LlentDatum> sold = response.body().getData();
-                BLenderDetailsAdapter adapter=new BLenderDetailsAdapter(sold, R.layout.list_item_loanlent, getApplicationContext());
+                BLenderDetailsAdapter adapter=new BLenderDetailsAdapter(sold, R.layout.list_item_lenderlent, getApplicationContext());
                 dialog.hide();
                 SlideInRightAnimationAdapter alphaAdapter = new SlideInRightAnimationAdapter(adapter);
                 alphaAdapter.setDuration(400);
@@ -108,20 +112,19 @@ public class BorrowerLenderActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-        super.onOptionsItemSelected(item);
-
-        switch(item.getItemId()){
-            case R.id.action_settings:
-                Intent i = new Intent(BorrowerLenderActivity.this,BProfileActivity.class);
-                startActivity(i);
-                Toast.makeText(getBaseContext(), "LOL I'm cool-huehuehue", Toast.LENGTH_SHORT).show();
-                break;
-
-
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
-        return true;
 
+
+        return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
     }
+}

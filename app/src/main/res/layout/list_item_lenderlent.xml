@@ -10,13 +10,12 @@
     android:layout_marginTop="2dp"
     app:cardCornerRadius="3dp"
     app:cardElevation="3dp"
-    android:paddingTop="1dp"
     app:cardPreventCornerOverlap="false"
     app:contentPadding="0dp"
     android:background="@color/color_white">
 
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/stock_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,23 +30,20 @@
             android:layout_weight="0.9"
             android:orientation="vertical">
 
-
-
-
             <TextView
-                android:id="@+id/stock"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:paddingRight="16dp"
-                android:text="Name"
+                android:text="Loan Type"
                 android:textStyle="bold"
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="16sp" />
 
-                />
+
             <TextView
-                android:id="@+id/productid"
+                android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
@@ -55,6 +51,8 @@
                 android:text="City"
                 android:textColor="#000000"
                 android:textSize="16sp" />
+
+
 
             <TextView
                 android:id="@+id/type"
@@ -105,54 +103,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+         <!--   <ImageView
+                android:id="@+id/rating_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo1" />-->
+
+
+
+            <TextView
+                android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:orientation="horizontal">
+                android:text="Loan Amount"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-                <ImageView
-                    android:id="@+id/rating_image"
-                    android:layout_width="16dp"
-                    android:layout_height="19dp"
-                    android:padding="3dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/logo1" />
-
-
-                <TextView
-                    android:id="@+id/rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:paddingRight="16dp"
-                    android:text="Phone Number"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
             <Button
-                android:id="@+id/makeoffer"
-                android:background="@drawable/button_shape"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="12dp"
-                android:layout_margin="3dp"
-                android:padding="3dp"
-                android:textColor="@color/black"
-                android:text="Contact"/>
-            <Button
-                android:id="@+id/details"
                 android:background="@drawable/button_shape"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="12dp"
-                android:layout_margin="3dp"
-                android:padding="3dp"
+                android:id="@+id/lend"
                 android:textColor="@color/black"
-                android:text="Details"/>
+                android:text=" PROFILE "/>
 
         </LinearLayout>
 

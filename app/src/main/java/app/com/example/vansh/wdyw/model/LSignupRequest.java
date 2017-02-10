@@ -26,6 +26,45 @@ public class LSignupRequest {
     @Expose
     private String website;
 
+    @SerializedName("Income")
+    @Expose
+    private Integer income;
+
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+    @SerializedName("adharNo")
+    @Expose
+    private String adharNo;
+
+
+    public Integer getIncome() {
+        return income;
+    }
+
+    public void setIncome(Integer income) {
+        this.income = income;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+
+    public String getAdharNo() {
+        return adharNo;
+    }
+
+    public void setAdharNo(String adharNo) {
+        this.adharNo = adharNo;
+    }
+
     public String getRecognization() {
         return recognization;
     }
