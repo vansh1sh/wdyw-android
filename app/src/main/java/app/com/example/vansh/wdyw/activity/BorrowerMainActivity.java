@@ -1,5 +1,6 @@
 package app.com.example.vansh.wdyw.activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -219,9 +220,10 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "Signed Out", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_search:
-                Intent j = new Intent(BorrowerMainActivity.this,CheckCredit.class);
-                startActivity(j);
+            case R.id.action_filter:
+
+                openDialogSelect();
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
 
@@ -229,6 +231,13 @@ public class BorrowerMainActivity extends AppCompatActivity {
         }
         return true;
 
+    }
+
+    public void openDialogSelect() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.dialog_filter);
+        dialog.show();
     }
 
     }

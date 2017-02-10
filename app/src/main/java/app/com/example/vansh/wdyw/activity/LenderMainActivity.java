@@ -1,5 +1,6 @@
 package app.com.example.vansh.wdyw.activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.List;
@@ -166,6 +168,8 @@ public class LenderMainActivity extends AppCompatActivity {
                     startActivity(i);
 
                  }
+
+
                  return false;
             }
 
@@ -174,6 +178,14 @@ public class LenderMainActivity extends AppCompatActivity {
         /**
          * Setup Drawer Toggle of the Toolbar
          */
+
+
+
+
+
+
+
+
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbarlender);
         setSupportActionBar(mToolbar);
@@ -210,9 +222,9 @@ public class LenderMainActivity extends AppCompatActivity {
                 startActivity(i);
                 Toast.makeText(getBaseContext(), "Signed Out", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_search:
-                Intent j = new Intent(LenderMainActivity.this,CheckCredit.class);
-                startActivity(j);
+            case R.id.action_filter:
+
+                openDialogSelect();
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -220,6 +232,12 @@ public class LenderMainActivity extends AppCompatActivity {
         }
         return true;
 
+    }
+    public void openDialogSelect() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.dialog_filter);
+        dialog.show();
     }
 
     }

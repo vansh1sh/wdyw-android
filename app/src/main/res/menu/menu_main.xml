@@ -10,12 +10,11 @@
 
 
     <item
-        android:id="@+id/action_search"
-        android:title="Check Credits"
+        android:id="@+id/action_filter"
+        android:title="Filter"
         android:orderInCategory="100"
-        android:icon="@drawable/whitewallet"
+        android:icon="@drawable/filter"
         app:showAsAction="ifRoom" />
-
 
 
 </menu>
