@@ -38,7 +38,7 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
         TextView productid;
         TextView stock;
         TextView costprice;
-        TextView rating;
+        TextView rating,min,max,type;
         Button makeoffer, details;
 
 
@@ -49,6 +49,9 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
             stock = (TextView) v.findViewById(R.id.stock);
             costprice = (TextView) v.findViewById(R.id.costprice);
             rating = (TextView) v.findViewById(R.id.rating);
+            min = (TextView) v.findViewById(R.id.min);
+            max = (TextView) v.findViewById(R.id.max);
+            type = (TextView) v.findViewById(R.id.type);
             makeoffer = (Button) v.findViewById(R.id.makeoffer);
             details = (Button) v.findViewById(R.id.details);
             details.setVisibility(v.GONE);
@@ -74,7 +77,10 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getCity());
         holder.stock.setText(stock.get(position).getName());
-        holder.rating.setText(stock.get(position).getPhone().toString());
+        holder.rating.setText("Get In Touch");
+        holder.type.setText(stock.get(position).getType());
+        holder.min.setText("Rs."+stock.get(position).getQuote().getMin().toString());
+        holder.max.setText("Rs."+stock.get(position).getQuote().getMax().toString());
         holder.makeoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

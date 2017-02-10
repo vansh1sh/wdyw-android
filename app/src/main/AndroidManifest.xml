@@ -46,7 +46,7 @@
             android:label="SIGN UP" />
         <activity
             android:name=".activity.BorrowerLenderActivity"
-            android:label="Lenders Available" />
+            android:label="Lenders Available" android:parentActivityName=".activity.BorrowerMainActivity"/>
         <activity
             android:name=".activity.LenderMainActivity"
             android:label="Main" />
@@ -57,7 +57,7 @@
         <activity android:name=".activity.ContactUs" />
         <activity android:name=".activity.TermsActivity" />
         <activity android:name=".activity.SettingsActivity" />
-        <activity android:name=".activity.LenderLendActivity" />
+        <activity android:name=".activity.LenderLendActivity" android:parentActivityName=".activity.LenderMainActivity" />
         <activity android:name=".activity.BFindProfileActivity" />
         <activity android:name=".activity.BProfileActivity"
             android:label=""/>

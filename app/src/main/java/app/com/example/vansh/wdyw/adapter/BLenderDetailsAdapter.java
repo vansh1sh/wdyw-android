@@ -32,7 +32,7 @@ public class BLenderDetailsAdapter extends RecyclerView.Adapter<BLenderDetailsAd
         TextView expected;
         TextView amount;
         TextView type;
-        TextView interest;
+        TextView interest,min,max,ltype;
         Button lend;
         Button details;
 
@@ -46,6 +46,9 @@ public class BLenderDetailsAdapter extends RecyclerView.Adapter<BLenderDetailsAd
             costprice = (TextView) v.findViewById(R.id.city);
             type = (TextView) v.findViewById(R.id.loantype);
             interest = (TextView) v.findViewById(R.id.interestrate);
+            min = (TextView) v.findViewById(R.id.min);
+            max = (TextView) v.findViewById(R.id.max);
+            ltype = (TextView) v.findViewById(R.id.type);
             expected = (TextView) v.findViewById(R.id.expected);
             amount = (TextView) v.findViewById(R.id.rating);
             lend = (Button) v.findViewById(R.id.lend);
@@ -72,12 +75,12 @@ public class BLenderDetailsAdapter extends RecyclerView.Adapter<BLenderDetailsAd
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getLender().getName());
+        holder.costprice.setText(stock.get(position).getLender().getCity());
 
         holder.amount.setText(stock.get(position).getLender().getPhone().toString());
-      //  holder.costprice.setText(stock.get(position).getCustomer().getName().toString());
-        holder.costprice.setText(stock.get(position).getLender().getAddress());
-        holder.interest.setText(stock.get(position).getLender().getCity());
-        holder.expected.setText(stock.get(position).getLender().getEmail());
+        holder.ltype.setText(stock.get(position).getLender().getType());
+        holder.min.setText("Rs."+stock.get(position).getLender().getQuote().getMin().toString());
+        holder.max.setText("Rs."+stock.get(position).getLender().getQuote().getMax().toString());
 
 
 

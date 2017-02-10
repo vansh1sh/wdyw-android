@@ -48,9 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             whatever:key="AIzaSyCdFRkm7GUkZZzmZ57ru4NcjUcy9_NxfL8"
-            whatever:color="#000"
-            whatever:actionMenuTextColor="#000"
-            whatever:colorControlHighlight="#000"
+            android:popupBackground="#000"
             whatever:type="(cities)"
             whatever:sensor="true"
             whatever:delay="700" />
