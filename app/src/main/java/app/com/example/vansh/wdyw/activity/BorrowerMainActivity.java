@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Adapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -41,11 +41,6 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,11 +51,10 @@ import static android.R.attr.data;
 public class BorrowerMainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
-    FragmentManager mFragmentManager;
-    FragmentTransaction mFragmentTransaction;
-    String city="vellore";
+    String city="Vellore";
     String  pageid="1";
     String loanAmt="3000";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +62,16 @@ public class BorrowerMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
+
+        Log.i("sdjfhjskfldsnflkds",Preferences.getPrefs(Consts.CHECK_BORROWER,BorrowerMainActivity.this));
+        if(Preferences.getPrefs(Consts.CHECK_BORROWER,BorrowerMainActivity.this).equals("Yes")) {//getextra
+            Intent intent = getIntent();
+            city = intent.getStringExtra("city");
+            loanAmt = intent.getStringExtra("loan");
+            Log.i("gfhfj", city);
+            Preferences.setPrefs(Consts.CHECK_BORROWER, "No", BorrowerMainActivity.this);
+
+        }
 
 
 
@@ -146,6 +150,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_logo);
 
+
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -161,6 +166,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+
 
 
        Call<LenderData> call = apiService.lenderDetails(city,pageid,loanAmt);
@@ -238,6 +244,23 @@ public class BorrowerMainActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.dialog_filter);
         dialog.show();
+        final EditText cityy=(EditText)dialog.findViewById(R.id.citydialog);
+        final EditText amount=(EditText)dialog.findViewById(R.id.amountdialog);
+        Button save=(Button) dialog.findViewById(R.id.dialogsave);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",BorrowerMainActivity.this);
+
+            Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
+                it.putExtra("city",cityy.getText().toString());
+                it.putExtra("loan",amount.getText().toString());
+                startActivity(it);
+
+
+            }
+        });
+
     }
 
     }

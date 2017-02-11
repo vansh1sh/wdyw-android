@@ -21,6 +21,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.List;
@@ -57,6 +59,16 @@ public class LenderMainActivity extends AppCompatActivity {
         setContentView(R.layout.lender_activity_main);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"lender",this);
+
+        if(Preferences.getPrefs(Consts.CHECK_BORROWER,LenderMainActivity.this).equals("Yes")) {//getextra
+            Intent intent = getIntent();
+            city = intent.getStringExtra("city");
+            loanAmt = intent.getStringExtra("loan");
+            Log.i("gfhfj", city);
+            Preferences.setPrefs(Consts.CHECK_BORROWER, "No", LenderMainActivity.this);
+
+        }
+
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -238,6 +250,23 @@ public class LenderMainActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.dialog_filter);
         dialog.show();
-    }
+        final EditText cityy=(EditText)dialog.findViewById(R.id.citydialog);
+        final EditText amount=(EditText)dialog.findViewById(R.id.amountdialog);
+        Button save=(Button) dialog.findViewById(R.id.dialogsave);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",LenderMainActivity.this);
+
+                Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+                it.putExtra("city",cityy.getText().toString());
+                it.putExtra("loan",amount.getText().toString());
+                startActivity(it);
+
+
+            }
+        });
 
     }
+
+}
