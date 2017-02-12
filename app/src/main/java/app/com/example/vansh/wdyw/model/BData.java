@@ -10,6 +10,12 @@ public class BData {
     @SerializedName("_id")
     @Expose
     private String id;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("sex")
+    @Expose
+    private String sex;
     @SerializedName("address")
     @Expose
     private String address;
@@ -38,6 +44,21 @@ public class BData {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getAddress() {

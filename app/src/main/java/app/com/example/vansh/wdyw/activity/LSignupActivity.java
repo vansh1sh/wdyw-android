@@ -26,7 +26,6 @@ import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
-import app.com.example.vansh.wdyw.model.Occupation;
 import app.com.example.vansh.wdyw.model.Quote;
 import app.com.example.vansh.wdyw.model.Type;
 import app.com.example.vansh.wdyw.model.User;
@@ -365,7 +364,6 @@ public class LSignupActivity extends AppCompatActivity {
         String[] plantss = new String[]{
                 "Select Recognization...",
                 "Pan India",
-                "recognization",
                 "locals"
         };
         final List<String> plantsLists = new ArrayList<>(Arrays.asList(plantss));
@@ -712,18 +710,14 @@ public class LSignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Occupation oc=new Occupation();
-                oc.setType(stl);
-                oc.setAdharNo(aadhar.getText().toString());
-                oc.setEmail(email.getText().toString());
-                Integer myNum = Integer.parseInt(income.getText().toString());
-
-                oc.setIncome(myNum);
-
-
 
                 tyl=new Type();
-                tyl.setOccupation(oc);
+                tyl.setOccupation(stl);
+                tyl.setType(stl);
+                tyl.setAdharNo(aadhar.getText().toString());
+                tyl.setEmail(email.getText().toString());
+                Integer myNum = Integer.parseInt(income.getText().toString());
+                tyl.setIncome(myNum);
                 dialog.dismiss();
 
             }

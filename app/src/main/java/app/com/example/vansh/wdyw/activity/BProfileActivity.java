@@ -131,6 +131,7 @@ public class BProfileActivity extends AppCompatActivity
                 phoneno.setText(data.getPhone().toString());
                 address.setText(data.getAddress().toString());
                 city.setText(data.getCity().toString());
+//                sex.setText(data.getSex().toString());
                 //state.setText(data.getAddress().getState().toString());
                 type.setText(data.getProfession().toString());
 
