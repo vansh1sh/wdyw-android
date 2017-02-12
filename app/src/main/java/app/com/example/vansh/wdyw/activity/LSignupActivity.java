@@ -225,9 +225,8 @@ public class LSignupActivity extends AppCompatActivity {
 
             Call<LSignupRequest> call = apiInterface.L_SIGNUP_REQUEST_CALL(BS);
 
-                final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this);
-                dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog2.setMessage("Adding the item to your inventory");
+                final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this,R.style.AppTheme_Dark_Dialog);
+                dialog2.setMessage("Account Created");
                 dialog2.setIndeterminate(true);
                 dialog2.setCanceledOnTouchOutside(false);
                 dialog2.show();
