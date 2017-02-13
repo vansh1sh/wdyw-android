@@ -40,12 +40,12 @@ import retrofit2.Response;
 
 public class LSignupActivity extends AppCompatActivity {
     private static final String TAG = "LenderSignupActivity";
-    String stf="ds";
-    String stf2="gg";
-    String sta="gds";
-    String stl="dsf";
+    String stf="TEST1";
+    String stf2="TEST2";
+    String sta="TEST3";
+    String stl="TEST4";
     String gender;
-    String stf1="sdf";
+    String stf1="TEST5";
     String acc1;
     String des1;
     String web1;
@@ -91,7 +91,6 @@ public class LSignupActivity extends AppCompatActivity {
                 "Local"
         };
         final List<String> plantsList = new ArrayList<>(Arrays.asList(plants));
-
         // Initializing an ArrayAdapter
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this,R.layout.spinner_item,plantsList){
@@ -242,7 +241,6 @@ public class LSignupActivity extends AppCompatActivity {
                         Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
                         startActivity(intent);
                     }
-
 
                     @Override
                     public void onFailure(Call<LSignupRequest> call, Throwable t) {

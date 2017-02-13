@@ -2,7 +2,6 @@ package app.com.example.vansh.wdyw.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,20 +19,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.adapter.LenderDetailsAdapter;
-import app.com.example.vansh.wdyw.adapter.LoanDetailsAdapter;
-import app.com.example.vansh.wdyw.model.BloanResponse;
-import app.com.example.vansh.wdyw.model.BorrowerLoanData;
 import app.com.example.vansh.wdyw.model.LenderData;
 import app.com.example.vansh.wdyw.model.LenderDetails;
 import app.com.example.vansh.wdyw.rest.ApiClient;
@@ -45,8 +38,6 @@ import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.R.attr.data;
 
 public class BorrowerMainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
@@ -63,7 +54,6 @@ public class BorrowerMainActivity extends AppCompatActivity {
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
 
-        Log.i("sdjfhjskfldsnflkds",Preferences.getPrefs(Consts.CHECK_BORROWER,BorrowerMainActivity.this));
         if(Preferences.getPrefs(Consts.CHECK_BORROWER,BorrowerMainActivity.this).equals("Yes")) {//getextra
             Intent intent = getIntent();
             city = intent.getStringExtra("city");
@@ -176,7 +166,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
             public void onResponse(Call<LenderData> call, final Response<LenderData> response) {
 
                 List<LenderDetails> sold = response.body().getData();
-                LenderDetailsAdapter adapter=new LenderDetailsAdapter(sold, R.layout.list_item_stock, getApplicationContext());
+                LenderDetailsAdapter adapter=new LenderDetailsAdapter(sold, R.layout.list_item_lender_details, getApplicationContext());
                 dialog.hide();
                 SlideInRightAnimationAdapter sd= new SlideInRightAnimationAdapter(adapter);
                 sd.setFirstOnly(true);

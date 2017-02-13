@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 import app.com.example.vansh.wdyw.R;
 
-/**
- * Created by Ratan on 7/29/2015.
- */
 public class SentFragment extends Fragment {
 
     @Nullable

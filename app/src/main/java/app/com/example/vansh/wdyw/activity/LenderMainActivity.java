@@ -64,7 +64,6 @@ public class LenderMainActivity extends AppCompatActivity {
             Intent intent = getIntent();
             city = intent.getStringExtra("city");
             loanAmt = intent.getStringExtra("loan");
-            Log.i("gfhfj", city);
             Preferences.setPrefs(Consts.CHECK_BORROWER, "No", LenderMainActivity.this);
 
         }
