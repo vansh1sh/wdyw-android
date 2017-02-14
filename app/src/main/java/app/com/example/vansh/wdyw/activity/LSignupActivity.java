@@ -26,7 +26,6 @@ import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
-import app.com.example.vansh.wdyw.model.Occupation;
 import app.com.example.vansh.wdyw.model.Quote;
 import app.com.example.vansh.wdyw.model.Type;
 import app.com.example.vansh.wdyw.model.User;
@@ -41,12 +40,12 @@ import retrofit2.Response;
 
 public class LSignupActivity extends AppCompatActivity {
     private static final String TAG = "LenderSignupActivity";
-    String stf="ds";
-    String stf2="gg";
-    String sta="gds";
-    String stl="dsf";
+    String stf="TEST1";
+    String stf2="TEST2";
+    String sta="TEST3";
+    String stl="TEST4";
     String gender;
-    String stf1="sdf";
+    String stf1="TEST5";
     String acc1;
     String des1;
     String web1;
@@ -92,7 +91,6 @@ public class LSignupActivity extends AppCompatActivity {
                 "Local"
         };
         final List<String> plantsList = new ArrayList<>(Arrays.asList(plants));
-
         // Initializing an ArrayAdapter
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this,R.layout.spinner_item,plantsList){
@@ -226,9 +224,8 @@ public class LSignupActivity extends AppCompatActivity {
 
             Call<LSignupRequest> call = apiInterface.L_SIGNUP_REQUEST_CALL(BS);
 
-                final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this);
-                dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog2.setMessage("Adding the item to your inventory");
+                final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this,R.style.AppTheme_Dark_Dialog);
+                dialog2.setMessage("Account Created");
                 dialog2.setIndeterminate(true);
                 dialog2.setCanceledOnTouchOutside(false);
                 dialog2.show();
@@ -244,7 +241,6 @@ public class LSignupActivity extends AppCompatActivity {
                         Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
                         startActivity(intent);
                     }
-
 
                     @Override
                     public void onFailure(Call<LSignupRequest> call, Throwable t) {
@@ -365,7 +361,6 @@ public class LSignupActivity extends AppCompatActivity {
         String[] plantss = new String[]{
                 "Select Recognization...",
                 "Pan India",
-                "recognization",
                 "locals"
         };
         final List<String> plantsLists = new ArrayList<>(Arrays.asList(plantss));
@@ -712,18 +707,14 @@ public class LSignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Occupation oc=new Occupation();
-                oc.setType(stl);
-                oc.setAdharNo(aadhar.getText().toString());
-                oc.setEmail(email.getText().toString());
-                Integer myNum = Integer.parseInt(income.getText().toString());
-
-                oc.setIncome(myNum);
-
-
 
                 tyl=new Type();
-                tyl.setOccupation(oc);
+                tyl.setOccupation(stl);
+                tyl.setType(stl);
+                tyl.setAdharNo(aadhar.getText().toString());
+                tyl.setEmail(email.getText().toString());
+                Integer myNum = Integer.parseInt(income.getText().toString());
+                tyl.setIncome(myNum);
                 dialog.dismiss();
 
             }

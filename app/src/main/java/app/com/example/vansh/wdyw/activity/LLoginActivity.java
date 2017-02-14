@@ -42,15 +42,6 @@ public class LLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       // Button b3=(Button)findViewById(R.id.b3);
-      /*  b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it=new Intent(LLoginActivity.this,LenderMainActivity.class);
-                startActivity(it);
-            }
-        });*/
-
         ButterKnife.bind(this);
         
         _loginButton.setOnClickListener(new View.OnClickListener() {

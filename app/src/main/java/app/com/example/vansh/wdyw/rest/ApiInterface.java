@@ -64,8 +64,8 @@ public interface ApiInterface {
 
     @GET("/v1/customer")
     Call<BorrowerProfileGet> profile2();
-    @GET("/v1/customer/detail/{id}")
-    Call<BorrowerProfileGet> lenderviewprofile(@Path("id") String id);
+    @GET("/v1/customer/detail/")
+    Call<BorrowerProfileGet> lenderviewprofile(@Query("id") String id);
 
     @GET("/v1/offer/me")
     Call<LLentResponse> LenderLend();

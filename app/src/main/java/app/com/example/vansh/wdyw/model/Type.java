@@ -33,7 +33,7 @@ public class Type {
 
     @SerializedName("Occupation")
     @Expose
-    private Occupation occupation;
+    private String occupation;
     @SerializedName("Income")
     @Expose
     private Integer income;
@@ -112,11 +112,11 @@ public class Type {
 
 
 
-    public Occupation getOccupation() {
+    public String getOccupation() {
         return occupation;
     }
 
-    public void setOccupation(Occupation occupation) {
+    public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
 

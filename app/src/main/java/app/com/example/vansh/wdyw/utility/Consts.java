@@ -17,6 +17,9 @@ public class Consts {
     public static final String PASS_SP_KEY = "pass";
     public static final String TOKEN_SP_KEY = "token";
     public static final String P_SP_KEY = "profile";
+    public static final String CITY_BORROWER = "chennai";
+    public static final String CHECK_BORROWER = "chennai";
+    public static final String LOAN_BORROWER = "";
     public static final String DOC_ID_SP_KEY = "docId";
 
     //ACTIVITY RESULT VARIABLES
