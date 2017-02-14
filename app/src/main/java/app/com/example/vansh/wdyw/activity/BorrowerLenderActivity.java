@@ -46,7 +46,7 @@ public class BorrowerLenderActivity extends AppCompatActivity {
     String city="vellore";
     String  pageid="1";
     String loanAmt="3000";
-    CardView cd;
+    CardView cd,cardView1;
     LinearLayout ll;
 
 
@@ -61,7 +61,21 @@ public class BorrowerLenderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         cd = (CardView) findViewById(R.id.card);
+        cardView1 = (CardView) findViewById(R.id.cardview1);
         ll = (LinearLayout) findViewById(R.id.ll);
+
+       /* cardView1.setOnTouchListener(new SwipeDismissTouchListener(cardView1, null, new SwipeDismissTouchListener.DismissCallbacks() {
+            @Override
+            public boolean canDismiss(Object token) {
+                Log.d("Chris", "canDismiss() called with: " + "token = [" + token + "]");
+                return true;
+            }
+
+            @Override
+            public void onDismiss(View view, Object token) {
+                Log.d("Chris", "onDismiss() called with: " + "view = [" + view + "], token = [" + token + "]");
+            }
+        }));*/
 
 
         Button gi = (Button) findViewById(R.id.gotit);
@@ -149,6 +163,8 @@ public class BorrowerLenderActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
+
+
     }
 
     @Override
