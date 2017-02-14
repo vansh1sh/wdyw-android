@@ -18,9 +18,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -45,12 +49,15 @@ public class BorrowerMainActivity extends AppCompatActivity {
     String city="Vellore";
     String  pageid="1";
     String loanAmt="3000";
+    LinearLayout ll;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ll = (LinearLayout) findViewById(R.id.ll);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
 
@@ -140,6 +147,33 @@ public class BorrowerMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_logo);
 
+        ImageView gi = (ImageView) findViewById(R.id.gotit);
+        gi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation animation = AnimationUtils.loadAnimation(BorrowerMainActivity.this,R.anim.abc_fade_out);
+                animation.setDuration(500);
+                animation.setFillAfter(true);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ll.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                ll.startAnimation(animation);
+            }
+        });
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

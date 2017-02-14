@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,12 +34,14 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
     private int rowLayout;
     private Context context;
     String idd;
+    int lastPosition=-1;
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
         LinearLayout stockLayout;
         TextView productid;
         TextView stock;
+        CardView cardView;
         TextView costprice;
         TextView rating,min,max,type;
         Button makeoffer, details;
@@ -55,6 +60,7 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
             makeoffer = (Button) v.findViewById(R.id.makeoffer);
             details = (Button) v.findViewById(R.id.details);
             details.setVisibility(v.GONE);
+            cardView = (CardView) v.findViewById(R.id.card_view);
         }
     }
 
@@ -81,6 +87,16 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
         holder.type.setText(stock.get(position).getType());
         holder.min.setText("Rs."+stock.get(position).getQuote().getMin().toString());
         holder.max.setText("Rs."+stock.get(position).getQuote().getMax().toString());
+
+
+        Animation animation = AnimationUtils.loadAnimation(context,
+                (position > lastPosition) ? R.anim.up_from_bottom
+                        : R.anim.down_from_top);
+        // holder.itemView.animate().translationYBy(-  holder.itemView.getHeight()/100).start();
+        holder.cardView.startAnimation(animation);
+        lastPosition = position;
+
+
         holder.makeoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,6 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -37,6 +42,7 @@ public class LenderLendActivity extends AppCompatActivity {
     String city="vellore";
     String  pageid="1";
     String loanAmt="3000";
+    LinearLayout ll;
 
 
 
@@ -45,10 +51,41 @@ public class LenderLendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lender_lent);
 
+        ll = (LinearLayout)findViewById(R.id.ll);
+
         Toolbar t=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(t);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        ImageView gi = (ImageView) findViewById(R.id.gotit);
+        gi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation animation = AnimationUtils.loadAnimation(LenderLendActivity.this,R.anim.abc_fade_out);
+                animation.setDuration(500);
+                animation.setFillAfter(true);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ll.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                ll.startAnimation(animation);
+            }
+        });
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

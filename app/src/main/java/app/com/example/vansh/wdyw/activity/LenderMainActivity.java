@@ -21,8 +21,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -50,6 +54,7 @@ public class LenderMainActivity extends AppCompatActivity {
     String city="Vellore";
     String  pageid="1";
     String loanAmt="3000";
+    LinearLayout ll;
 
 
 
@@ -57,6 +62,8 @@ public class LenderMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lender_activity_main);
+
+        ll = (LinearLayout)findViewById(R.id.ll);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"lender",this);
 
@@ -73,8 +80,37 @@ public class LenderMainActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
+        ImageView gi = (ImageView) findViewById(R.id.gotit);
+        gi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation animation = AnimationUtils.loadAnimation(LenderMainActivity.this,R.anim.abc_fade_out);
+                animation.setDuration(500);
+                animation.setFillAfter(true);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ll.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                ll.startAnimation(animation);
+            }
+        });
+
+
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
-        recyclerView.setItemAnimator(new SlideInLeftAnimator());
+       /* recyclerView.setItemAnimator(new SlideInLeftAnimator());*/
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 

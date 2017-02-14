@@ -106,12 +106,14 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         holder.interest.setText(stock.get(position).getExpectedInterest()+"% exp.");
         holder.expected.setText(stock.get(position).getReason().toString());
 
+
         Animation animation = AnimationUtils.loadAnimation(context,
                 (position > lastPosition) ? R.anim.up_from_bottom
                         : R.anim.down_from_top);
        // holder.itemView.animate().translationYBy(-  holder.itemView.getHeight()/100).start();
         holder.cardView.startAnimation(animation);
         lastPosition = position;
+
 
         //holder.duration.setText(stock.get(position).get.toString());
         holder.lend.setOnClickListener(new View.OnClickListener() {

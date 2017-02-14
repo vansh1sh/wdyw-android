@@ -17,6 +17,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -78,7 +80,7 @@ public class BorrowerLenderActivity extends AppCompatActivity {
         }));*/
 
 
-        Button gi = (Button) findViewById(R.id.gotit);
+        ImageView gi = (ImageView) findViewById(R.id.gotit);
         gi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
