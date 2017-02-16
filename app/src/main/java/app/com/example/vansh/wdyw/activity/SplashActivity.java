@@ -30,10 +30,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        imageView = (ImageView)findViewById(R.id.splashbg);
-        imageView.setImageResource(R.drawable.splashbg);
 
-        final Handler handler = new Handler();
+        /*final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -44,11 +42,11 @@ public class SplashActivity extends AppCompatActivity {
 
 
             }
-        }, 1000);
+        }, 1000);*/
 
 
 
-        /*View decorView = getWindow().getDecorView();
+        View decorView = getWindow().getDecorView();
 // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
@@ -61,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
         videoView.setVideoPath(uriPath);
 
         videoView.start();
-*/
+
 
         new CountDownTimer(3000, 3000) {
 
