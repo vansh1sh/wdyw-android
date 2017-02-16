@@ -16,10 +16,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -42,6 +44,7 @@ import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
 import app.com.example.vansh.wdyw.utility.RevealActivity;
+import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -286,20 +289,24 @@ public class LenderMainActivity extends RevealActivity {
 
     }
     public void openDialogSelect() {
+
         final Dialog dialog = new Dialog(this);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.dialog_filter);
         dialog.show();
-        final EditText cityy=(EditText)dialog.findViewById(R.id.citydialog);
         final EditText amount=(EditText)dialog.findViewById(R.id.amountdialog);
+        final CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)dialog.findViewById(R.id.atv_places);
+
+
         Button save=(Button) dialog.findViewById(R.id.dialogsave);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",LenderMainActivity.this);
 
+                Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",LenderMainActivity.this);
+                String cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
                 Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
-                it.putExtra("city",cityy.getText().toString());
+                it.putExtra("city",cit);
                 it.putExtra("loan",amount.getText().toString());
                 startActivity(it);
 
@@ -308,5 +315,6 @@ public class LenderMainActivity extends RevealActivity {
         });
 
     }
+
 
 }

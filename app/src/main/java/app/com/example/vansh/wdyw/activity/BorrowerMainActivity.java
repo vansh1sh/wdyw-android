@@ -38,6 +38,7 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
+import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
 import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -270,13 +271,16 @@ public class BorrowerMainActivity extends AppCompatActivity {
         dialog.show();
         final EditText cityy=(EditText)dialog.findViewById(R.id.citydialog);
         final EditText amount=(EditText)dialog.findViewById(R.id.amountdialog);
+        final CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)dialog.findViewById(R.id.atv_places);
+
         Button save=(Button) dialog.findViewById(R.id.dialogsave);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",BorrowerMainActivity.this);
+                String cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
 
-            Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
+                Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
                 it.putExtra("city",cityy.getText().toString());
                 it.putExtra("loan",amount.getText().toString());
                 startActivity(it);

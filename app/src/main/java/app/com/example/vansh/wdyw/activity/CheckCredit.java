@@ -19,36 +19,6 @@ public class CheckCredit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_credit);
-        ll =(LinearLayout)findViewById(R.id.ll);
-
-        ImageView gi = (ImageView) findViewById(R.id.gotit);
-        gi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Animation animation = AnimationUtils.loadAnimation(CheckCredit.this,R.anim.abc_fade_out);
-                animation.setDuration(500);
-                animation.setFillAfter(true);
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        ll.setVisibility(View.GONE);
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-                ll.startAnimation(animation);
-            }
-        });
-
 
        /* final VideoView videoView =
                 (VideoView) findViewById(R.id.myvideoview1);

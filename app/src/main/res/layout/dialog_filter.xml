@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:whatever="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingBottom="15dp"
     android:paddingLeft="15dp"
@@ -41,12 +42,19 @@
       android:text="City"
 
       android:textSize="16dp"/>
-    <EditText
-        android:id="@+id/citydialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter here"
-        />
+
+
+
+            <co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView
+                android:id="@+id/atv_places"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                whatever:key="AIzaSyCdFRkm7GUkZZzmZ57ru4NcjUcy9_NxfL8"
+                android:popupBackground="#03A9F4"
+                whatever:type="(cities)"
+                whatever:sensor="true"
+                whatever:delay="700" />
+
 
     <android.support.v7.widget.AppCompatCheckBox
         android:layout_width="wrap_content"
