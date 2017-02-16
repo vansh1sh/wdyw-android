@@ -52,8 +52,9 @@
                 whatever:key="AIzaSyCdFRkm7GUkZZzmZ57ru4NcjUcy9_NxfL8"
                 android:popupBackground="#03A9F4"
                 whatever:type="(cities)"
+                android:hint="Enter here"
                 whatever:sensor="true"
-                whatever:delay="700" />
+                whatever:delay="100" />
 
 
     <android.support.v7.widget.AppCompatCheckBox

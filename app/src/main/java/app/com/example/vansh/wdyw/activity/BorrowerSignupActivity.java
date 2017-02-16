@@ -27,6 +27,7 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,12 +45,13 @@ public class BorrowerSignupActivity extends AppCompatActivity {
     EditText _passwordText;
     @Bind(R.id.input_address)
     EditText _address;
-    @Bind(R.id.input_city)
-    EditText _city;
+
     @Bind(R.id.btn_signup)
     Button _signupButton;
     @Bind(R.id.link_login)
     TextView _loginLink;
+
+    String cit;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -177,11 +179,13 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         final BSignupRequest BS = new BSignupRequest();
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
 
+        CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)findViewById(R.id.atv_places);
+        cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
 
                 BS.setName(_nameText.getText().toString());
                 BS.setPassword(_passwordText.getText().toString());
                 BS.setAddress(_address.getText().toString());
-                BS.setCity(_city.getText().toString());
+                BS.setCity(cit);
                 BS.setProfession(ch);
 
 

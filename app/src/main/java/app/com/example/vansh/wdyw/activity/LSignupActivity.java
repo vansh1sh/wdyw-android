@@ -34,6 +34,7 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,6 +62,8 @@ public class LSignupActivity extends AppCompatActivity {
     @Bind(R.id.link_login)
     TextView _loginLink;
     String check="No";
+    String cit;
+    String stat;
 
 
 
@@ -71,7 +74,6 @@ public class LSignupActivity extends AppCompatActivity {
         setContentView(R.layout.lender_activity_signup);
         ButterKnife.bind(this);
         us=new User();
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -739,8 +741,8 @@ public class LSignupActivity extends AppCompatActivity {
         final EditText name=(EditText) dialog.findViewById(R.id.input_name);
         final EditText phone=(EditText) dialog.findViewById(R.id.input_phone);
         final EditText address=(EditText) dialog.findViewById(R.id.input_address);
-        final EditText city=(EditText) dialog.findViewById(R.id.input_city);
-        final EditText state=(EditText) dialog.findViewById(R.id.input_state);
+        //final EditText city=(EditText) dialog.findViewById(R.id.input_city);
+        //final EditText state=(EditText) dialog.findViewById(R.id.input_state);
         final EditText email=(EditText) dialog.findViewById(R.id.input_email);
         final EditText pass=(EditText) dialog.findViewById(R.id.input_password);
         final EditText min=(EditText) dialog.findViewById(R.id.input_min);
@@ -829,13 +831,17 @@ public class LSignupActivity extends AppCompatActivity {
 
 
 
+                CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)dialog.findViewById(R.id.atv_places);
+                cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                stat=customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
+
 
                 us.setName(name.getText().toString());
                 Long myNum = Long.parseLong(phone.getText().toString());
                 us.setPhone(myNum);
                 us.setAddress(address.getText().toString());
-                us.setCity(city.getText().toString());
-                us.setState(state.getText().toString());
+                us.setCity(cit);
+                us.setState(stat);
                 us.setSex(gender);
                 us.setEmail(email.getText().toString());
                 us.setPassword(pass.getText().toString());

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimary">
 
@@ -61,31 +61,16 @@
                 android:hint="Address" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- City Label -->
-        <android.support.design.widget.TextInputLayout
+        <co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView
+            android:id="@+id/atv_places"
+            android:hint="City"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="City" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- State Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="State" />
-        </android.support.design.widget.TextInputLayout>
+            whatever:key="AIzaSyCdFRkm7GUkZZzmZ57ru4NcjUcy9_NxfL8"
+            android:popupBackground="#03A9F4"
+            whatever:type="(cities)"
+            whatever:sensor="true"
+            whatever:delay="100" />
 
 
 
