@@ -33,23 +33,27 @@ import app.com.example.vansh.wdyw.model.LlentDatum;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import app.com.example.vansh.wdyw.utility.RevealActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LenderLendActivity extends AppCompatActivity {
+public class LenderLendActivity extends RevealActivity {
 
     String city="vellore";
     String  pageid="1";
     String loanAmt="3000";
     LinearLayout ll;
 
+    private Bundle mSavedInstanceState;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lender_lent);
+        showRevealEffect(mSavedInstanceState, findViewById(R.id.la));
+
 
         ll = (LinearLayout)findViewById(R.id.ll);
 

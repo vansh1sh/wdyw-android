@@ -41,12 +41,13 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
+import app.com.example.vansh.wdyw.utility.RevealActivity;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LenderMainActivity extends AppCompatActivity {
+public class LenderMainActivity extends RevealActivity {
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
@@ -55,6 +56,8 @@ public class LenderMainActivity extends AppCompatActivity {
     String  pageid="1";
     String loanAmt="3000";
     LinearLayout ll;
+    private Bundle mSavedInstanceState;
+
 
 
 
@@ -62,6 +65,7 @@ public class LenderMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lender_activity_main);
+        showRevealEffect(mSavedInstanceState, findViewById(R.id.la));
 
         ll = (LinearLayout)findViewById(R.id.ll);
 
@@ -79,6 +83,7 @@ public class LenderMainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
+
 
         ImageView gi = (ImageView) findViewById(R.id.gotit);
         gi.setOnClickListener(new View.OnClickListener() {
