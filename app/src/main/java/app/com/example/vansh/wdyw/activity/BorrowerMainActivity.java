@@ -279,9 +279,8 @@ public class BorrowerMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",BorrowerMainActivity.this);
                 String cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-
                 Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
-                it.putExtra("city",cityy.getText().toString());
+                it.putExtra("city",cit);
                 it.putExtra("loan",amount.getText().toString());
                 startActivity(it);
 
