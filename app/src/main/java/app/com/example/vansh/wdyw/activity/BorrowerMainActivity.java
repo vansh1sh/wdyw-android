@@ -269,7 +269,6 @@ public class BorrowerMainActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.dialog_filter);
         dialog.show();
-        final EditText cityy=(EditText)dialog.findViewById(R.id.citydialog);
         final EditText amount=(EditText)dialog.findViewById(R.id.amountdialog);
         final CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)dialog.findViewById(R.id.atv_places);
 
