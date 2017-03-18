@@ -66,8 +66,8 @@ public class LSignupActivity extends AppCompatActivity {
     @Bind(R.id.link_login)
     TextView _loginLink;
     String check="No";
-    String cit;
-    String stat;
+    String cit="";
+    String stat="";
 
 
 
