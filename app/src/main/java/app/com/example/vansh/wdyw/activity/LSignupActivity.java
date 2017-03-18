@@ -273,7 +273,7 @@ public class LSignupActivity extends AppCompatActivity {
         }
             else {
 
-                DialogUtil.createDialog("Incomplete information, Please Re-Fill The Type Properly!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                DialogUtil.createDialog("Incomplete Information, Please Fill The 'Select Type...' Option Properly!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
                         finish();
