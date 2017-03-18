@@ -5,6 +5,7 @@
 
     <item android:title="Home"
           android:id="@+id/nav_item_home"
+
           android:icon="@drawable/ic_action_home"/>
 
     <item android:title="Profile"

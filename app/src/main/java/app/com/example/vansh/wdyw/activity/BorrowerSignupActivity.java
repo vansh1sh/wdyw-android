@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,17 +40,22 @@ public class BorrowerSignupActivity extends AppCompatActivity {
 
     String ch;
     String gender;
+
     @Bind(R.id.input_name)
     EditText _nameText;
+
     @Bind(R.id.input_phone)
     EditText _phone;
+
     @Bind(R.id.input_password)
     EditText _passwordText;
+
     @Bind(R.id.input_address)
     EditText _address;
 
     @Bind(R.id.btn_signup)
     Button _signupButton;
+
     @Bind(R.id.link_login)
     TextView _loginLink;
 
@@ -223,6 +230,9 @@ public class BorrowerSignupActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        registerViews();
     }
 
     public void signup() {
@@ -236,6 +246,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
                 }
             });
         }
+
 
         else {
                 if (!validate()) {
@@ -341,5 +352,62 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    private void registerViews() {
+
+        _nameText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.hasText(_nameText);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+       /* etEmailAddrss = (EditText) findViewById(R.id.et_email_address);
+        etEmailAddrss.addTextChangedListener(new TextWatcher() {
+            // after every change has been made to this editText, we would like to check validity
+            public void afterTextChanged(Editable s) {
+                Validation.isEmailAddress(etEmailAddrss, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+*/
+        _phone.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isPhoneNumber(_phone, false);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        _signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                Validation class will check the error and display the error on respective fields
+                but it won't resist the form submission, so we need to check again before submit
+                 */
+                if ( checkValidation () )
+                    submitForm();
+                else
+                    Toast.makeText(BorrowerSignupActivity.this, "Form contains error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private void submitForm() {
+        // Submit your form here. your form is valid
+        Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
+    }
+
+    private boolean checkValidation() {
+        boolean ret = true;
+
+        if (!Validation.hasText(_nameText)) ret = false;
+        //if (!Validation.isEmailAddress(etEmailAddrss, true)) ret = false;
+        if (!Validation.isPhoneNumber(_phone, false)) ret = false;
+
+        return ret;
     }
 }
