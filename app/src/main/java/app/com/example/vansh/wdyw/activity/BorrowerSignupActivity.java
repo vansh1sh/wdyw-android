@@ -46,13 +46,12 @@ public class BorrowerSignupActivity extends AppCompatActivity {
     EditText _passwordText;
     @Bind(R.id.input_address)
     EditText _address;
-
     @Bind(R.id.btn_signup)
     Button _signupButton;
     @Bind(R.id.link_login)
     TextView _loginLink;
 
-    String cit;
+    String cit="";
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -229,6 +228,10 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         Log.d(TAG, "Signup");
 
 
+        CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) findViewById(R.id.atv_places);
+        if (!(cit.equals(""))) {
+            cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+        }
 
         if(_passwordText.getText().toString().isEmpty()|| _passwordText.length() < 4 || _passwordText.length() > 10)
             _passwordText.setError("between 4 and 10 alphanumeric characters");
@@ -265,8 +268,6 @@ public class BorrowerSignupActivity extends AppCompatActivity {
             else {
             _signupButton.setEnabled(false);
 
-                    CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) findViewById(R.id.atv_places);
-                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
 
 
                     final ProgressDialog progressDialog = new ProgressDialog(BorrowerSignupActivity.this,

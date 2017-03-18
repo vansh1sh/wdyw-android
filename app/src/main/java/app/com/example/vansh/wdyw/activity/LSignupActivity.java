@@ -899,8 +899,12 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
 
 
                 CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) dialog.findViewById(R.id.atv_places);
-                cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-                stat = customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
+
+                if (!(cit.equals(""))) {
+                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                    stat = customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
+
+                }
 
                 if (pass.getText().toString().isEmpty() ||min.getText().toString().isEmpty() ||max.getText().toString().isEmpty() ||email.getText().toString().isEmpty() || name.getText().toString().isEmpty()|| phone.getText().toString().isEmpty()|| address.getText().toString().isEmpty()|| cit.isEmpty()|| stat.isEmpty()|| gender.isEmpty()) {
                     DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
