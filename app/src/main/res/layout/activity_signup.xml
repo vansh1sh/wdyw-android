@@ -65,6 +65,12 @@
            android:id="@+id/spinner">
 
        </Spinner>
+        <Spinner
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/spinner2">
+
+       </Spinner>
         <!-- Address Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

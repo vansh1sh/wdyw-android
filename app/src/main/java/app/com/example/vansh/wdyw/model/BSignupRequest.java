@@ -10,6 +10,9 @@ public class BSignupRequest {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("gender")
+    @Expose
+    private String gender;
     @SerializedName("password")
     @Expose
     private String password;
@@ -32,6 +35,14 @@ public class BSignupRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getPassword() {

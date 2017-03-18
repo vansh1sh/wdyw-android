@@ -37,6 +37,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
 
 
     String ch;
+    String gender;
     @Bind(R.id.input_name)
     EditText _nameText;
     @Bind(R.id.input_phone)
@@ -58,6 +59,72 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+        final Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+
+        // Initializing a String Array
+        String[] plantss = new String[]{
+                "Select Gender...",
+                "Male",
+                "Female",
+                "Transgender"
+        };
+        final List<String> plantsLists = new ArrayList<>(Arrays.asList(plantss));
+
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapters = new ArrayAdapter<String>(
+                this,R.layout.spinner_item,plantsLists){
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0)
+                {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        spinnerArrayAdapters.setDropDownViewResource(R.layout.spinner_item);
+        spinner2.setAdapter(spinnerArrayAdapters);
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // If user change the default selection
+                // First item is disable and it is used for hint
+                if(position > 0){
+                    gender=selectedItemText;
+
+                    // Notify the selected item text
+                    Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -186,6 +253,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
                 BS.setPassword(_passwordText.getText().toString());
                 BS.setAddress(_address.getText().toString());
                 BS.setCity(cit);
+                BS.setGender(gender);
                 BS.setProfession(ch);
 
 
