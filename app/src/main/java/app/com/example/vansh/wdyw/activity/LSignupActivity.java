@@ -47,6 +47,10 @@ public class LSignupActivity extends AppCompatActivity {
     String stl="TEST4";
     String gender;
     String stf1="TEST5";
+    String details="Not Filled";
+    String agentDetails="Not Filled";
+    String localDetails="Not Filled";
+    String finanDetails="Not Filled";
     String acc1;
     String des1;
     String web1;
@@ -193,68 +197,92 @@ public class LSignupActivity extends AppCompatActivity {
     public void signup() {
         Log.d(TAG, "Signup");
 
+        if (details.equals("Not Filled")){
+            DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                @Override
+                public void onClick() {
+                    finish();
+                }
+            });
+    }
+    else {
 
-        _signupButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(LSignupActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
 
 
+            if (finanDetails.equals("Filled")||localDetails.equals("Filled")||agentDetails.equals("Filled"))
+            {
+            _signupButton.setEnabled(false);
 
-        final LSignupRequest BS = new LSignupRequest();
-        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+            final ProgressDialog progressDialog = new ProgressDialog(LSignupActivity.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Creating Account...");
+            progressDialog.show();
 
-                BS.setUser(us);
-        if (ch.equals("Financial Institution")){
 
-                    BS.setType(ty);
-                    BS.setAccHolderName(acc1);
-                    BS.setDesignation(des1);
-                    BS.setRecognization(stf1);
-                    BS.setWebsite(web1);}
-        if (ch.equals("Agent")) {
-            BS.setType(tya);
-        }
-        if (ch.equals("Local")) {
-            BS.setType(tyl);
-        }
+            final LSignupRequest BS = new LSignupRequest();
+            final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
 
+            BS.setUser(us);
+            if (ch.equals("Financial Institution")) {
+
+                BS.setType(ty);
+                BS.setAccHolderName(acc1);
+                BS.setDesignation(des1);
+                BS.setRecognization(stf1);
+                BS.setWebsite(web1);
+            }
+            if (ch.equals("Agent")) {
+                BS.setType(tya);
+            }
+            if (ch.equals("Local")) {
+                BS.setType(tyl);
+            }
 
 
             Call<LSignupRequest> call = apiInterface.L_SIGNUP_REQUEST_CALL(BS);
 
-                final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this,R.style.AppTheme_Dark_Dialog);
-                dialog2.setMessage("Account Created");
-                dialog2.setIndeterminate(true);
-                dialog2.setCanceledOnTouchOutside(false);
-                dialog2.show();
+            final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this, R.style.AppTheme_Dark_Dialog);
+            dialog2.setMessage("Account Created");
+            dialog2.setIndeterminate(true);
+            dialog2.setCanceledOnTouchOutside(false);
+            dialog2.show();
 
 
-                call.enqueue(new Callback<LSignupRequest>() {
+            call.enqueue(new Callback<LSignupRequest>() {
+                @Override
+                public void onResponse(Call<LSignupRequest> call, Response<LSignupRequest> response) {
+                    dialog2.hide();
+                    // if (response.body().getCode().equals(Consts.SUCCESS)){
+                    //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<LSignupRequest> call, Throwable t) {
+                    dialog2.hide();
+                    DialogUtil.createDialog("Oops! Please check your internet connection!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                        }
+                    });
+                }
+            });
+        }
+            else {
+
+                DialogUtil.createDialog("Incomplete information, Please Re-Fill The Type Properly!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
-                    public void onResponse(Call<LSignupRequest> call, Response<LSignupRequest> response) {
-                        dialog2.hide();
-                        // if (response.body().getCode().equals(Consts.SUCCESS)){
-                        //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
-
-                        Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onFailure(Call<LSignupRequest> call, Throwable t) {
-                        dialog2.hide();
-                        DialogUtil.createDialog("Oops! Please check your internet connection!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                            @Override
-                            public void onClick() {
-                            }
-                        });
+                    public void onClick() {
+                        finish();
                     }
                 });
 
+
+            }
+    }
     }
 
 
@@ -447,16 +475,28 @@ public class LSignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (acc.getText().toString().isEmpty()||des.getText().toString().isEmpty()||web.getText().toString().isEmpty()||stf2.equals("Select an Organization...")||stf1.equals("Select Recognization...")){
 
-                acc1=acc.getText().toString();
+                    DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+
+                }else
+                {
+
+                    acc1=acc.getText().toString();
                 des1=des.getText().toString();
                 web1=web.getText().toString();
 
                 ty=new Type();
                 ty.setOrganization(stf2);
-
+                    finanDetails="Filled";
                 dialog.dismiss();
-            }
+
+            }}
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -576,6 +616,18 @@ public class LSignupActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||sta.equals("Select a Type...")){
+
+    DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+        @Override
+        public void onClick() {
+            finish();
+        }
+    });
+
+}else
+{
+
 
                 tya=new Type();
                 tya.setAdharNo(aadhar.getText().toString());
@@ -583,7 +635,10 @@ public class LSignupActivity extends AppCompatActivity {
                 tya.setEarning(myNum);
                 tya.setType(sta);
                 Log.i("STA",sta);
-                dialog.dismiss();
+    agentDetails="Filled";
+
+    dialog.dismiss();
+}
             }
         });
 
@@ -708,6 +763,17 @@ public class LSignupActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (aadhar.getText().toString().isEmpty()||email.getText().toString().isEmpty()||income.getText().toString().isEmpty()||stl.equals("Select Occupation...")){
+
+                    DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+
+                }else
+                {
 
 
                 tyl=new Type();
@@ -717,7 +783,9 @@ public class LSignupActivity extends AppCompatActivity {
                 tyl.setEmail(email.getText().toString());
                 Integer myNum = Integer.parseInt(income.getText().toString());
                 tyl.setIncome(myNum);
+                    localDetails="Filled";
                 dialog.dismiss();
+                }
 
             }
         });
@@ -830,6 +898,10 @@ public class LSignupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) dialog.findViewById(R.id.atv_places);
+                cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                stat = customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
+
                 if (pass.getText().toString().isEmpty() ||min.getText().toString().isEmpty() ||max.getText().toString().isEmpty() ||email.getText().toString().isEmpty() || name.getText().toString().isEmpty()|| phone.getText().toString().isEmpty()|| address.getText().toString().isEmpty()|| cit.isEmpty()|| stat.isEmpty()|| gender.isEmpty()) {
                     DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                         @Override
@@ -841,9 +913,6 @@ public class LSignupActivity extends AppCompatActivity {
 
                 } else {
 
-                    CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) dialog.findViewById(R.id.atv_places);
-                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-                    stat = customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
 
 
                     us.setName(name.getText().toString());
@@ -864,9 +933,8 @@ public class LSignupActivity extends AppCompatActivity {
                     qu.setMin(min1);
 
                     us.setQuote(qu);
-
-
                     dialog.dismiss();
+                    details="Filled";
                 }
 
             }
