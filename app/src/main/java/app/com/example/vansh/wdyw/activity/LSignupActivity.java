@@ -830,34 +830,44 @@ public class LSignupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
-                CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)dialog.findViewById(R.id.atv_places);
-                cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-                stat=customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
-
-
-                us.setName(name.getText().toString());
-                Long myNum = Long.parseLong(phone.getText().toString());
-                us.setPhone(myNum);
-                us.setAddress(address.getText().toString());
-                us.setCity(cit);
-                us.setState(stat);
-                us.setSex(gender);
-                us.setEmail(email.getText().toString());
-                us.setPassword(pass.getText().toString());
+                if (pass.getText().toString().isEmpty() ||min.getText().toString().isEmpty() ||max.getText().toString().isEmpty() ||email.getText().toString().isEmpty() || name.getText().toString().isEmpty()|| phone.getText().toString().isEmpty()|| address.getText().toString().isEmpty()|| cit.isEmpty()|| stat.isEmpty()|| gender.isEmpty()) {
+                    DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
 
 
+                } else {
 
-                Quote qu=new Quote();
-                Long max1 = Long.parseLong(max.getText().toString());
-                Long min1 = Long.parseLong(min.getText().toString());
-                qu.setMax(max1);
-                qu.setMin(min1);
-
-                us.setQuote(qu);
+                    CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) dialog.findViewById(R.id.atv_places);
+                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                    stat = customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
 
 
-                dialog.dismiss();
+                    us.setName(name.getText().toString());
+                    Long myNum = Long.parseLong(phone.getText().toString());
+                    us.setPhone(myNum);
+                    us.setAddress(address.getText().toString());
+                    us.setCity(cit);
+                    us.setState(stat);
+                    us.setSex(gender);
+                    us.setEmail(email.getText().toString());
+                    us.setPassword(pass.getText().toString());
+
+
+                    Quote qu = new Quote();
+                    Long max1 = Long.parseLong(max.getText().toString());
+                    Long min1 = Long.parseLong(min.getText().toString());
+                    qu.setMax(max1);
+                    qu.setMin(min1);
+
+                    us.setQuote(qu);
+
+
+                    dialog.dismiss();
+                }
 
             }
         });

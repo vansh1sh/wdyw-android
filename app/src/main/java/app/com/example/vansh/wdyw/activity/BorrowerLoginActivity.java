@@ -17,6 +17,7 @@ import app.com.example.vansh.wdyw.model.BLoginResponse;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
+import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -66,7 +67,21 @@ public class BorrowerLoginActivity extends AppCompatActivity {
     public void login() {
         Log.d(TAG, "Login");
 
-        if (!validate()) {
+
+
+
+        if (phone.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty()) {
+            DialogUtil.createDialog("Please Fill All the information!", BorrowerLoginActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                @Override
+                public void onClick() {
+                    finish();
+                }
+            });
+
+
+        } else {
+
+            if (!validate()) {
             onLoginFailed();
             return;
         }
@@ -121,7 +136,7 @@ public class BorrowerLoginActivity extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
-    }
+    }}
 
 
     @Override

@@ -228,72 +228,82 @@ public class BorrowerSignupActivity extends AppCompatActivity {
     public void signup() {
         Log.d(TAG, "Signup");
 
-        if (!validate()) {
-            onSignupFailed();
-            return;
+        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.isEmpty()) {
+            DialogUtil.createDialog("Please Fill All the information!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                @Override
+                public void onClick() {
+                    finish();
+                }
+            });
         }
 
-        _signupButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(BorrowerSignupActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+        else {
+                if (!validate()) {
+                    onSignupFailed();
+                    return;
 
 
+            }
+            else {
+            _signupButton.setEnabled(false);
 
-        final BSignupRequest BS = new BSignupRequest();
-        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-
-        CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView)findViewById(R.id.atv_places);
-        cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-
-                BS.setName(_nameText.getText().toString());
-                BS.setPassword(_passwordText.getText().toString());
-                BS.setAddress(_address.getText().toString());
-                BS.setCity(cit);
-                BS.setGender(gender);
-                BS.setProfession(ch);
+            final ProgressDialog progressDialog = new ProgressDialog(BorrowerSignupActivity.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Creating Account...");
+            progressDialog.show();
 
 
-                Long myNum = Long.parseLong(_phone.getText().toString());
-                BS.setPhone(myNum);
+            final BSignupRequest BS = new BSignupRequest();
+            final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+
+            CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) findViewById(R.id.atv_places);
+            cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+
+            BS.setName(_nameText.getText().toString());
+            BS.setPassword(_passwordText.getText().toString());
+            BS.setAddress(_address.getText().toString());
+            BS.setCity(cit);
+            BS.setGender(gender);
+            BS.setProfession(ch);
 
 
-
-                Call<BSignupRequest> call = apiInterface.BSignUp(BS);
-
-                final ProgressDialog dialog2 = new ProgressDialog(BorrowerSignupActivity.this,R.style.AppTheme_Dark_Dialog);
-                dialog2.setMessage("Account Created");
-                dialog2.setIndeterminate(true);
-                dialog2.setCanceledOnTouchOutside(false);
-                dialog2.show();
+            Long myNum = Long.parseLong(_phone.getText().toString());
+            BS.setPhone(myNum);
 
 
-                call.enqueue(new Callback<BSignupRequest>() {
-                    @Override
-                    public void onResponse(Call<BSignupRequest> call, Response<BSignupRequest> response) {
-                        dialog2.hide();
-                        // if (response.body().getCode().equals(Consts.SUCCESS)){
-                        //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
+            Call<BSignupRequest> call = apiInterface.BSignUp(BS);
 
-                        Intent intent = new Intent(BorrowerSignupActivity.this, BorrowerLoginActivity.class);
-                        startActivity(intent);
-                    }
+            final ProgressDialog dialog2 = new ProgressDialog(BorrowerSignupActivity.this, R.style.AppTheme_Dark_Dialog);
+            dialog2.setMessage("Account Created");
+            dialog2.setIndeterminate(true);
+            dialog2.setCanceledOnTouchOutside(false);
+            dialog2.show();
 
 
-                    @Override
-                    public void onFailure(Call<BSignupRequest> call, Throwable t) {
-                        dialog2.hide();
-                        DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                            @Override
-                            public void onClick() {
-                            }
-                        });
-                    }
-                });
+            call.enqueue(new Callback<BSignupRequest>() {
+                @Override
+                public void onResponse(Call<BSignupRequest> call, Response<BSignupRequest> response) {
+                    dialog2.hide();
+                    // if (response.body().getCode().equals(Consts.SUCCESS)){
+                    //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
 
+                    Intent intent = new Intent(BorrowerSignupActivity.this, BorrowerLoginActivity.class);
+                    startActivity(intent);
+                }
+
+
+                @Override
+                public void onFailure(Call<BSignupRequest> call, Throwable t) {
+                    dialog2.hide();
+                    DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                        }
+                    });
+                }
+            });
+        }}
     }
 
 

@@ -17,6 +17,7 @@ import app.com.example.vansh.wdyw.model.LLoginResponse;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.Consts;
+import app.com.example.vansh.wdyw.utility.DialogUtil;
 import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -65,6 +66,18 @@ public class LLoginActivity extends AppCompatActivity {
 
     public void login() {
         Log.d(TAG, "Login");
+
+        if (phone.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty()) {
+            DialogUtil.createDialog("Please Fill All the information!", LLoginActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                @Override
+                public void onClick() {
+                    finish();
+                }
+            });
+
+
+        } else {
+
 
         if (!validate()) {
             onLoginFailed();
@@ -119,7 +132,7 @@ public class LLoginActivity extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
-    }
+    }}
 
 
     @Override
