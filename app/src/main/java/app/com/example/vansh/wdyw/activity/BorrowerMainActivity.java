@@ -120,7 +120,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
 */
                  }
                  if (menuItem.getItemId() == R.id.terms) {
-                     Intent i = new Intent(BorrowerMainActivity.this,TermsActivity.class);
+                     Intent i = new Intent(BorrowerMainActivity.this,CheckCredit.class);
                      startActivity(i);}
                  if (menuItem.getItemId() == R.id.setting) {
                      Intent i = new Intent(BorrowerMainActivity.this,SettingsActivity.class);
@@ -163,7 +163,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        ll.setVisibility(View.GONE);
+                            ll.setVisibility(View.GONE);
 
                     }
 

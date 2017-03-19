@@ -18,7 +18,7 @@ public class CheckCredit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_credit);
+        setContentView(R.layout.activity_signup2);
 
        /* final VideoView videoView =
                 (VideoView) findViewById(R.id.myvideoview1);

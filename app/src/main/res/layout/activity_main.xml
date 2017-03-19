@@ -21,34 +21,14 @@
         android:layout_width="match_parent"
         android:id="@+id/drawerLayout"
         >
-        <com.github.florent37.parallax.ParallaxView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:parallaxVertical="1.1"
-
-            >
 
 
-            <!-- ...your usual views... -->
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/a"
+    <com.github.florent37.parallax.ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-                android:tag="parallax=0.3" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:gravity="center"
-                android:text="My awesome title"
-
-                android:tag="parallax=0.5" />
-
-            <!-- ...your usual views... -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,17 +89,37 @@
         </LinearLayout>
 
 
+                <!-- ...your usual views... -->
 
-        <android.support.v7.widget.RecyclerView
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/a"
+
+                    android:tag="parallax=0.3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:gravity="center"
+                    android:text="My awesome title"
+
+                    android:tag="parallax=0.5" />
+
+                <!-- ...your usual views... -->
+
+
+                <android.support.v7.widget.RecyclerView
             android:id="@+id/stock_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             />
 
-</LinearLayout>
 
-    </com.github.florent37.parallax.ParallaxView>
+</LinearLayout>
+    </com.github.florent37.parallax.ScrollView>
 
 
     <android.support.design.widget.NavigationView
