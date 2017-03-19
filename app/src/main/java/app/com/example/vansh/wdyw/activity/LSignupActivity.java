@@ -197,6 +197,8 @@ public class LSignupActivity extends AppCompatActivity {
     public void signup() {
         Log.d(TAG, "Signup");
 
+
+
         if (details.equals("Not Filled")){
             DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                 @Override
@@ -897,6 +899,41 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
             @Override
             public void onClick(View v) {
 
+                if(pass.getText().toString().isEmpty()|| pass.length() < 4 || pass.length() > 10)
+                    pass.setError("between 4 and 10 alphanumeric characters");
+
+                if (name.getText().toString().isEmpty())
+                    name.setError("Name cannot not be blank");
+
+                if (email.getText().toString().isEmpty())
+                    email.setError("Id cannot not be blank");
+
+                if (max.getText().toString().isEmpty())
+                    max.setError("Quote cannot not be blank");
+
+                if (min.getText().toString().isEmpty())
+                    min.setError("Quote cannot not be blank");
+
+                if (address.getText().toString().isEmpty())
+                    address.setError("Address cannot be blank");
+
+                if(phone.length()!=10)
+                   phone.setError("Number should have 10 digits");
+
+
+                if (name.getText().toString().isEmpty() || pass.getText().toString().isEmpty() || address.getText().toString().isEmpty() || cit.isEmpty() || phone.getText().toString().isEmpty() || max.getText().toString().isEmpty() || min.getText().toString().isEmpty() || email. getText().toString().isEmpty() ) {
+
+
+                    DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+
+
+
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+                }
 
                 CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) dialog.findViewById(R.id.atv_places);
 

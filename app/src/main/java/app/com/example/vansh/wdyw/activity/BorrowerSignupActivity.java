@@ -236,15 +236,17 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         if(_passwordText.getText().toString().isEmpty()|| _passwordText.length() < 4 || _passwordText.length() > 10)
             _passwordText.setError("between 4 and 10 alphanumeric characters");
 
+        if (_nameText.getText().toString().isEmpty())
+        _nameText.setError("Name cannot not be blank");
 
+        if (_address.getText().toString().isEmpty())
+        _address.setError("Address cannot be blank");
 
         if(_phone.length()!=10)
             _phone.setError("Number should have 10 digits");
 
-        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.isEmpty()) {
-            _nameText.setError("Name cannot not be blank");
+        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.isEmpty() ||_phone.getText().toString().isEmpty()) {
 
-            _address.setError("Address cannot be blank");
 
             DialogUtil.createDialog("Please Fill All the information!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
 
