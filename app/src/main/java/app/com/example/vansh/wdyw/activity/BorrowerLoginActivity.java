@@ -47,8 +47,17 @@ public class BorrowerLoginActivity extends AppCompatActivity {
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
+
+
             @Override
             public void onClick(View v) {
+
+                if(phone.length()!=10)
+                    phone.setError("Number should have 10 digits");
+
+                if(_passwordText.getText().toString().isEmpty()|| _passwordText.length() < 4 || _passwordText.length() > 10)
+                    _passwordText.setError("between 4 and 10 alphanumeric characters");
+
                 login();
             }
         });

@@ -248,7 +248,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.isEmpty() ||_phone.getText().toString().isEmpty()) {
 
 
-            DialogUtil.createDialog("Please Fill All the information!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+            DialogUtil.createDialog("Please fill all the information!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
 
 
 

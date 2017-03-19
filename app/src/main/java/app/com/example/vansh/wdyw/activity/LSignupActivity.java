@@ -924,7 +924,7 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
                 if (name.getText().toString().isEmpty() || pass.getText().toString().isEmpty() || address.getText().toString().isEmpty() || cit.isEmpty() || phone.getText().toString().isEmpty() || max.getText().toString().isEmpty() || min.getText().toString().isEmpty() || email. getText().toString().isEmpty() ) {
 
 
-                    DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                    DialogUtil.createDialog("Please fill all the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
 
 
 
