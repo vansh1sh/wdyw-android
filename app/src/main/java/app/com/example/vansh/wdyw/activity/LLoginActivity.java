@@ -67,6 +67,12 @@ public class LLoginActivity extends AppCompatActivity {
     public void login() {
         Log.d(TAG, "Login");
 
+        if(phone.length()!=10)
+            phone.setError("Number should have 10 digits");
+
+        if(_passwordText.getText().toString().isEmpty()|| _passwordText.length() < 4 || _passwordText.length() > 10)
+            _passwordText.setError("between 4 and 10 alphanumeric characters");
+
         if (phone.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty()) {
             DialogUtil.createDialog("Please Fill All the information!", LLoginActivity.this, new DialogUtil.OnPositiveButtonClick() {
                 @Override
