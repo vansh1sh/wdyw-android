@@ -37,7 +37,8 @@
             android:label="Startup Activity" />
         <activity
             android:name=".activity.BorrowerLoginActivity"
-            android:label="Login" />
+            android:label="Login"
+            android:theme="@style/AppTheme2"/>
         <activity
             android:name=".activity.LLoginActivity"
             android:label="Lender&apos;s Login" />

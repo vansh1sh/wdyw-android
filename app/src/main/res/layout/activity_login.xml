@@ -1,85 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+   >
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/a"
+         />
+
+    <RelativeLayout
+        android:id="@+id/transparentOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#96000000">
+
+    </RelativeLayout>
 
     <LinearLayout
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:layout_marginTop="150dp"
+        android:id="@+id/linearLayout2">
 
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal">
 
-        <ImageView android:src="@drawable/ab"
-            android:layout_width="wrap_content"
-            android:layout_height="87dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
-
-        <!--  Phone Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColorHint="@color/white"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_phone"
+            <ImageView
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView14"
+                android:background="@drawable/circ"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:inputType="phone"
-                android:hint="Phone" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!--  Password Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:inputType="textPassword"
-                android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/white"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
-            android:text="Login"/>
-
-        <TextView android:id="@+id/link_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="No account yet? Create one"
-            android:gravity="center"
-            android:textSize="16dip"/>
-        <!--<Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Skip >>"
-            android:background="@color/colorPrimaryDark"
-            android:id="@+id/b3"/>-->
+                android:id="@+id/imageView15"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_person_outline_white_48dp"
+                android:layout_margin="5dp" />
+        </RelativeLayout>
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:inputType="number"
+            android:id="@+id/input_phone"
+            app:met_baseColor="@android:color/white"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="?colorAccent"
+            app:met_underlineColor="#fff"
+            app:met_singleLineEllipsis="true"
+            app:met_iconLeft="@drawable/ic_person_white_48dp"
+            app:met_iconPadding="0dp"
+            android:layout_marginTop="20dp" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/input_password"
+            android:hint="Password"
+            app:met_baseColor="@android:color/white"
+            app:met_floatingLabel="normal"
+            app:met_primaryColor="?colorAccent"
+            app:met_underlineColor="#fff"
+            app:met_iconLeft="@drawable/ic_lock_white_48dp"
+            app:met_iconPadding="0dp"
+            app:met_singleLineEllipsis="true"/>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_signup"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="#FFFFFF"
+            fancy:fb_focusColor="#bfd8e7"
+            fancy:fb_radius="0dp"
+            fancy:fb_text="Login"
+            fancy:fb_textColor="#fff"
+
+            fancy:fb_ghost="true"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+
+            android:id="@+id/btn_login"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="No account yet? Create one"
+                android:id="@+id/link_signup"
+                android:textColor="#fff"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
