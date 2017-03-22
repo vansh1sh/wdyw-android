@@ -921,29 +921,20 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
                    phone.setError("Number should have 10 digits");
 
 
-                if (name.getText().toString().isEmpty() || pass.getText().toString().isEmpty() || address.getText().toString().isEmpty() || cit.isEmpty() || phone.getText().toString().isEmpty() || max.getText().toString().isEmpty() || min.getText().toString().isEmpty() || email. getText().toString().isEmpty() ) {
-
-
-                    DialogUtil.createDialog("Please fill all the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
-
-
-
-                        @Override
-                        public void onClick() {
-                            finish();
-                        }
-                    });
-                }
-
                 CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) dialog.findViewById(R.id.atv_places);
 
-                if (!(cit.equals(""))) {
+
+                try {
                     cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
                     stat = customAutoCompleteTextView.googlePlace.getDescription(); //Return the city
-
+                } catch (Exception e) {
+                    cit="empty";
+                    stat="empty";
+                    e.printStackTrace();
                 }
 
-                if (pass.getText().toString().isEmpty() ||min.getText().toString().isEmpty() ||max.getText().toString().isEmpty() ||email.getText().toString().isEmpty() || name.getText().toString().isEmpty()|| phone.getText().toString().isEmpty()|| address.getText().toString().isEmpty()|| cit.isEmpty()|| stat.isEmpty()|| gender.isEmpty()) {
+
+                if (pass.getText().toString().isEmpty() ||min.getText().toString().isEmpty() ||max.getText().toString().isEmpty() ||email.getText().toString().isEmpty() || name.getText().toString().isEmpty()|| phone.getText().toString().isEmpty()|| address.getText().toString().isEmpty()|| gender.isEmpty()) {
                     DialogUtil.createDialog("Please Fill All the information!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                         @Override
                         public void onClick() {
@@ -953,6 +944,20 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
 
 
                 } else {
+                    if (cit.equals("empty")|| stat.equals("empty")){
+
+
+                        DialogUtil.createDialog("Please Select The City Properly From The List!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                                finish();
+                            }
+                        });
+
+
+                    }
+
+                    else{
 
 
 
@@ -976,7 +981,7 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
                     us.setQuote(qu);
                     dialog.dismiss();
                     details="Filled";
-                }
+                }}
 
             }
         });

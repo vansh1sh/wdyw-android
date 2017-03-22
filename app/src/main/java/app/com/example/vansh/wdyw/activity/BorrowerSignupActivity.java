@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -182,10 +183,6 @@ public class BorrowerSignupActivity extends AppCompatActivity {
 
                         ch=selectedItemText;
 
-
-
-
-
                     }
                     if (selectedItemText.equals("Self Employed")){
                         ch=selectedItemText;
@@ -229,9 +226,14 @@ public class BorrowerSignupActivity extends AppCompatActivity {
 
 
         CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) findViewById(R.id.atv_places);
-        if (!(cit.equals(""))) {
-            cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-        }
+
+            try {
+                cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+            } catch (Exception e) {
+                cit="empty";
+                e.printStackTrace();
+            }
+
 
         if(_passwordText.getText().toString().isEmpty()|| _passwordText.length() < 4 || _passwordText.length() > 10)
             _passwordText.setError("between 4 and 10 alphanumeric characters");
@@ -245,10 +247,10 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         if(_phone.length()!=10)
             _phone.setError("Number should have 10 digits");
 
-        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.isEmpty() ||_phone.getText().toString().isEmpty()) {
+        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() ||_phone.getText().toString().isEmpty()) {
 
 
-            DialogUtil.createDialog("Please fill all the information!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+            DialogUtil.createDialog("Please fill all the information Properly!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
 
 
 
@@ -261,6 +263,24 @@ public class BorrowerSignupActivity extends AppCompatActivity {
 
 
         else {
+
+            if (cit.equals("empty")){
+
+
+                DialogUtil.createDialog("Please Select The City Properly From The List!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                    @Override
+                    public void onClick() {
+                        finish();
+                    }
+                });
+
+
+            }
+
+            else{
+
+
+
                 if (!validate()) {
                     onSignupFailed();
                     return;
@@ -328,7 +348,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
                 }
             });
         }}
-    }
+    }}
 
 
     public void onSignupSuccess() {
