@@ -24,7 +24,7 @@ public class FirstPage extends AppCompatActivity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
+        setContentView(R.layout.activity_second);
         ButterKnife.bind(this);
 
         if (Preferences.getPrefs(Consts.AUTO_LOGIN,this).equals("borrower")){
