@@ -229,10 +229,11 @@ public class BorrowerSignupActivity extends AppCompatActivity {
 
 
         CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) findViewById(R.id.atv_places);
-        if (!(cit.equals(""))) {
+
+
+        if (cit.equals("")) {
             cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
         }
-
         if(_passwordText.getText().toString().isEmpty()|| _passwordText.length() < 4 || _passwordText.length() > 10)
             _passwordText.setError("between 4 and 10 alphanumeric characters");
 
@@ -245,7 +246,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
         if(_phone.length()!=10)
             _phone.setError("Number should have 10 digits");
 
-        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.isEmpty() ||_phone.getText().toString().isEmpty()) {
+        if (_nameText.getText().toString().isEmpty() || _passwordText.getText().toString().isEmpty() || _address.getText().toString().isEmpty() || cit.equals("") ||_phone.getText().toString().isEmpty()) {
 
 
             DialogUtil.createDialog("Please fill all the information!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
@@ -277,7 +278,6 @@ public class BorrowerSignupActivity extends AppCompatActivity {
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Creating Account...");
             progressDialog.show();
-
 
             final BSignupRequest BS = new BSignupRequest();
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
