@@ -2,22 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#b0bec5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
    >
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_marginTop="165dp"
         android:id="@+id/imageView"
-        android:background="@drawable/a"
+        android:scaleType="centerCrop"
+        android:layout_height="330dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/xyxy"
          />
 
     <RelativeLayout
+        android:layout_marginTop="175dp"
+        android:layout_height="310dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
         android:id="@+id/transparentOverlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#96000000">
+        android:background="#8000">
 
     </RelativeLayout>
 
@@ -25,7 +33,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         android:id="@+id/linearLayout2">
 
         <RelativeLayout
@@ -55,7 +63,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="440dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:id="@+id/linearLayout"
@@ -115,10 +123,12 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Sign In"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
 
             android:id="@+id/btn_login"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/button"
+            android:background="@drawable/round_rect"
             android:textColor="#ffffff" />
     </LinearLayout>
 
