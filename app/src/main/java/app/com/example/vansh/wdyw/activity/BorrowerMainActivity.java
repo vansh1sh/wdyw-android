@@ -58,6 +58,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        city=Preferences.getPrefs(Consts.DEFAULT_CITY,BorrowerMainActivity.this);
         ll = (LinearLayout) findViewById(R.id.ll);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);

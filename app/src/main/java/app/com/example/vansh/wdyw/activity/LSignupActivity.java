@@ -32,7 +32,9 @@ import app.com.example.vansh.wdyw.model.Type;
 import app.com.example.vansh.wdyw.model.User;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
@@ -972,6 +974,7 @@ if (aadhar.getText().toString().isEmpty()||ear.getText().toString().isEmpty()||s
 
                     else{
 
+                        Preferences.setPrefs(Consts.DEFAULT_CITY,cit, LSignupActivity.this);
 
 
                     us.setName(name.getText().toString());

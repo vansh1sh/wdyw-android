@@ -26,7 +26,9 @@ import app.com.example.vansh.wdyw.model.BSignupRequest;
 import app.com.example.vansh.wdyw.model.BSignupResponse;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
@@ -300,10 +302,10 @@ public class BorrowerSignupActivity extends AppCompatActivity {
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Creating Account...");
             progressDialog.show();
+                    Preferences.setPrefs(Consts.DEFAULT_CITY, cit, BorrowerSignupActivity.this);
 
-            final BSignupRequest BS = new BSignupRequest();
+                    final BSignupRequest BS = new BSignupRequest();
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-
 
 
             BS.setName(_nameText.getText().toString());
