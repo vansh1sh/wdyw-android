@@ -4,19 +4,31 @@
     android:layout_height="fill_parent"
     xmlns:whatever="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/wall"
 
+>
     <LinearLayout
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:background="@drawable/fgfg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#a9062e40"
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/ab"
+        <ImageView android:src="@drawable/miscaawhite"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
@@ -27,11 +39,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+
+            android:textColor="@color/white"
+
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textColor="@color/white"
                 android:hint="Name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -39,11 +55,15 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:textColor="@color/white"
                 android:inputType="number"
                 android:hint="Phone" />
         </android.support.design.widget.TextInputLayout>
@@ -52,23 +72,31 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:textColor="@color/white"
                 android:inputType="textPassword"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
        <Spinner
            android:layout_width="match_parent"
            android:layout_height="match_parent"
+
+           android:textColor="@color/white"
            android:id="@+id/spinner">
 
        </Spinner>
         <Spinner
            android:layout_width="match_parent"
            android:layout_height="match_parent"
+
+            android:textColor="@color/white"
            android:id="@+id/spinner2">
 
        </Spinner>
@@ -77,10 +105,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/input_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:textColor="@color/white"
                 android:inputType="textCapWords"
                 android:hint="Address" />
         </android.support.design.widget.TextInputLayout>
@@ -93,6 +125,8 @@
             whatever:key="AIzaSyCdFRkm7GUkZZzmZ57ru4NcjUcy9_NxfL8"
             android:popupBackground="#03A9F4"
             whatever:type="(cities)"
+
+            android:textColor="@color/white"
             whatever:sensor="true"
             whatever:delay="100" />
 
@@ -101,9 +135,10 @@
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/round_rect"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+
             android:padding="12dp"
             android:text="Create Account"/>
 
@@ -112,8 +147,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"
+
+            android:textColor="@color/white"
             android:gravity="center"
             android:textSize="16dip"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

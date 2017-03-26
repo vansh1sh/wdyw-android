@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/wall">
 
     <LinearLayout
         android:focusable="true"
@@ -16,9 +16,10 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/ab"
+        <ImageView android:src="@drawable/miscaawhite"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
 
@@ -26,20 +27,24 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp">
             <Button android:id="@+id/input_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@drawable/round_rect"
                 android:inputType="textCapWords"
-                android:hint="User Details" />
+                android:hint="USER DETAILS" />
         </android.support.design.widget.TextInputLayout>
 
 
 
         <Spinner
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:id="@+id/spinner">
         </Spinner>
 
@@ -52,10 +57,11 @@
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:layout_marginTop="24dp"
+            android:background="@drawable/round_rect"
+            android:layout_marginTop="28dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
+
             android:text="Create Account"/>
 
         <TextView android:id="@+id/link_login"
