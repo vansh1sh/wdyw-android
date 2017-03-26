@@ -8,12 +8,14 @@ import java.util.Map;
 import app.com.example.vansh.wdyw.model.BLoginRequest;
 import app.com.example.vansh.wdyw.model.BLoginResponse;
 import app.com.example.vansh.wdyw.model.BSignupRequest;
+import app.com.example.vansh.wdyw.model.BSignupResponse;
 import app.com.example.vansh.wdyw.model.BloanResponse;
 import app.com.example.vansh.wdyw.model.BorrowerProfileGet;
 import app.com.example.vansh.wdyw.model.LLentResponse;
 import app.com.example.vansh.wdyw.model.LLoginRequest;
 import app.com.example.vansh.wdyw.model.LLoginResponse;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
+import app.com.example.vansh.wdyw.model.LSignupResponse;
 import app.com.example.vansh.wdyw.model.LenderData;
 import app.com.example.vansh.wdyw.model.LenderDetails;
 import app.com.example.vansh.wdyw.model.LenderProfileGet;
@@ -35,7 +37,7 @@ import static android.R.attr.id;
 
 public interface ApiInterface {
     @POST("/v1/customer")
-    Call<BSignupRequest> BSignUp(@Body BSignupRequest bsignUpRequest);
+    Call<BSignupResponse> BSignUp(@Body BSignupRequest bsignUpRequest);
     @POST("/v1/customer/login")
     Call<BLoginResponse> B_LOGIN_REQUEST_CALL(@Body BLoginRequest bLoginRequest);
     @POST("/v1/lender/login")
@@ -45,7 +47,7 @@ public interface ApiInterface {
     Call<LloanIdRequest> id(@Body LloanIdRequest lloanIdRequest);
 
     @POST("/v1/lender")
-    Call<LSignupRequest> L_SIGNUP_REQUEST_CALL(@Body LSignupRequest lSignupRequest);
+    Call<LSignupResponse> L_SIGNUP_REQUEST_CALL(@Body LSignupRequest lSignupRequest);
 
     @POST("/v1/loan")
     Call<LoanPostRequest> LoanPost(@Body LoanPostRequest loanPostRequest);

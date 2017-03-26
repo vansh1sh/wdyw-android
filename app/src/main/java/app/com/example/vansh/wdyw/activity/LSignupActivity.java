@@ -26,6 +26,7 @@ import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.LSignupRequest;
+import app.com.example.vansh.wdyw.model.LSignupResponse;
 import app.com.example.vansh.wdyw.model.Quote;
 import app.com.example.vansh.wdyw.model.Type;
 import app.com.example.vansh.wdyw.model.User;
@@ -242,7 +243,7 @@ public class LSignupActivity extends AppCompatActivity {
             }
 
 
-            Call<LSignupRequest> call = apiInterface.L_SIGNUP_REQUEST_CALL(BS);
+            Call<LSignupResponse> call = apiInterface.L_SIGNUP_REQUEST_CALL(BS);
 
             final ProgressDialog dialog2 = new ProgressDialog(LSignupActivity.this, R.style.AppTheme_Dark_Dialog);
             dialog2.setMessage("Account Created");
@@ -251,19 +252,31 @@ public class LSignupActivity extends AppCompatActivity {
             dialog2.show();
 
 
-            call.enqueue(new Callback<LSignupRequest>() {
+            call.enqueue(new Callback<LSignupResponse>() {
                 @Override
-                public void onResponse(Call<LSignupRequest> call, Response<LSignupRequest> response) {
+                public void onResponse(Call<LSignupResponse> call, Response<LSignupResponse> response) {
                     dialog2.hide();
                     // if (response.body().getCode().equals(Consts.SUCCESS)){
                     //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
-                    startActivity(intent);
+                    if(response.body().getStatus().equals(Boolean.TRUE)){
+                        Intent intent = new Intent(LSignupActivity.this, LLoginActivity.class);
+                        startActivity(intent);}
+                    else
+                    {
+                        dialog2.hide();
+                        DialogUtil.createDialog("Some Error Occurred, Try With A Different Number", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                                dialog2.hide();
+                            }
+                        });
+
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<LSignupRequest> call, Throwable t) {
+                public void onFailure(Call<LSignupResponse> call, Throwable t) {
                     dialog2.hide();
                     DialogUtil.createDialog("Oops! Please check your internet connection!", LSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                         @Override
