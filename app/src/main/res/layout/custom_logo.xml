@@ -9,7 +9,7 @@
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="55dp"
-        android:src="@drawable/ab"
+        android:src="@drawable/miscaawhite"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="70dp"
         />
