@@ -35,7 +35,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/round_rect"
                 android:inputType="textCapWords"
-                android:hint="USER DETAILS" />
+                android:text="USER DETAILS" />
         </android.support.design.widget.TextInputLayout>
 
 

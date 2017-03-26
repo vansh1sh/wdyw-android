@@ -16,9 +16,9 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/ab"
+        <ImageView android:src="@drawable/miscaawhite"
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_height="65dp"
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.50"
-                android:background="#F44330"
+                android:background="@color/primaryDark"
                 android:text="Cancel"/>
 
             <Button
@@ -88,7 +88,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.50"
-                android:background="#2196F3"
+                android:background="#28839b"
                 android:text="Submit"/>
         </LinearLayout>
 

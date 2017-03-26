@@ -9,7 +9,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
+        android:background="@color/colorPrimary"
         android:id="@+id/toolbarborrower"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
@@ -48,9 +48,9 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/a"
+                android:src="@drawable/wall"
                 />
 
             <!-- ...your usual views... -->
@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#80000000"
+            android:background="#b7062e40"
             android:id="@+id/shitstuff"
             app:itemTextColor="@color/color_white"
             app:menu="@menu/drawermenu"
