@@ -24,11 +24,6 @@
 
 
 
-    <com.github.florent37.parallax.ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,6 +36,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/ll">
+
+            <FrameLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/root_view">
+
+            <!-- ...your usual views... -->
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/a"
+                />
+
+            <!-- ...your usual views... -->
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -85,29 +98,9 @@
 
 
     </android.support.v7.widget.CardView>
+            </FrameLayout>
 
         </LinearLayout>
-
-
-                <!-- ...your usual views... -->
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/a"
-
-                    android:tag="parallax=0.3" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:gravity="center"
-                    android:text="My awesome title"
-
-                    android:tag="parallax=0.5" />
-
-                <!-- ...your usual views... -->
 
 
                 <android.support.v7.widget.RecyclerView
@@ -119,7 +112,6 @@
 
 
 </LinearLayout>
-    </com.github.florent37.parallax.ScrollView>
 
 
     <android.support.design.widget.NavigationView

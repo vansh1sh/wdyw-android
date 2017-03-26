@@ -28,6 +28,7 @@ import app.com.example.vansh.wdyw.rest.ApiInterface;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,9 +39,6 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
     String selectedItemText;
     @Bind(R.id.comsave)
     Button sub;
-    @Bind(R.id.city)
-    EditText city;
-
     @Bind(R.id.interest)
     EditText interest;
     @Bind(R.id.loanamount)
@@ -49,6 +47,8 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
     EditText reason;
     @Bind(R.id.duration)
     EditText duration;
+    String cit="";
+
 
 
     @Override
@@ -132,7 +132,19 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (lamount.getText().toString().isEmpty() || interest.getText().toString().isEmpty() || city.getText().toString().isEmpty() || selectedItemText.isEmpty()) {
+
+                CustomAutoCompleteTextView customAutoCompleteTextView = (CustomAutoCompleteTextView) findViewById(R.id.atv_places);
+
+
+                try {
+                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                } catch (Exception e) {
+                    cit="empty";
+                    e.printStackTrace();
+                }
+
+
+                if (lamount.getText().toString().isEmpty() || interest.getText().toString().isEmpty() || selectedItemText.isEmpty()) {
                     DialogUtil.createDialog("Please Fill All the information!", BorrowerLoanPostActivity.this, new DialogUtil.OnPositiveButtonClick() {
                         @Override
                         public void onClick() {
@@ -143,11 +155,28 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
 
                 }
                 else {
+
+                    if (cit.equals("empty")){
+
+
+                        DialogUtil.createDialog("Please Select The City Properly From The List!", BorrowerLoanPostActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                                finish();
+                            }
+                        });
+
+
+                    }
+
+                    else{
+
+
                     Integer myNum = Integer.parseInt(lamount.getText().toString());
                     loanPostRequest.setLoanAmt(myNum);
 
 
-                    loanPostRequest.setCity(city.getText().toString());
+                    loanPostRequest.setCity(cit);
                     loanPostRequest.setReason(reason.getText().toString());
                     loanPostRequest.setDuration(duration.getText().toString());
                     loanPostRequest.setExpectedInterest(interest.getText().toString());
@@ -188,7 +217,7 @@ public class BorrowerLoanPostActivity extends AppCompatActivity {
                             });
                         }
                     });
-                }
+                }}
             }
         });
 

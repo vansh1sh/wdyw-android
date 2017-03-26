@@ -69,10 +69,12 @@ public class LenderMainActivity extends RevealActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lender_activity_main);
         showRevealEffect(mSavedInstanceState, findViewById(R.id.la));
+        city=Preferences.getPrefs(Consts.DEFAULT_CITY,LenderMainActivity.this);
 
         ll = (LinearLayout)findViewById(R.id.ll);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"lender",this);
+
 
         if(Preferences.getPrefs(Consts.CHECK_BORROWER,LenderMainActivity.this).equals("Yes")) {//getextra
             Intent intent = getIntent();

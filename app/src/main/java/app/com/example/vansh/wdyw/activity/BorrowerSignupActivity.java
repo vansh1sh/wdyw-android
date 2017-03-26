@@ -23,9 +23,12 @@ import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.model.BSignupRequest;
+import app.com.example.vansh.wdyw.model.BSignupResponse;
 import app.com.example.vansh.wdyw.rest.ApiClient;
 import app.com.example.vansh.wdyw.rest.ApiInterface;
+import app.com.example.vansh.wdyw.utility.Consts;
 import app.com.example.vansh.wdyw.utility.DialogUtil;
+import app.com.example.vansh.wdyw.utility.Preferences;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView;
@@ -53,6 +56,7 @@ public class BorrowerSignupActivity extends AppCompatActivity {
     TextView _loginLink;
 
     String cit="";
+    ProgressDialog dialog2;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -298,10 +302,10 @@ public class BorrowerSignupActivity extends AppCompatActivity {
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Creating Account...");
             progressDialog.show();
+                    Preferences.setPrefs(Consts.DEFAULT_CITY, cit, BorrowerSignupActivity.this);
 
-            final BSignupRequest BS = new BSignupRequest();
+                    final BSignupRequest BS = new BSignupRequest();
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-
 
 
             BS.setName(_nameText.getText().toString());
@@ -316,29 +320,38 @@ public class BorrowerSignupActivity extends AppCompatActivity {
             BS.setPhone(myNum);
 
 
-            Call<BSignupRequest> call = apiInterface.BSignUp(BS);
+            Call<BSignupResponse> call = apiInterface.BSignUp(BS);
 
-            final ProgressDialog dialog2 = new ProgressDialog(BorrowerSignupActivity.this, R.style.AppTheme_Dark_Dialog);
-            dialog2.setMessage("Account Created");
-            dialog2.setIndeterminate(true);
-            dialog2.setCanceledOnTouchOutside(false);
+            dialog2 = new ProgressDialog(BorrowerSignupActivity.this, R.style.AppTheme_Dark_Dialog);
+            dialog2.setMessage("Creating Account");
             dialog2.show();
 
 
-            call.enqueue(new Callback<BSignupRequest>() {
+            call.enqueue(new Callback<BSignupResponse>() {
                 @Override
-                public void onResponse(Call<BSignupRequest> call, Response<BSignupRequest> response) {
-                    dialog2.hide();
+                public void onResponse(Call<BSignupResponse> call, Response<BSignupResponse> response) {
+                    dialog2.dismiss();
                     // if (response.body().getCode().equals(Consts.SUCCESS)){
                     //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
-
+                    if(response.body().getStatus().equals(Boolean.TRUE)){
                     Intent intent = new Intent(BorrowerSignupActivity.this, BorrowerLoginActivity.class);
-                    startActivity(intent);
+                    startActivity(intent);}
+                    else
+                    {
+                        dialog2.hide();
+                        DialogUtil.createDialog("Some Error Occurred, Try With A Different Number", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                                dialog2.dismiss();
+                            }
+                        });
+
+                    }
                 }
 
 
                 @Override
-                public void onFailure(Call<BSignupRequest> call, Throwable t) {
+                public void onFailure(Call<BSignupResponse> call, Throwable t) {
                     dialog2.hide();
                     DialogUtil.createDialog("Oops! Please check your internet connection!", BorrowerSignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
                         @Override

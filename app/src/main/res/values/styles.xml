@@ -73,7 +73,7 @@
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
         <item name="colorAccent">@color/white</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">#80000000</item>
     </style>
 
     <style name="ProfileIcon">
