@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_log"
         android:label="@string/WDYW"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme2">
         <activity
             android:name=".activity.SplashActivity"
 
