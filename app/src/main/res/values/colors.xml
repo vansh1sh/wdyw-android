@@ -6,7 +6,7 @@
 
     <color name="black">#000</color>
     <color name="orange">#0398db</color>
-    <color name="white">#FFF</color>
+    <color name="white">#FFFFFF</color>
 
         <!-- Screens background color 303F9F -->
         <color name="bg_screen1">#f64c73</color>
