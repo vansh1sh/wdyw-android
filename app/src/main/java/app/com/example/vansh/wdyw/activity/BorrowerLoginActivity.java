@@ -55,7 +55,9 @@ public class BorrowerLoginActivity extends AppCompatActivity {
 
 
         ButterKnife.bind(this);
-        
+        Preferences.setPrefs(Consts.DEFAULT_CITY, "Vellore", BorrowerLoginActivity.this);
+        Preferences.setPrefs(Consts.DEFAULT_AMT, "3000", BorrowerLoginActivity.this);
+        Preferences.setPrefs(Consts.DEFAULT_PAGE, "1", BorrowerLoginActivity.this);
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
 

@@ -20,6 +20,8 @@ public class Consts {
     public static final String CITY_BORROWER = "chennai";
     public static final String CHECK_BORROWER = "chennai";
     public static final String DEFAULT_CITY = "chennai";
+    public static final String DEFAULT_PAGE = "1";
+    public static final String DEFAULT_AMT = "3000";
     public static final String LOAN_BORROWER = "";
     public static final String DOC_ID_SP_KEY = "docId";
 

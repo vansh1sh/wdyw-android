@@ -50,7 +50,9 @@ public class LLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
-        
+        Preferences.setPrefs(Consts.DEFAULT_CITY, "Vellore", LLoginActivity.this);
+        Preferences.setPrefs(Consts.DEFAULT_AMT, "3000", LLoginActivity.this);
+        Preferences.setPrefs(Consts.DEFAULT_PAGE, "1", LLoginActivity.this);
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
