@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#b7062e40"
+            android:background="#d0041d28"
             android:id="@+id/shitstuff"
             app:itemTextColor="@color/color_white"
             app:menu="@menu/drawermenu"

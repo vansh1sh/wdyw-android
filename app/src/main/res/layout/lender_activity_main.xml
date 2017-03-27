@@ -96,7 +96,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:id="@+id/shitstuff"
-            android:background="#80000000"
+            android:background="#d0041d28"
             app:itemTextColor="@color/color_white"
             app:menu="@menu/lender_drawermenu"
             android:layout_marginTop="-24dp"
