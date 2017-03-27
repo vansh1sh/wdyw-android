@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -51,6 +52,8 @@ public class BorrowerMainActivity extends AppCompatActivity {
     String  pageid="1";
     String loanAmt="3000";
     LinearLayout ll;
+    String cit;
+
 
 
     @Override
@@ -59,6 +62,8 @@ public class BorrowerMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         city=Preferences.getPrefs(Consts.DEFAULT_CITY,BorrowerMainActivity.this);
+        pageid=Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this);
+
         ll = (LinearLayout) findViewById(R.id.ll);
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
@@ -67,7 +72,6 @@ public class BorrowerMainActivity extends AppCompatActivity {
             Intent intent = getIntent();
             city = intent.getStringExtra("city");
             loanAmt = intent.getStringExtra("loan");
-            Log.i("gfhfj", city);
             Preferences.setPrefs(Consts.CHECK_BORROWER, "No", BorrowerMainActivity.this);
 
         }
@@ -258,6 +262,39 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.action_prev:
+
+                int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
+                if (myNum>1)
+                {myNum=myNum-1;
+                    pageid= Integer.toString(myNum);
+                    Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),BorrowerMainActivity.this);
+                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+
+                    Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
+                    startActivity(it);
+                }
+                else
+                {
+                    Toast.makeText(getBaseContext(), "Already On The First Page", Toast.LENGTH_SHORT).show();
+
+                }
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+
+
+            case R.id.action_next:
+                int myNum2 = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
+                myNum2=myNum2+1;
+                pageid= Integer.toString(myNum2);
+                Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
+
+                Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),BorrowerMainActivity.this);
+                Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
+                startActivity(it);
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+
 
 
         }
@@ -278,12 +315,35 @@ public class BorrowerMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",BorrowerMainActivity.this);
-                String cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-                Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
-                it.putExtra("city",cit);
-                it.putExtra("loan",amount.getText().toString());
-                startActivity(it);
 
+
+                try {
+                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                } catch (Exception e) {
+                    cit="empty";
+                    e.printStackTrace();
+                }
+
+
+                if (cit.equals("empty")){
+
+
+                    DialogUtil.createDialog("Please Select The City Properly From The List!", BorrowerMainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+
+
+                }
+
+                else {
+                    Intent it = new Intent(BorrowerMainActivity.this, BorrowerMainActivity.class);
+                    it.putExtra("city", cit);
+                    it.putExtra("loan", amount.getText().toString());
+                    startActivity(it);
+                }
 
             }
         });

@@ -303,6 +303,8 @@ public class BorrowerSignupActivity extends AppCompatActivity {
             progressDialog.setMessage("Creating Account...");
             progressDialog.show();
                     Preferences.setPrefs(Consts.DEFAULT_CITY, cit, BorrowerSignupActivity.this);
+                    Preferences.setPrefs(Consts.DEFAULT_AMT, "3000", BorrowerSignupActivity.this);
+                    Preferences.setPrefs(Consts.DEFAULT_PAGE, "1", BorrowerSignupActivity.this);
 
                     final BSignupRequest BS = new BSignupRequest();
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);

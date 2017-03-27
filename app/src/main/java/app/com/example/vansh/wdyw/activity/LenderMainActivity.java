@@ -56,6 +56,7 @@ public class LenderMainActivity extends RevealActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     String city="Vellore";
+    String cit="";
     String  pageid="1";
     String loanAmt="3000";
     LinearLayout ll;
@@ -70,6 +71,8 @@ public class LenderMainActivity extends RevealActivity {
         setContentView(R.layout.lender_activity_main);
         showRevealEffect(mSavedInstanceState, findViewById(R.id.la));
         city=Preferences.getPrefs(Consts.DEFAULT_CITY,LenderMainActivity.this);
+        pageid=Preferences.getPrefs(Consts.DEFAULT_PAGE,LenderMainActivity.this);
+
 
         ll = (LinearLayout)findViewById(R.id.ll);
 
@@ -285,6 +288,39 @@ public class LenderMainActivity extends RevealActivity {
                 openDialogSelect();
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.action_prev:
+
+                int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,LenderMainActivity.this));
+                if (myNum>1)
+                {myNum=myNum-1;
+                    pageid= Integer.toString(myNum);
+                    Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),LenderMainActivity.this);
+                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+
+                    Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+                    startActivity(it);
+                }
+                else
+                {
+                    Toast.makeText(getBaseContext(), "Already On The First Page", Toast.LENGTH_SHORT).show();
+
+                }
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+
+
+            case R.id.action_next:
+                int myNum2 = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,LenderMainActivity.this));
+                myNum2=myNum2+1;
+                pageid= Integer.toString(myNum2);
+                Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
+
+                Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),LenderMainActivity.this);
+                Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+                startActivity(it);
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                break;
+
 
 
         }
@@ -306,13 +342,37 @@ public class LenderMainActivity extends RevealActivity {
             @Override
             public void onClick(View v) {
 
-                Preferences.setPrefs(Consts.CHECK_BORROWER,"Yes",LenderMainActivity.this);
-                String cit=customAutoCompleteTextView.googlePlace.getCity(); //Return the city
-                Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
-                it.putExtra("city",cit);
-                it.putExtra("loan",amount.getText().toString());
-                startActivity(it);
 
+                try {
+                    cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                } catch (Exception e) {
+                    cit="empty";
+                    e.printStackTrace();
+                }
+
+
+                if (cit.equals("empty")){
+
+
+                    DialogUtil.createDialog("Please Select The City Properly From The List!", LenderMainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+
+
+                }
+
+                else {
+
+                    Preferences.setPrefs(Consts.CHECK_BORROWER, "Yes", LenderMainActivity.this);
+                    String cit = customAutoCompleteTextView.googlePlace.getCity(); //Return the city
+                    Intent it = new Intent(LenderMainActivity.this, LenderMainActivity.class);
+                    it.putExtra("city", cit);
+                    it.putExtra("loan", amount.getText().toString());
+                    startActivity(it);
+                }
 
             }
         });
