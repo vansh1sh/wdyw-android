@@ -20,6 +20,7 @@ import java.util.List;
 
 import app.com.example.vansh.wdyw.R;
 import app.com.example.vansh.wdyw.activity.BFindProfileActivity;
+import app.com.example.vansh.wdyw.activity.BorrowerLenderActivity;
 import app.com.example.vansh.wdyw.model.LenderDetails;
 import app.com.example.vansh.wdyw.model.LloanIdRequest;
 import app.com.example.vansh.wdyw.rest.ApiClient;
@@ -101,9 +102,9 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
-                alertbox.setMessage("Do You Want To Contact this Lender?");
+                alertbox.setMessage("Do you want to contact this lender?");
                 alertbox.setTitle("Confirmation");
-                alertbox.setIcon(R.drawable.logo1);
+                //alertbox.setIcon(R.drawable.logo1);
 
                 alertbox.setNeutralButton("Continue",
                         new DialogInterface.OnClickListener() {
@@ -124,6 +125,10 @@ public class LenderDetailsAdapter extends RecyclerView.Adapter<LenderDetailsAdap
                         holder.details.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
+                                Intent intent = new Intent(context, BorrowerLenderActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(intent);
 
 
                             }
