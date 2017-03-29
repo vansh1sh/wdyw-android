@@ -53,14 +53,14 @@ public class SplashActivity extends AppCompatActivity {
 // Remember that you should never show the action bar if the
 // status bar is hidden, so hide that too if necessary.
 
-        final VideoView videoView =
+        /*final VideoView videoView =
                 (VideoView) findViewById(R.id.myvideoview);
         String uriPath = "android.resource://"+getPackageName()+"/"+R.raw.vid;
         videoView.setVideoPath(uriPath);
 
         videoView.start();
 
-
+*/
         new CountDownTimer(3000, 3000) {
 
             public void onTick(long millisUntilFinished) {

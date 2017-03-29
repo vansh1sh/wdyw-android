@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +7,15 @@
     android:orientation="horizontal"
     >
 
-    <VideoView
-        android:id="@+id/myvideoview"
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:src="@drawable/splash2"/>
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"/>
+        android:layout_height="200dp"
+        android:elevation="10dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_logof"/>
 
-
-</LinearLayout>
+</RelativeLayout>
