@@ -53,6 +53,7 @@ public class BorrowerMainActivity extends AppCompatActivity {
     String loanAmt="3000";
     LinearLayout ll;
     String cit;
+    ImageView prev,next;
 
 
 
@@ -65,6 +66,9 @@ public class BorrowerMainActivity extends AppCompatActivity {
         pageid=Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this);
 
         ll = (LinearLayout) findViewById(R.id.ll);
+        prev = (ImageView) findViewById(R.id.actionprev);
+        next  = (ImageView) findViewById(R.id.actionnext);
+
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
 
@@ -180,6 +184,43 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 ll.startAnimation(animation);
             }
         });
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
+                if (myNum>1)
+                {myNum=myNum-1;
+                    pageid= Integer.toString(myNum);
+                    Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),BorrowerMainActivity.this);
+                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+
+                    Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
+                    startActivity(it);
+                }
+                else
+                {
+                    Toast.makeText(getBaseContext(), "Already On The First Page", Toast.LENGTH_SHORT).show();
+
+                }
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int myNum2 = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
+                myNum2=myNum2+1;
+                pageid= Integer.toString(myNum2);
+                Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
+
+                Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),BorrowerMainActivity.this);
+                Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
+                startActivity(it);
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -262,38 +303,8 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.action_prev:
-
-                int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
-                if (myNum>1)
-                {myNum=myNum-1;
-                    pageid= Integer.toString(myNum);
-                    Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),BorrowerMainActivity.this);
-                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
-
-                    Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
-                    startActivity(it);
-                }
-                else
-                {
-                    Toast.makeText(getBaseContext(), "Already On The First Page", Toast.LENGTH_SHORT).show();
-
-                }
-                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
-                break;
 
 
-            case R.id.action_next:
-                int myNum2 = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
-                myNum2=myNum2+1;
-                pageid= Integer.toString(myNum2);
-                Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
-
-                Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),BorrowerMainActivity.this);
-                Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
-                startActivity(it);
-                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
-                break;
 
 
 
