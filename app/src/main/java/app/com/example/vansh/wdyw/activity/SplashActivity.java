@@ -57,7 +57,7 @@ public class SplashActivity extends AppCompatActivity {
                 (VideoView) findViewById(R.id.myvideoview);
         String uriPath = "android.resource://"+getPackageName()+"/"+R.raw.video;
         videoView.setVideoPath(uriPath);
-
+ 
         videoView.start();
 
         new CountDownTimer(3000, 3000) {

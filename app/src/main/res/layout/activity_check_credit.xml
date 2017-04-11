@@ -11,14 +11,6 @@
     android:orientation="vertical">
 
 
-        <co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView
-            android:id="@+id/atv_places"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:popupBackground="#000"
-            whatever:type="(cities)"
-            whatever:sensor="true"
-            whatever:delay="700" />
 
 
 

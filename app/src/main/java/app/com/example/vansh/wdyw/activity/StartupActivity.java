@@ -63,7 +63,7 @@ public class StartupActivity extends AppCompatActivity{
 
 
         // adding bottom dots
-        addBottomDots(0);
+       // addBottomDots(0);
 
         // making notification bar transparent
         changeStatusBarColor();
@@ -95,7 +95,7 @@ public class StartupActivity extends AppCompatActivity{
         });
     }
 
-    private void addBottomDots(int currentPage) {
+   /* private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.length];
 
         int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
@@ -113,7 +113,7 @@ public class StartupActivity extends AppCompatActivity{
         if (dots.length > 0)
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
-
+*/
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
     }
@@ -128,7 +128,7 @@ public class StartupActivity extends AppCompatActivity{
 
         @Override
         public void onPageSelected(int position) {
-            addBottomDots(position);
+           // addBottomDots(position);
 
             // changing the next button text 'NEXT' / 'GOT IT'
             if (position == layouts.length - 1) {
