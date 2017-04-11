@@ -1,13 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pew="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_how_it_works"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="app.com.example.vansh.wdyw.activity.HowItWorks">
+    >
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryDark">
+
+            <com.fmsirvent.ParallaxEverywhere.PEWImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/quila"
+                pew:reverse="reverseX" />
+
+            <com.fmsirvent.ParallaxEverywhere.PEWTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="bottom|center_horizontal"
+                android:text="Miscaa is an online platform dedicated to match lenders and
+borrowers. It works as a subscription based digital loan aggregator
+focused on transparency and one-to-one communication between
+lenders and borrowers.
+Lenders can be any interested party with lending capital. Banks,
+NBFCs, Finance companies, Private and Individual lenders.
+Borrowers can be anyone in need of capital, which he/ she can return
+with interest at a later date."
+                android:textColor="@android:color/white"
+                android:textSize="40sp"
+                pew:block_parallax_x="true"
+                pew:parallax_x="160dp"
+                pew:parallax_y="160dp"
+                pew:reverse="reverseX" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

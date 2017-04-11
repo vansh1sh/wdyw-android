@@ -120,12 +120,10 @@ public class BorrowerMainActivity extends AppCompatActivity {
                     startActivity(i);}
 
                  if (menuItem.getItemId() == R.id.how) {
-                    /* FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                     fragmentTransaction.replace(R.id.containerView,new SentFragment()).commit();
-*/
-                 }
+                     Intent i = new Intent(BorrowerMainActivity.this,HowItWorks.class);
+                     startActivity(i);}
                  if (menuItem.getItemId() == R.id.terms) {
-                     Intent i = new Intent(BorrowerMainActivity.this,CheckCredit.class);
+                     Intent i = new Intent(BorrowerMainActivity.this,TermsActivity.class);
                      startActivity(i);}
                  if (menuItem.getItemId() == R.id.setting) {
                      Intent i = new Intent(BorrowerMainActivity.this,SettingsActivity.class);
