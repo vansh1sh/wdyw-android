@@ -170,6 +170,10 @@ public class LProfileActivity extends AppCompatActivity
 
 
 
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
