@@ -139,6 +139,9 @@ public class LFindProfileActivity extends AppCompatActivity
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
 
 
@@ -163,12 +166,12 @@ public class LFindProfileActivity extends AppCompatActivity
             case R.id.home:
                 Intent i = new Intent(LFindProfileActivity.this,LenderMainActivity.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
                 Intent j = new Intent(LFindProfileActivity.this,CheckCredit.class);
                 startActivity(j);
-                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
 

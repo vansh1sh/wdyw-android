@@ -53,6 +53,7 @@
             android:label="Main" />
         <activity
             android:name=".activity.LProfileActivity"
+            android:parentActivityName=".activity.LenderMainActivity"
             android:label="" />
         <activity android:name=".activity.CheckCredit" />
         <activity android:name=".activity.ContactUs" />
@@ -61,6 +62,7 @@
         <activity android:name=".activity.LenderLendActivity" android:parentActivityName=".activity.LenderMainActivity" />
         <activity android:name=".activity.BFindProfileActivity" />
         <activity android:name=".activity.BProfileActivity"
+            android:parentActivityName=".activity.BorrowerMainActivity"
             android:label=""/>
         <activity android:name=".activity.LFindProfileActivity" />
         <activity android:name=".activity.HowItWorks"></activity>
