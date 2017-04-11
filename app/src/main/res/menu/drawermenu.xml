@@ -5,19 +5,20 @@
 
     <item android:title="Home"
           android:id="@+id/nav_item_home"
-          android:icon="@drawable/ic_action_home"/>
+          android:icon="@drawable/ic_home"/>
 
     <item android:title="Profile"
           android:id="@+id/nav_item_profile"
-          android:icon="@drawable/ic_action_profile"/>
+
+          android:icon="@drawable/ic_person_black_24dp"/>
 
     <item android:title="Find Lenders"
           android:id="@+id/nav_lender"
-          android:icon="@drawable/ic_action_lend"/>
+          android:icon="@drawable/ic_findlenders"/>
 
     <item android:title="Request Loan"
           android:id="@+id/nav_item_loan"
-          android:icon="@drawable/sent"/>
+          android:icon="@drawable/ic_requestloan_24dp"/>
 
 
 
@@ -26,21 +27,21 @@
             <item
                 android:title="How it works?"
                 android:id="@+id/how"
-                android:icon="@drawable/spam"/>
+                android:icon="@drawable/ic_touch_app_black_24dphowit"/>
             <item
                 android:title="Terms"
                 android:id="@+id/terms"
-                android:icon="@drawable/sent"/>
+                android:icon="@drawable/ic_import_terms"/>
         </menu>
     </item>
 
     <group android:id="@+id/group_settings_id">
 
         <item android:title="Settings"
-              android:icon="@drawable/settings"
+              android:icon="@drawable/ic_settings_black_24dp"
             android:id="@+id/setting"/>
         <item android:title="Contact Us"
-             android:icon="@drawable/help"
+             android:icon="@drawable/ic_phone_black_24dp"
             android:id="@+id/contactus"/>
     </group>
 

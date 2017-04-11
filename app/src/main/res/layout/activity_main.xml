@@ -145,5 +145,29 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="4">
+    <ImageView
+        android:id="@+id/actionprev"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_action_prev"
+        android:layout_weight="1"/>
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+    <ImageView
+        android:id="@+id/actionnext"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_action_next"
+        android:layout_weight="1"/>
+    </LinearLayout>
 
 </RelativeLayout>

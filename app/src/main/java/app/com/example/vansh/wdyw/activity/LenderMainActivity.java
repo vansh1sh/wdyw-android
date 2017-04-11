@@ -62,6 +62,7 @@ public class LenderMainActivity extends RevealActivity {
     LinearLayout ll;
     private Bundle mSavedInstanceState;
 
+    ImageView prev, next;
 
 
 
@@ -94,6 +95,10 @@ public class LenderMainActivity extends RevealActivity {
 
 
         ImageView gi = (ImageView) findViewById(R.id.gotit);
+        prev = (ImageView) findViewById(R.id.actionprev);
+        next  = (ImageView) findViewById(R.id.actionnext);
+
+
         gi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +123,43 @@ public class LenderMainActivity extends RevealActivity {
                     }
                 });
                 ll.startAnimation(animation);
+            }
+        });
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,LenderMainActivity.this));
+                if (myNum>1)
+                {myNum=myNum-1;
+                    pageid= Integer.toString(myNum);
+                    Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),LenderMainActivity.this);
+                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+
+                    Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+                    startActivity(it);
+                }
+                else
+                {
+                    Toast.makeText(getBaseContext(), "Already On The First Page", Toast.LENGTH_SHORT).show();
+
+                }
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int myNum2 = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,LenderMainActivity.this));
+                myNum2=myNum2+1;
+                pageid= Integer.toString(myNum2);
+                Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
+
+                Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),LenderMainActivity.this);
+                Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+                startActivity(it);
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -288,7 +330,7 @@ public class LenderMainActivity extends RevealActivity {
                 openDialogSelect();
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_prev:
+           /* case R.id.action_prev:
 
                 int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,LenderMainActivity.this));
                 if (myNum>1)
@@ -320,7 +362,7 @@ public class LenderMainActivity extends RevealActivity {
                 startActivity(it);
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
-
+*/
 
 
         }
