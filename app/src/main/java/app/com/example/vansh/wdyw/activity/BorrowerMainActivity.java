@@ -142,12 +142,12 @@ public class BorrowerMainActivity extends AppCompatActivity {
                      // Intent i = new Intent(BorrowerMainActivity.this,TermsActivity.class);
                      //startActivity(i);
                  }
-                 if (menuItem.getItemId() == R.id.setting) {
-                     Intent i = new Intent(BorrowerMainActivity.this,SettingsActivity.class);
-                     startActivity(i);}
+
                  if (menuItem.getItemId() == R.id.contactus) {
-                     Intent i = new Intent(BorrowerMainActivity.this,ContactUs.class);
-                     startActivity(i);}
+                     final Dialog dialog = new Dialog(BorrowerMainActivity.this);
+                     dialog.setCanceledOnTouchOutside(true);
+                     dialog.setContentView(R.layout.dialog_contact);
+                     dialog.show();}
                  return false;
 
             }

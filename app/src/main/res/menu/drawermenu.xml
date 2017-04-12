@@ -37,9 +37,6 @@
 
     <group android:id="@+id/group_settings_id">
 
-        <item android:title="Settings"
-              android:icon="@drawable/ic_settings_black_24dp"
-            android:id="@+id/setting"/>
         <item android:title="Contact Us"
              android:icon="@drawable/ic_phone_black_24dp"
             android:id="@+id/contactus"/>

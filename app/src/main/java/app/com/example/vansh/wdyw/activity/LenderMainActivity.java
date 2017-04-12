@@ -268,14 +268,12 @@ public class LenderMainActivity extends RevealActivity {
                      dialog.setContentView(R.layout.dialog_terms);
                      dialog.show();
                      }
-                 if (menuItem.getItemId() == R.id.setting) {
-                    Intent i = new Intent(LenderMainActivity.this,SettingsActivity.class);
-                    startActivity(i);
 
-                 }
                  if (menuItem.getItemId() == R.id.contactus) {
-                    Intent i = new Intent(LenderMainActivity.this,ContactUs.class);
-                    startActivity(i);
+                     final Dialog dialog = new Dialog(LenderMainActivity.this);
+                     dialog.setCanceledOnTouchOutside(true);
+                     dialog.setContentView(R.layout.dialog_contact);
+                     dialog.show();
 
                  }
 

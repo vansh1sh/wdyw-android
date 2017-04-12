@@ -121,13 +121,13 @@ public class LLoginActivity extends AppCompatActivity {
             public void onResponse(Call<LLoginResponse> call, Response<LLoginResponse> response) {
                 progressDialog.hide();
                 if (response.body().getStatus().equals(Boolean.TRUE)){
-                    Toast.makeText(getBaseContext(), "Welcome to WdyW", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Welcome to Miscaa", Toast.LENGTH_LONG).show();
                     Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),LLoginActivity.this);
                     Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,LLoginActivity.this));
 
                     Intent intent = new Intent(LLoginActivity.this, LenderMainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Welcome To WdyW", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Welcome To Miscaa", Toast.LENGTH_SHORT).show();
 
                 }
                 else

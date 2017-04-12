@@ -30,14 +30,13 @@
                 android:icon="@drawable/ic_touch_app_black_24dphowit"/>
             <item
                 android:title="Terms"
+                android:id="@+id/terms"
                 android:icon="@drawable/ic_import_terms"/>
         </menu>
     </item>
 
     <group android:id="@+id/group_settings_id">
 
-        <item android:title="Settings"
-              android:icon="@drawable/ic_settings_black_24dp"/>
         <item android:title="Contact Us"
              android:icon="@drawable/ic_phone_black_24dp"/>
     </group>
