@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -57,12 +58,14 @@ public class LenderMainActivity extends RevealActivity {
     FragmentTransaction mFragmentTransaction;
     String city="Vellore";
     String cit="";
+    Integer flag =0;
     String  pageid="1";
     String loanAmt="3000";
     LinearLayout ll;
     private Bundle mSavedInstanceState;
 
     ImageView prev, next;
+    TextView pageno;
 
 
 
@@ -76,6 +79,10 @@ public class LenderMainActivity extends RevealActivity {
 
 
         ll = (LinearLayout)findViewById(R.id.ll);
+        pageno = (TextView) findViewById(R.id.pageno);
+
+        pageno.setText("Page "+pageid);
+
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"lender",this);
 
@@ -133,17 +140,26 @@ public class LenderMainActivity extends RevealActivity {
                 {myNum=myNum-1;
                     pageid= Integer.toString(myNum);
                     Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),LenderMainActivity.this);
-                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
 
-                    Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+
+                    Intent it=new Intent(LenderMainActivity.this,BorrowerMainActivity.class);
                     startActivity(it);
+                    if (flag==1)
+                    {
+                        flag =0;
+                        pageno.setText("Page "+Integer.toString(myNum));
+                    }
+
+
                 }
                 else
                 {
                     Toast.makeText(getBaseContext(), "Already On The First Page", Toast.LENGTH_SHORT).show();
 
                 }
-                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", st.LENGTH_SHORT).show();
+
 
             }
         });
@@ -156,9 +172,16 @@ public class LenderMainActivity extends RevealActivity {
                 Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
 
                 Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),LenderMainActivity.this);
-                Intent it=new Intent(LenderMainActivity.this,LenderMainActivity.class);
+                Intent it=new Intent(LenderMainActivity.this,BorrowerMainActivity.class);
                 startActivity(it);
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                //pageno.setText("Page "+Integer.toString(myNum2));
+
+                if (flag==2)
+                {
+                    flag =0;
+                    pageno.setText("Page "+Integer.toString(myNum2));
+                }
 
             }
         });

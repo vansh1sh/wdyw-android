@@ -113,6 +113,7 @@
             android:id="@+id/stock_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+                    android:layout_marginBottom="28dp"
             android:scrollbars="vertical"
             />
 

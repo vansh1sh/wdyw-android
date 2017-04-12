@@ -133,13 +133,13 @@ public class BorrowerLoginActivity extends AppCompatActivity {
             public void onResponse(Call<BLoginResponse> call, Response<BLoginResponse> response) {
                 progressDialog.hide();
                 if (response.body().getStatus().equals(Boolean.TRUE)){
-                    Toast.makeText(getBaseContext(), "Welcome to WdyW", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Welcome to Miscaa", Toast.LENGTH_LONG).show();
                     Preferences.setPrefs(Consts.TOKEN_SP_KEY,response.body().getToken(),BorrowerLoginActivity.this);
                     Log.d(TAG, Preferences.getPrefs(Consts.TOKEN_SP_KEY,BorrowerLoginActivity.this));
 
                     Intent intent = new Intent(BorrowerLoginActivity.this, BorrowerMainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Welcome To WdyW", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Welcome To Miscaa", Toast.LENGTH_SHORT).show();
 
                 }
                 else

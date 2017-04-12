@@ -115,20 +115,11 @@
 
 </LinearLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorPrimary"
-        android:id="@+id/toolbardown"
-        android:layout_alignParentBottom="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-
-        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-
+        android:layout_height="28dp"
         android:orientation="horizontal"
+        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:weightSum="4">
         <ImageView
@@ -137,10 +128,18 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_action_prev"
             android:layout_weight="1"/>
-        <android.support.v4.widget.Space
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:id="@+id/pageno"
+
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
         <ImageView
             android:id="@+id/actionnext"
             android:layout_width="wrap_content"
@@ -150,4 +149,5 @@
     </LinearLayout>
 
 
-    </RelativeLayout>
+
+</RelativeLayout>
