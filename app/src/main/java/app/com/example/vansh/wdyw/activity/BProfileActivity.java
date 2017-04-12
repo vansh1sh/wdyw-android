@@ -201,8 +201,9 @@ public class BProfileActivity extends AppCompatActivity
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
-                Intent j = new Intent(BProfileActivity.this,CheckCredit.class);
-                startActivity(j);
+                Toast.makeText(getBaseContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                /*Intent j = new Intent(BProfileActivity.this,CheckCredit.class);
+                startActivity(j);*/
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 

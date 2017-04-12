@@ -255,8 +255,10 @@ public class LenderMainActivity extends RevealActivity {
                      startActivity(i);
                  }
                  if (menuItem.getItemId() == R.id.checkcredits) {
-                     Intent i = new Intent(LenderMainActivity.this,CheckCredit.class);
-                     startActivity(i);
+
+                     Toast.makeText(getBaseContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                     /*Intent i = new Intent(LenderMainActivity.this,CheckCredit.class);
+                     startActivity(i);*/
                  }
                  if (menuItem.getItemId() == R.id.terms) {
                     Intent i = new Intent(LenderMainActivity.this,TermsActivity.class);

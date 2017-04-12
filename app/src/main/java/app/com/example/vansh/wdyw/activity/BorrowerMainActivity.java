@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -50,9 +51,11 @@ public class BorrowerMainActivity extends AppCompatActivity {
     NavigationView mNavigationView;
     String city="Vellore";
     String  pageid="1";
+    Integer flag =0;
     String loanAmt="3000";
     LinearLayout ll;
     String cit;
+    TextView pageno;
     ImageView prev,next;
 
 
@@ -68,6 +71,8 @@ public class BorrowerMainActivity extends AppCompatActivity {
         ll = (LinearLayout) findViewById(R.id.ll);
         prev = (ImageView) findViewById(R.id.actionprev);
         next  = (ImageView) findViewById(R.id.actionnext);
+        pageno = (TextView ) findViewById(R.id.pageno);
+        pageno.setText("Page "+pageid);
 
 
         Preferences.setPrefs(Consts.AUTO_LOGIN,"borrower",this);
@@ -185,15 +190,25 @@ public class BorrowerMainActivity extends AppCompatActivity {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 int myNum = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
+                flag =1;
                 if (myNum>1)
                 {myNum=myNum-1;
                     pageid= Integer.toString(myNum);
                     Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum),BorrowerMainActivity.this);
-                    Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum), Toast.LENGTH_SHORT).show();
+
 
                     Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
                     startActivity(it);
+                    if (flag==1)
+                    {
+                        flag =0;
+                        pageno.setText("Page "+Integer.toString(myNum));
+                    }
+
+
                 }
                 else
                 {
@@ -202,20 +217,35 @@ public class BorrowerMainActivity extends AppCompatActivity {
                 }
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
 
+
             }
+
+
+
+
         });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int myNum2 = Integer.parseInt(Preferences.getPrefs(Consts.DEFAULT_PAGE,BorrowerMainActivity.this));
+                flag=2;
                 myNum2=myNum2+1;
                 pageid= Integer.toString(myNum2);
-                Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Page: "+Integer.toString(myNum2), Toast.LENGTH_SHORT).show();
+
 
                 Preferences.setPrefs(Consts.DEFAULT_PAGE, Integer.toString(myNum2),BorrowerMainActivity.this);
                 Intent it=new Intent(BorrowerMainActivity.this,BorrowerMainActivity.class);
                 startActivity(it);
                 //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                //pageno.setText("Page "+Integer.toString(myNum2));
+
+                if (flag==2)
+                {
+                    flag =0;
+                    pageno.setText("Page "+Integer.toString(myNum2));
+                }
 
             }
         });

@@ -215,12 +215,13 @@ public class LProfileActivity extends AppCompatActivity
             case R.id.home:
                 Intent i = new Intent(LProfileActivity.this,LenderMainActivity.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_search:
-                Intent j = new Intent(LProfileActivity.this,CheckCredit.class);
-                startActivity(j);
-                Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                /*Intent j = new Intent(LProfileActivity.this,CheckCredit.class);
+                startActivity(j);*/
+                //Toast.makeText(getBaseContext(), "This is a cool STARTUP", Toast.LENGTH_SHORT).show();
                 break;
 
 
