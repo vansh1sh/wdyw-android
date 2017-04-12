@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/wall"
+
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:whatever="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingLeft="15dp"
+    android:background="@color/colorPrimary"
+    android:paddingRight="15dp"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_margin="8dp"
+        android:src="@mipmap/ic_logof"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="7dp"
+        app:cardCornerRadius="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="7dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="1) As we are giving the same piece of 100 borrower data to each and every lender, there is competition for each and every borrower. \nSimply put, each borrower receives varied quotation
+values from lenders (Like one lender might offer 12%, other might offer 10%). \nSo naturally borrower can select the option which is best.
+\n \n2) We don’t charge in commissions. Instead we take monthly bulk amount of say 3-4K INR for 100 borrowers. Now it is totally up to the lender how he converts the leads provided. He may successfully convert all of them or might fail to convert a single borrower. It fully depends upon his quote value. Each small scaled and large scaled lender can profit from this because every borrower is different with varied needs. (A successful businessman might seek a loan from SBI and a poor farmer would prefer a microfinance company). On the other hand, banks who pay commission to other loan aggregators might end up paying more ( Ex: Five loans of minimum 1 lac each would require a commission of about 5K inr as per 1% commission. But we are not concerned about the loan amount. Even if the disbursal amount is in crores, we are charging the same subscription fees)
+"
+        android:textColor="#000"
+        android:textAlignment="center"
+        android:textSize="14sp"/>
+
+
+
+</LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+    </ScrollView>

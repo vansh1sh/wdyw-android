@@ -124,11 +124,19 @@ public class BorrowerMainActivity extends AppCompatActivity {
                     startActivity(i);}
 
                  if (menuItem.getItemId() == R.id.how) {
-                     Intent i = new Intent(BorrowerMainActivity.this,HowItWorks.class);
-                     startActivity(i);}
+                     final Dialog dialog = new Dialog(BorrowerMainActivity.this);
+                     dialog.setCanceledOnTouchOutside(true);
+                     dialog.setContentView(R.layout.dialog_how_it_works);
+                     dialog.show();}
                  if (menuItem.getItemId() == R.id.terms) {
-                     Intent i = new Intent(BorrowerMainActivity.this,TermsActivity.class);
-                     startActivity(i);}
+
+                     final Dialog dialog = new Dialog(BorrowerMainActivity.this);
+                     dialog.setCanceledOnTouchOutside(true);
+                     dialog.setContentView(R.layout.dialog_terms);
+                     dialog.show();
+                     // Intent i = new Intent(BorrowerMainActivity.this,TermsActivity.class);
+                     //startActivity(i);
+                 }
                  if (menuItem.getItemId() == R.id.setting) {
                      Intent i = new Intent(BorrowerMainActivity.this,SettingsActivity.class);
                      startActivity(i);}
