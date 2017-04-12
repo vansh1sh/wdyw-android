@@ -270,8 +270,10 @@ public class LenderMainActivity extends RevealActivity {
                  }
 
                 if (menuItem.getItemId() == R.id.how) {
-                    Intent i = new Intent(LenderMainActivity.this,HowItWorks.class);
-                    startActivity(i);
+                    final Dialog dialog = new Dialog(LenderMainActivity.this);
+                    dialog.setCanceledOnTouchOutside(true);
+                    dialog.setContentView(R.layout.dialog_how_it_works);
+                    dialog.show();
                      }
                  if (menuItem.getItemId() == R.id.loans) {
                      Intent i = new Intent(LenderMainActivity.this,LenderLendActivity.class);
@@ -284,17 +286,17 @@ public class LenderMainActivity extends RevealActivity {
                      startActivity(i);*/
                  }
                  if (menuItem.getItemId() == R.id.terms) {
-                    Intent i = new Intent(LenderMainActivity.this,TermsActivity.class);
-                    startActivity(i);
+                     final Dialog dialog = new Dialog(LenderMainActivity.this);
+                     dialog.setCanceledOnTouchOutside(true);
+                     dialog.setContentView(R.layout.dialog_terms);
+                     dialog.show();
                      }
-                 if (menuItem.getItemId() == R.id.setting) {
-                    Intent i = new Intent(LenderMainActivity.this,SettingsActivity.class);
-                    startActivity(i);
 
-                 }
                  if (menuItem.getItemId() == R.id.contactus) {
-                    Intent i = new Intent(LenderMainActivity.this,ContactUs.class);
-                    startActivity(i);
+                     final Dialog dialog = new Dialog(LenderMainActivity.this);
+                     dialog.setCanceledOnTouchOutside(true);
+                     dialog.setContentView(R.layout.dialog_contact);
+                     dialog.show();
 
                  }
 

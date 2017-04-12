@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/wall"
+
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:whatever="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingLeft="15dp"
+    android:background="@color/colorPrimary"
+    android:paddingRight="15dp"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_margin="8dp"
+        android:src="@mipmap/ic_logof"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="7dp"
+        app:cardCornerRadius="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="7dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Miscaa is an online platform dedicated to match lenders and borrowers. It works as a subscription based digital loan aggregator focused on transparency and one-to-one communication between lenders and borrowers.
+\nLenders can be any interested party with lending capital. Banks, NBFCs, Finance companies, Private and Individual lenders. \n \nBorrowers can be anyone in need of capital, which he/ she can return with interest at a later date. \n\n\nTo explain the working mechanism of Miscaa in a better light, it is better to employ an example,
+Suppose in Delhi there are hundred people in need of loan, they sign into our platform for FREE. We create a database of these 100 borrowers in Delhi with their basic financially relevant information.
+Similarly let us suppose there are in total 30 lenders present in Delhi. They all want credible borrowers to boost their company/individual financials. We give these lenders the same information of 100 borrowers we gathered on a monthly subscription basis.
+These lenders can show interest to the borrowers as per their criteria. Afterwards, the borrower can either accept or reject the interest shown by the lenders."
+        android:textColor="#000"
+        android:textAlignment="center"
+        android:textSize="14sp"/>
+
+
+
+</LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+    </ScrollView>
